@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kleinfercher · Holzbringung & Brennholz · Kärnten</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:   #060c06;
+  --forest:  #0e1c0e;
+  --green:   #1c3a1e;
+  --grey:    #4a5848;
+  --grey-lt: #8a9886;
+  --white:   #dde8d8;
+  --red:     #1a65b8;
+  --red-dim: rgba(26,101,184,.14);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:'Barlow',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+}
+ 
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:20px 32px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.n-logo{
+  font-family:'Space Mono',monospace;
+  font-size:.62rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--white);text-decoration:none;opacity:.5;
+  transition:opacity .3s;
+}
+.n-logo:hover{opacity:1;}
+.n-logo b{color:var(--red);opacity:1;}
+.n-right{display:flex;align-items:center;gap:28px;}
+.n-link{
+  font-family:'Space Mono',monospace;font-size:.58rem;font-weight:400;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--white);text-decoration:none;opacity:.3;
+  transition:opacity .3s,color .3s;
+}
+.n-link:hover{opacity:1;color:var(--red);}
+.n-cta{
+  font-family:'Space Mono',monospace;font-size:.58rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--white);border:1px solid rgba(221,232,216,.2);
+  padding:9px 16px;text-decoration:none;
+  transition:border-color .3s,color .3s;
+}
+.n-cta:hover{border-color:var(--red);color:var(--red);}
+ 
+/* ── HERO ── */
+.hero{
+  position:relative;height:100vh;min-height:620px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  overflow:hidden;
+}
+.hero-bg{position:absolute;inset:0;z-index:0;}
+.bg-slide{
+  position:absolute;inset:0;
+  opacity:0;transition:opacity 1.8s ease;
+}
+.bg-slide.active{opacity:1;}
+.bg-ph{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px;
+}
+.bph1{background:linear-gradient(170deg,#0a1a08 0%,#152812 50%,#1a2a10 100%);}
+.bph2{background:linear-gradient(170deg,#081408 0%,#101e0c 50%,#1a1c08 100%);}
+.bph3{background:linear-gradient(170deg,#0c1e0a 0%,#0a1408 50%,#162010 100%);}
+.bph-icon{opacity:.1;color:var(--white);}
+.bph-label{
+  font-family:'Space Mono',monospace;font-size:.55rem;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--white);opacity:.16;
+}
+.bg-slide img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(.32) saturate(.55) hue-rotate(10deg);
+}
+ 
+/* overlays */
+.hero-vignette{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(to top,var(--black) 0%,rgba(6,12,6,.72) 35%,rgba(6,12,6,.18) 70%,transparent 100%),
+    linear-gradient(to bottom,rgba(6,12,6,.55) 0%,transparent 18%);
+}
+ 
+/* grain */
+.hero::after{
+  content:'';position:absolute;inset:0;z-index:2;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events:none;opacity:.45;
+}
+ 
+.hero-content{
+  position:relative;z-index:10;
+  padding:0 6vw 7vh;
+}
+.hero-hl{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(5rem,17vw,19rem);
+  line-height:.88;letter-spacing:-.01em;text-transform:uppercase;
+  color:var(--white);
+}
+.hero-hl-line{display:block;overflow:hidden;}
+.hero-hl-inner{
+  display:block;
+  transform:translateY(110%);
+  animation:slideUp .9s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-hl-line:nth-child(1) .hero-hl-inner{animation-delay:.1s;}
+.hero-hl-line:nth-child(2) .hero-hl-inner{animation-delay:.25s;color:var(--red);}
+.hero-hl-line:nth-child(3) .hero-hl-inner{
+  animation-delay:.4s;
+  font-size:.42em;
+  color:var(--grey-lt);
+  font-family:'Space Mono',monospace;
+  font-size:clamp(.75rem,1.8vw,1.2rem);
+  letter-spacing:.22em;
+}
+@keyframes slideUp{to{transform:translateY(0);}}
+ 
+.hero-bottom{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-top:32px;
+  opacity:0;animation:fadeUp .7s .9s forwards;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+ 
+.hero-desc{
+  font-size:clamp(.85rem,1.2vw,1rem);font-weight:300;line-height:1.65;
+  color:var(--grey-lt);max-width:360px;
+}
+.hero-desc b{color:var(--white);font-weight:400;}
+ 
+.hero-scroll{
+  font-family:'Space Mono',monospace;font-size:.55rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--grey);text-decoration:none;
+  display:flex;align-items:center;gap:10px;
+  transition:color .3s;
+}
+.hero-scroll:hover{color:var(--red);}
+.hero-scroll::after{
+  content:'';display:block;width:1px;height:44px;
+  background:var(--grey);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.3;}50%{opacity:.9;}}
+ 
+.hero-counter{
+  position:absolute;bottom:7vh;right:6vw;z-index:10;
+  display:flex;flex-direction:column;align-items:flex-end;gap:8px;
+}
+.hc-num{
+  font-family:'Space Mono',monospace;font-size:.55rem;
+  font-weight:400;letter-spacing:.15em;color:var(--grey-lt);opacity:.5;
+}
+.hc-dots{display:flex;gap:5px;}
+.hcdot{
+  width:18px;height:1.5px;
+  background:rgba(221,232,216,.2);cursor:pointer;
+  transition:background .3s,width .4s;
+}
+.hcdot.active{background:var(--red);width:28px;}
+ 
+/* ── RED BAND ── */
+.band{
+  background:var(--red);overflow:hidden;padding:0;position:relative;z-index:20;
+}
+.band-track{
+  display:flex;width:max-content;
+  animation:bandRoll 22s linear infinite;
+  padding:13px 0;
+}
+.band-track span{
+  font-family:'Anton',sans-serif;
+  font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(221,232,216,.9);white-space:nowrap;padding:0 22px;
+}
+.band-track span.dot{color:rgba(221,232,216,.35);padding:0 4px;}
+@keyframes bandRoll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+ 
+/* ── LEISTUNGEN ── */
+.leistung{
+  position:relative;height:100vh;min-height:600px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  overflow:hidden;
+}
+.lbg{
+  position:absolute;inset:0;z-index:0;
+  transition:transform .8s ease;
+}
+.leistung:hover .lbg{transform:scale(1.03);}
+ 
+.lbg-ph{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:14px;
+}
+.lbg-ph1{background:radial-gradient(ellipse at 35% 55%,#1a3a1c 0%,#0c1e0e 45%,#060c06 100%);}
+.lbg-ph2{background:radial-gradient(ellipse at 65% 45%,#1a2e18 0%,#0e180c 45%,#060c06 100%);}
+.lbg-ph-icon{opacity:.08;}
+.lbg-ph-label{
+  font-family:'Space Mono',monospace;font-size:.55rem;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--white);opacity:.15;
+}
+.lbg img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(.28) saturate(.5) hue-rotate(5deg);
+}
+ 
+.l-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(to top,rgba(6,12,6,.98) 0%,rgba(6,12,6,.7) 28%,rgba(6,12,6,.12) 65%,transparent 100%);
+}
+ 
+/* large decorative number */
+.l-bignr{
+  position:absolute;
+  font-family:'Anton',sans-serif;
+  font-size:55vw;line-height:.8;
+  color:var(--white);opacity:.02;
+  right:-8vw;bottom:-12vh;
+  z-index:2;pointer-events:none;user-select:none;
+}
+ 
+.l-body{
+  position:relative;z-index:10;
+  padding:0 6vw 7vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:40px;align-items:end;
+}
+ 
+.l-index{
+  font-family:'Space Mono',monospace;font-size:.58rem;font-weight:400;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path .8s cubic-bezier(.22,1,.36,1);
+}
+.l-index::before{content:'';width:22px;height:1px;background:var(--red);display:block;}
+.in-view .l-index{clip-path:inset(0 0% 0 0);}
+ 
+.l-title{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(4.5rem,11vw,13rem);
+  line-height:.88;text-transform:uppercase;color:var(--white);
+  opacity:0;transform:translateY(50px);
+  transition:opacity .9s .1s,transform .9s cubic-bezier(.16,1,.3,1) .1s;
+}
+.in-view .l-title{opacity:1;transform:translateY(0);}
+.l-title em{font-style:normal;color:var(--red);}
+ 
+.l-right{display:flex;flex-direction:column;justify-content:flex-end;gap:26px;}
+ 
+.l-desc{
+  font-size:.95rem;line-height:1.75;
+  color:var(--grey-lt);max-width:400px;
+  opacity:0;transform:translateY(24px);
+  transition:opacity .8s .25s,transform .8s cubic-bezier(.16,1,.3,1) .25s;
+}
+.in-view .l-desc{opacity:1;transform:translateY(0);}
+ 
+.l-feats{
+  list-style:none;display:flex;flex-direction:column;gap:10px;
+  opacity:0;transform:translateY(20px);
+  transition:opacity .8s .35s,transform .8s cubic-bezier(.16,1,.3,1) .35s;
+}
+.in-view .l-feats{opacity:1;transform:translateY(0);}
+.l-feats li{
+  font-family:'Space Mono',monospace;font-size:.65rem;font-weight:400;
+  letter-spacing:.06em;color:var(--grey-lt);
+  display:flex;align-items:center;gap:12px;
+}
+.l-feats li::before{
+  content:'';width:18px;height:1px;
+  background:var(--red);opacity:.7;display:block;flex-shrink:0;
+}
+ 
+.l-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:'Space Mono',monospace;font-size:.65rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--white);background:var(--red);
+  padding:13px 22px;text-decoration:none;width:fit-content;
+  opacity:0;
+  transition:opacity .8s .45s,background .25s,gap .3s;
+}
+.in-view .l-btn{opacity:1;}
+.l-btn:hover{background:#1450a0;gap:20px;}
+ 
+/* ── FACTS ── */
+.facts{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(221,232,216,.06);
+  border-bottom:1px solid rgba(221,232,216,.06);
+  background:var(--forest);
+}
+.fact{
+  padding:52px 6vw;
+  border-right:1px solid rgba(221,232,216,.06);
+  display:flex;flex-direction:column;gap:8px;
+}
+.fact:last-child{border-right:none;}
+.fact-n{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(2.8rem,5vw,5rem);
+  line-height:1;color:var(--red);
+}
+.fact-l{
+  font-family:'Space Mono',monospace;font-size:.6rem;font-weight:400;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--grey);
+}
+ 
+/* ── KONTAKT ── */
+.kontakt{
+  padding:110px 6vw 90px;background:var(--forest);
+  display:grid;grid-template-columns:5fr 4fr;
+  gap:80px;align-items:start;
+}
+.k-pre{
+  font-family:'Space Mono',monospace;font-size:.58rem;font-weight:400;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.k-pre::before{content:'';width:18px;height:1px;background:var(--red);display:block;}
+.k-hl{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(3.5rem,7vw,8rem);
+  line-height:.88;text-transform:uppercase;color:var(--white);margin-bottom:36px;
+}
+.k-hl em{font-style:normal;color:var(--red);}
+.k-rows{display:flex;flex-direction:column;gap:18px;}
+.k-row{display:flex;align-items:center;gap:16px;}
+.k-icon{
+  width:42px;height:42px;
+  border:1px solid rgba(221,232,216,.1);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--red);flex-shrink:0;
+}
+.k-lbl{
+  font-family:'Space Mono',monospace;font-size:.55rem;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--grey);margin-bottom:3px;
+}
+.k-val{font-size:.93rem;font-weight:300;color:var(--white);}
+ 
+/* form */
+.k-form{display:flex;flex-direction:column;gap:16px;}
+.fg{display:flex;flex-direction:column;gap:7px;}
+.fgl{
+  font-family:'Space Mono',monospace;font-size:.55rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--grey);
+}
+.fg input,.fg select,.fg textarea{
+  background:transparent;
+  border:0;border-bottom:1px solid rgba(221,232,216,.1);
+  color:var(--white);
+  font-family:'Barlow',sans-serif;font-size:.93rem;font-weight:300;
+  padding:13px 0;outline:none;border-radius:0;width:100%;
+  transition:border-color .3s;-webkit-appearance:none;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--red);}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(221,232,216,.2);}
+.fg select option{background:var(--forest);color:var(--white);}
+.fg textarea{min-height:100px;resize:none;}
+.k-submit{
+  font-family:'Anton',sans-serif;font-size:1.1rem;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--white);background:var(--red);
+  padding:16px 36px;border:none;cursor:pointer;
+  transition:background .2s,transform .2s;
+  align-self:flex-start;-webkit-appearance:none;border-radius:0;margin-top:4px;
+}
+.k-submit:hover{background:#1450a0;transform:translateY(-2px);}
+ 
+/* ── FOOTER ── */
+footer{
+  background:var(--black);
+  border-top:1px solid rgba(221,232,216,.06);
+  padding:28px 6vw;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:20px;flex-wrap:wrap;
+}
+.f-logo{
+  font-family:'Space Mono',monospace;font-size:.62rem;
+  font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--white);text-decoration:none;opacity:.35;
+}
+.f-logo b{color:var(--red);opacity:1;}
+.f-copy{
+  font-family:'Space Mono',monospace;font-size:.55rem;
+  letter-spacing:.1em;color:var(--grey);opacity:.5;
+}
+ 
+/* ── MOBILE ── */
+@media(max-width:800px){
+  nav{padding:16px 20px;}
+  .n-link,.n-cta{display:none;}
+ 
+  .hero-content{padding:0 20px 52px;}
+  .hero-bottom{flex-direction:column;align-items:flex-start;gap:20px;}
+  .hero-scroll{display:none;}
+  .hero-counter{bottom:52px;right:20px;}
+ 
+  .l-body{grid-template-columns:1fr;gap:24px;}
+  .l-bignr{font-size:70vw;}
+  .leistung{height:auto;min-height:auto;padding-top:120px;}
+ 
+  .facts{grid-template-columns:1fr 1fr;}
+  .fact:nth-child(3){grid-column:1/-1;}
+  .fact{padding:36px 20px;}
+ 
+  .kontakt{grid-template-columns:1fr;padding:80px 20px;gap:52px;}
+  footer{flex-direction:column;text-align:center;padding:24px 20px;}
+}
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav>
+  <a href="#" class="n-logo">Kleinfercher<b>.</b></a>
+  <div class="n-right">
+    <a href="#leistungen" class="n-link">Leistungen</a>
+    <a href="#kontakt" class="n-link">Kontakt</a>
+    <a href="tel:+436644154196" class="n-cta">Anrufen</a>
+  </div>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="hero-bg">
+    <div class="bg-slide active"><img src="1.png" alt="Kleinfercher Holzbringung"></div>
+    <div class="bg-slide"><img src="2.png" alt="Kleinfercher Einsatz"></div>
+    <div class="bg-slide"><img src="3.png" alt="Kleinfercher Brennholz"></div>
+  </div>
+ 
+  <div class="hero-vignette"></div>
+ 
+  <div class="hero-counter">
+    <span class="hc-num" id="hc-num">01</span>
+    <div class="hc-dots">
+      <div class="hcdot active" onclick="goTo(0)"></div>
+      <div class="hcdot" onclick="goTo(1)"></div>
+      <div class="hcdot" onclick="goTo(2)"></div>
+    </div>
+  </div>
+ 
+  <div class="hero-content">
+    <h1 class="hero-hl" aria-label="Kleinfercher Holzbringung Brennholz">
+      <span class="hero-hl-line"><span class="hero-hl-inner">KLEIN-</span></span>
+      <span class="hero-hl-line"><span class="hero-hl-inner">FERCHER.</span></span>
+      <span class="hero-hl-line"><span class="hero-hl-inner">Reißeck · Kärnten</span></span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">
+        <b>Holzbringung & Brennholz</b> — direkt vom Betrieb.<br>
+        Maschinell, regional, zuverlässig.
+      </p>
+      <a href="#leistungen" class="hero-scroll">Scroll</a>
+    </div>
+  </div>
+</section>
+ 
+<!-- RED BAND -->
+<div class="band">
+  <div class="band-track">
+    <span>Holzbringung</span><span class="dot">·</span>
+    <span>Brennholz</span><span class="dot">·</span>
+    <span>9815 Reißeck</span><span class="dot">·</span>
+    <span>Kärnten</span><span class="dot">·</span>
+    <span>0664 4154196</span><span class="dot">·</span>
+    <span>Holzbringung</span><span class="dot">·</span>
+    <span>Brennholz</span><span class="dot">·</span>
+    <span>9815 Reißeck</span><span class="dot">·</span>
+    <span>Kärnten</span><span class="dot">·</span>
+    <span>0664 4154196</span><span class="dot">·</span>
+  </div>
+</div>
+ 
+<!-- LEISTUNGEN -->
+<div id="leistungen">
+ 
+  <section class="leistung" id="l1">
+    <div class="lbg"><img src="4.png" alt="Holzbringung Kleinfercher"></div>
+    <div class="l-overlay"></div>
+    <span class="l-bignr" aria-hidden="true">1</span>
+    <div class="l-body">
+      <div>
+        <p class="l-index">Leistung 01</p>
+        <h2 class="l-title">HOLZ-<br><em>BRING-<br>UNG.</em></h2>
+      </div>
+      <div class="l-right">
+        <p class="l-desc">Professionelles Rücken und Bringen von Stammholz — auch in steilem, schwer zugänglichem Gelände. Maschinell, schnell, mit Sorgfalt im Bestand.</p>
+        <ul class="l-feats">
+          <li>Rücken im Gebirgsgelände</li>
+          <li>Kurzstreckentransporte & Lagerung</li>
+          <li>Saubere Arbeit, kein Schaden im Bestand</li>
+          <li>Reißeck & Umgebung Kärnten</li>
+        </ul>
+        <a href="#kontakt" class="l-btn">Anfragen →</a>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="leistung" id="l2">
+    <div class="lbg"><img src="5.png" alt="Brennholz Kleinfercher"></div>
+    <div class="l-overlay"></div>
+    <span class="l-bignr" aria-hidden="true">2</span>
+    <div class="l-body">
+      <div>
+        <p class="l-index">Leistung 02</p>
+        <h2 class="l-title">BRENN-<br><em>HOLZ.</em></h2>
+      </div>
+      <div class="l-right">
+        <p class="l-desc">Ofenfertiges Brennholz direkt aus Kärnten — gespalten, trocken, in verschiedenen Mengen. Für Kamin, Ofen und Heizung. Abholung oder Lieferung auf Anfrage.</p>
+        <ul class="l-feats">
+          <li>Gespalten & ofenfertig</li>
+          <li>Regionales Holz aus Kärnten</li>
+          <li>Kleinere & größere Mengen möglich</li>
+          <li>Abholung oder Lieferung auf Anfrage</li>
+        </ul>
+        <a href="#kontakt" class="l-btn">Anfragen →</a>
+      </div>
+    </div>
+  </section>
+ 
+</div>
+ 
+<!-- FACTS -->
+<div class="facts">
+  <div class="fact">
+    <span class="fact-n">100%</span>
+    <span class="fact-l">Regional · Kärnten</span>
+  </div>
+  <div class="fact">
+    <span class="fact-n">Direkt</span>
+    <span class="fact-l">Vom Betrieb</span>
+  </div>
+  <div class="fact">
+    <span class="fact-n">Schnell</span>
+    <span class="fact-l">Auf Anfrage</span>
+  </div>
+</div>
+ 
+<!-- KONTAKT -->
+<section class="kontakt" id="kontakt">
+  <div>
+    <p class="k-pre">Kontakt</p>
+    <h2 class="k-hl">EINFACH<br><em>MELDEN.</em></h2>
+    <div class="k-rows">
+      <div class="k-row">
+        <div class="k-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.3 2.18a2 2 0 011.99-2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91A16 16 0 0017.09 18.91l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="k-lbl">Telefon</p>
+          <p class="k-val">0664 4154196</p>
+        </div>
+      </div>
+      <div class="k-row">
+        <div class="k-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div>
+          <p class="k-lbl">Standort</p>
+          <p class="k-val">9815 Reißeck, Kärnten</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form class="k-form" name="kontakt" method="POST" data-netlify="true">
+    <div class="fg">
+      <label class="fgl" for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Ihr Name" required>
+    </div>
+    <div class="fg">
+      <label class="fgl" for="kontakt-feld">Telefon oder E-Mail</label>
+      <input type="text" id="kontakt-feld" name="kontakt" placeholder="Wie erreiche ich Sie?" required>
+    </div>
+    <div class="fg">
+      <label class="fgl" for="leistung">Leistung</label>
+      <select id="leistung" name="leistung">
+        <option value="" disabled selected>Bitte wählen …</option>
+        <option value="holzbringung">Holzbringung</option>
+        <option value="brennholz">Brennholz</option>
+        <option value="beides">Beides</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label class="fgl" for="nachricht">Nachricht</label>
+      <textarea id="nachricht" name="nachricht" placeholder="Ihr Anliegen …"></textarea>
+    </div>
+    <button type="submit" class="k-submit">ANFRAGE SENDEN</button>
+  </form>
+</section>
+ 
+<footer>
+  <a href="#" class="f-logo">Kleinfercher<b>.</b></a>
+  <span class="f-copy">© 2026 Marvin Franz Kleinfercher · 9815 Reißeck · Kärnten</span>
+</footer>
+ 
+<script>
+let cur=0,lock=false;
+const slides=document.querySelectorAll('.bg-slide');
+const dots=document.querySelectorAll('.hcdot');
+const numEl=document.getElementById('hc-num');
+const NUMS=['01','02','03'];
+function goTo(n){
+  if(lock||n===cur)return;lock=true;
+  slides[cur].classList.remove('active');dots[cur].classList.remove('active');
+  cur=n;
+  slides[cur].classList.add('active');dots[cur].classList.add('active');
+  numEl.textContent=NUMS[cur];
+  setTimeout(()=>lock=false,2000);
+}
+setInterval(()=>goTo((cur+1)%slides.length),6000);
+ 
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in-view');});
+},{threshold:.08});
+document.querySelectorAll('#l1,#l2').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
