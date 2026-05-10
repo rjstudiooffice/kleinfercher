@@ -27,7 +27,7 @@ body{
   font-weight:300;
   overflow-x:hidden;
 }
- 
+
 /* ── NAV ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:500;
@@ -59,7 +59,7 @@ nav{
   transition:border-color .3s,color .3s;
 }
 .n-cta:hover{border-color:var(--red);color:var(--red);}
- 
+
 /* ── HERO ── */
 .hero{
   position:relative;height:100vh;min-height:620px;
@@ -88,9 +88,9 @@ nav{
 }
 .bg-slide img{
   width:100%;height:100%;object-fit:cover;
-  filter:brightness(.65) saturate(.8) hue-rotate(5deg);
+  filter:brightness(.9) saturate(.9);
 }
- 
+
 /* overlays */
 .hero-vignette{
   position:absolute;inset:0;z-index:1;
@@ -98,14 +98,14 @@ nav{
     linear-gradient(to top,var(--black) 0%,rgba(6,12,6,.72) 35%,rgba(6,12,6,.18) 70%,transparent 100%),
     linear-gradient(to bottom,rgba(6,12,6,.55) 0%,transparent 18%);
 }
- 
+
 /* grain */
 .hero::after{
   content:'';position:absolute;inset:0;z-index:2;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
   pointer-events:none;opacity:.45;
 }
- 
+
 .hero-content{
   position:relative;z-index:10;
   padding:0 6vw 7vh;
@@ -133,20 +133,20 @@ nav{
   letter-spacing:.22em;
 }
 @keyframes slideUp{to{transform:translateY(0);}}
- 
+
 .hero-bottom{
   display:flex;align-items:flex-end;justify-content:space-between;
   margin-top:32px;
   opacity:0;animation:fadeUp .7s .9s forwards;
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
- 
+
 .hero-desc{
   font-size:clamp(.85rem,1.2vw,1rem);font-weight:300;line-height:1.65;
   color:var(--grey-lt);max-width:360px;
 }
 .hero-desc b{color:var(--white);font-weight:400;}
- 
+
 .hero-scroll{
   font-family:'Space Mono',monospace;font-size:.55rem;
   letter-spacing:.2em;text-transform:uppercase;
@@ -161,7 +161,7 @@ nav{
   animation:pulse 2s ease-in-out infinite;
 }
 @keyframes pulse{0%,100%{opacity:.3;}50%{opacity:.9;}}
- 
+
 .hero-counter{
   position:absolute;bottom:7vh;right:6vw;z-index:10;
   display:flex;flex-direction:column;align-items:flex-end;gap:8px;
@@ -177,7 +177,7 @@ nav{
   transition:background .3s,width .4s;
 }
 .hcdot.active{background:var(--red);width:28px;}
- 
+
 /* ── RED BAND ── */
 .band{
   background:var(--red);overflow:hidden;padding:0;position:relative;z-index:20;
@@ -194,7 +194,7 @@ nav{
 }
 .band-track span.dot{color:rgba(221,232,216,.35);padding:0 4px;}
 @keyframes bandRoll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
- 
+
 /* ── LEISTUNGEN ── */
 .leistung{
   position:relative;height:100vh;min-height:600px;
@@ -206,7 +206,7 @@ nav{
   transition:transform .8s ease;
 }
 .leistung:hover .lbg{transform:scale(1.03);}
- 
+
 .lbg-ph{
   width:100%;height:100%;
   display:flex;flex-direction:column;
@@ -221,15 +221,15 @@ nav{
 }
 .lbg img{
   width:100%;height:100%;object-fit:cover;
-  filter:brightness(.55) saturate(.75) hue-rotate(5deg);
+  filter:brightness(.8) saturate(.85);
 }
- 
+
 .l-overlay{
   position:absolute;inset:0;z-index:1;
   background:
     linear-gradient(to top,rgba(6,12,6,.98) 0%,rgba(6,12,6,.7) 28%,rgba(6,12,6,.12) 65%,transparent 100%);
 }
- 
+
 /* large decorative number */
 .l-bignr{
   position:absolute;
@@ -239,14 +239,14 @@ nav{
   right:-8vw;bottom:-12vh;
   z-index:2;pointer-events:none;user-select:none;
 }
- 
+
 .l-body{
   position:relative;z-index:10;
   padding:0 6vw 7vh;
   display:grid;grid-template-columns:1fr 1fr;
   gap:40px;align-items:end;
 }
- 
+
 .l-index{
   font-family:'Space Mono',monospace;font-size:.58rem;font-weight:400;
   letter-spacing:.22em;text-transform:uppercase;
@@ -257,7 +257,7 @@ nav{
 }
 .l-index::before{content:'';width:22px;height:1px;background:var(--red);display:block;}
 .in-view .l-index{clip-path:inset(0 0% 0 0);}
- 
+
 .l-title{
   font-family:'Anton',sans-serif;
   font-size:clamp(2.8rem,5.5vw,6.5rem);
@@ -267,9 +267,9 @@ nav{
 }
 .in-view .l-title{opacity:1;transform:translateY(0);}
 .l-title em{font-style:normal;color:var(--red);}
- 
+
 .l-right{display:flex;flex-direction:column;justify-content:flex-end;gap:26px;}
- 
+
 .l-desc{
   font-size:.95rem;line-height:1.75;
   color:var(--grey-lt);max-width:400px;
@@ -277,7 +277,7 @@ nav{
   transition:opacity .8s .25s,transform .8s cubic-bezier(.16,1,.3,1) .25s;
 }
 .in-view .l-desc{opacity:1;transform:translateY(0);}
- 
+
 .l-feats{
   list-style:none;display:flex;flex-direction:column;gap:10px;
   opacity:0;transform:translateY(20px);
@@ -293,7 +293,7 @@ nav{
   content:'';width:18px;height:1px;
   background:var(--red);opacity:.7;display:block;flex-shrink:0;
 }
- 
+
 .l-btn{
   display:inline-flex;align-items:center;gap:12px;
   font-family:'Space Mono',monospace;font-size:.65rem;font-weight:700;
@@ -305,7 +305,7 @@ nav{
 }
 .in-view .l-btn{opacity:1;}
 .l-btn:hover{background:#1450a0;gap:20px;}
- 
+
 /* ── FACTS ── */
 .facts{
   display:grid;grid-template-columns:repeat(3,1fr);
@@ -328,7 +328,7 @@ nav{
   font-family:'Space Mono',monospace;font-size:.6rem;font-weight:400;
   letter-spacing:.18em;text-transform:uppercase;color:var(--grey);
 }
- 
+
 /* ── KONTAKT ── */
 .kontakt{
   padding:110px 6vw 90px;background:var(--forest);
@@ -362,7 +362,7 @@ nav{
   color:var(--grey);margin-bottom:3px;
 }
 .k-val{font-size:.93rem;font-weight:300;color:var(--white);}
- 
+
 /* form */
 .k-form{display:flex;flex-direction:column;gap:16px;}
 .fg{display:flex;flex-direction:column;gap:7px;}
@@ -391,7 +391,7 @@ nav{
   align-self:flex-start;-webkit-appearance:none;border-radius:0;margin-top:4px;
 }
 .k-submit:hover{background:#1450a0;transform:translateY(-2px);}
- 
+
 /* ── FOOTER ── */
 footer{
   background:var(--black);
@@ -410,32 +410,32 @@ footer{
   font-family:'Space Mono',monospace;font-size:.55rem;
   letter-spacing:.1em;color:var(--grey);opacity:.5;
 }
- 
+
 /* ── MOBILE ── */
 @media(max-width:800px){
   nav{padding:16px 20px;}
   .n-link,.n-cta{display:none;}
- 
+
   .hero-content{padding:0 20px 52px;}
   .hero-bottom{flex-direction:column;align-items:flex-start;gap:20px;}
   .hero-scroll{display:none;}
   .hero-counter{bottom:52px;right:20px;}
- 
+
   .l-body{grid-template-columns:1fr;gap:24px;}
   .l-bignr{font-size:70vw;}
   .leistung{height:auto;min-height:auto;padding-top:120px;}
- 
+
   .facts{grid-template-columns:1fr 1fr;}
   .fact:nth-child(3){grid-column:1/-1;}
   .fact{padding:36px 20px;}
- 
+
   .kontakt{grid-template-columns:1fr;padding:80px 20px;gap:52px;}
   footer{flex-direction:column;text-align:center;padding:24px 20px;}
 }
 </style>
 </head>
 <body>
- 
+
 <!-- NAV -->
 <nav>
   <a href="#" class="n-logo">Kleinfercher<b>.</b></a>
@@ -445,7 +445,7 @@ footer{
     <a href="tel:+436644154196" class="n-cta">Anrufen</a>
   </div>
 </nav>
- 
+
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg" id="hero-bg">
@@ -453,9 +453,9 @@ footer{
     <div class="bg-slide"><img src="2.png" alt="Kleinfercher Einsatz"></div>
     <div class="bg-slide"><img src="3.png" alt="Kleinfercher Brennholz"></div>
   </div>
- 
+
   <div class="hero-vignette"></div>
- 
+
   <div class="hero-counter">
     <span class="hc-num" id="hc-num">01</span>
     <div class="hc-dots">
@@ -464,7 +464,7 @@ footer{
       <div class="hcdot" onclick="goTo(2)"></div>
     </div>
   </div>
- 
+
   <div class="hero-content">
     <h1 class="hero-hl" aria-label="Kleinfercher Holzbringung Brennholz">
       <span class="hero-hl-line"><span class="hero-hl-inner">KLEIN-</span></span>
@@ -480,7 +480,7 @@ footer{
     </div>
   </div>
 </section>
- 
+
 <!-- RED BAND -->
 <div class="band">
   <div class="band-track">
@@ -496,10 +496,10 @@ footer{
     <span>0664 4154196</span><span class="dot">·</span>
   </div>
 </div>
- 
+
 <!-- LEISTUNGEN -->
 <div id="leistungen">
- 
+
   <section class="leistung" id="l1">
     <div class="lbg"><img src="4.png" alt="Holzbringung Kleinfercher"></div>
     <div class="l-overlay"></div>
@@ -521,7 +521,7 @@ footer{
       </div>
     </div>
   </section>
- 
+
   <section class="leistung" id="l2">
     <div class="lbg"><img src="5.png" alt="Brennholz Kleinfercher"></div>
     <div class="l-overlay"></div>
@@ -543,9 +543,9 @@ footer{
       </div>
     </div>
   </section>
- 
+
 </div>
- 
+
 <!-- FACTS -->
 <div class="facts">
   <div class="fact">
@@ -561,7 +561,7 @@ footer{
     <span class="fact-l">Auf Anfrage</span>
   </div>
 </div>
- 
+
 <!-- KONTAKT -->
 <section class="kontakt" id="kontakt">
   <div>
@@ -618,12 +618,12 @@ footer{
     <button type="submit" class="k-submit">ANFRAGE SENDEN</button>
   </form>
 </section>
- 
+
 <footer>
   <a href="#" class="f-logo">Kleinfercher<b>.</b></a>
   <span class="f-copy">© 2026 Marvin Franz Kleinfercher · 9815 Reißeck · Kärnten</span>
 </footer>
- 
+
 <script>
 let cur=0,lock=false;
 const slides=document.querySelectorAll('.bg-slide');
@@ -639,7 +639,7 @@ function goTo(n){
   setTimeout(()=>lock=false,2000);
 }
 setInterval(()=>goTo((cur+1)%slides.length),6000);
- 
+
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in-view');});
 },{threshold:.08});
