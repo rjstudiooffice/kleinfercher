@@ -38,7 +38,12 @@ nav{
   border-bottom:1px solid var(--border);
 }
 nav.solid{background:rgba(6,12,6,0.97);backdrop-filter:blur(16px);border-color:var(--border);}
-.nav-logo{font-family:'Anton',sans-serif;font-size:19px;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue);text-decoration:none;opacity:0;animation:fadeIn 0.8s 0.2s forwards;}
+.nav-logo{display:flex;align-items:center;text-decoration:none;opacity:0;animation:fadeIn 0.8s 0.2s forwards;}
+.nav-logo img{height:56px;width:auto;mix-blend-mode:screen;filter:brightness(1.4) saturate(1.2);animation:logoGlow 3.5s ease-in-out infinite;}
+@keyframes logoGlow{
+  0%,100%{filter:brightness(1.4) saturate(1.2) drop-shadow(0 0 6px rgba(58,130,48,0.4));}
+  50%{filter:brightness(1.7) saturate(1.4) drop-shadow(0 0 16px rgba(58,130,48,0.75)) drop-shadow(0 0 32px rgba(26,101,184,0.3));}
+}
 .nav-r{display:flex;align-items:center;gap:28px;opacity:0;animation:fadeIn 0.8s 0.4s forwards;}
 .nav-r a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color 0.25s;}
 .nav-r a:hover{color:var(--text);}
@@ -199,6 +204,7 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
   nav{padding:0 20px;}.nav-r{display:none;}.burger{display:flex;}
+  .nav-logo img{height:44px;}
   .hero-content{left:20px;bottom:60px;}
   .slide-num{display:none;}
   .slide-dots{left:20px;}.slide-num{right:20px;}
@@ -236,7 +242,7 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">Kleinfercher</a>
+  <a href="#" class="nav-logo"><img src="logokleinfercher.png" alt="Kleinfercher Holzbringung & Brennholz"></a>
   <div class="nav-r">
     <a href="#leistungen">Leistungen</a>
     <a href="#kontakt">Kontakt</a>
@@ -246,6 +252,7 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
 </nav>
 
 <div class="mob-menu" id="mobMenu">
+  <img src="logokleinfercher.png" alt="Kleinfercher" style="height:90px;width:auto;mix-blend-mode:screen;filter:brightness(1.5) saturate(1.3) drop-shadow(0 0 20px rgba(58,130,48,0.6));margin-bottom:8px;">
   <a href="#leistungen" onclick="closeMenu()">Leistungen</a>
   <a href="#kontakt" onclick="closeMenu()">Kontakt</a>
   <a href="tel:06644154196" class="mob-cta" onclick="closeMenu()">☎ Anrufen</a>
@@ -385,7 +392,7 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
 </section>
 
 <footer>
-  <div class="f-logo"><em>Kleinfercher</em> Holzbringung & Brennholz</div>
+  <div class="f-logo" style="display:flex;align-items:center;gap:10px;"><img src="logokleinfercher.png" alt="Kleinfercher" style="height:36px;width:auto;mix-blend-mode:screen;filter:brightness(1.2) saturate(1.1);opacity:0.5;"> <span style="font-family:Anton,sans-serif;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(221,232,216,0.18);">Holzbringung & Brennholz</span></div>
   <div class="f-copy">© 2026 Kleinfercher · 9815 Reißeck · Kärnten</div>
   <div class="f-links"><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
 </footer>
