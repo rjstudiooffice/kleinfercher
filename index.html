@@ -39,7 +39,7 @@ nav{
 }
 nav.solid{background:rgba(6,12,6,0.97);backdrop-filter:blur(16px);border-color:var(--border);}
 .nav-logo{display:flex;align-items:center;text-decoration:none;opacity:0;animation:fadeIn 0.8s 0.2s forwards;}
-.nav-logo img{height:100px;width:auto;mix-blend-mode:lighten;filter:brightness(1.6) saturate(1.3) contrast(1.1);animation:logoGlow 3.5s ease-in-out infinite;}
+.nav-logo img{height:100px;width:auto;filter:brightness(1.6) saturate(1.3) contrast(1.1);animation:logoGlow 3.5s ease-in-out infinite;}
 @keyframes logoGlow{
   0%,100%{filter:brightness(1.6) saturate(1.3) contrast(1.1) drop-shadow(0 0 6px rgba(58,130,48,0.4));}
   50%{filter:brightness(1.9) saturate(1.5) contrast(1.1) drop-shadow(0 0 16px rgba(58,130,48,0.75)) drop-shadow(0 0 32px rgba(26,101,184,0.3));}
@@ -321,24 +321,26 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
     <h2 class="section-h">Leistungen</h2>
   </div>
   <div class="l-grid">
-    <div class="l-item">
+    <a href="holzbringung.html" class="l-item" style="display:block;text-decoration:none;">
       <picture><source media="(max-width:768px)" srcset="9.png"><img src="4.png" alt="Holzbringung" class="l-img"></picture>
       <div class="l-overlay"></div>
       <div class="l-border"></div>
       <div class="l-content">
         <div class="l-name">Holzbringung</div>
         <div class="l-desc">Professionelle Holzernte und Bringung im Gelände — mit modernem Gerät, schonend für Wald und Boden.</div>
+        <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
       </div>
-    </div>
-    <div class="l-item">
+    </a>
+    <a href="brennholz.html" class="l-item" style="display:block;text-decoration:none;">
       <picture><source media="(max-width:768px)" srcset="10.png"><img src="5.png" alt="Brennholz" class="l-img"></picture>
       <div class="l-overlay"></div>
       <div class="l-border"></div>
       <div class="l-content">
         <div class="l-name">Brennholz</div>
         <div class="l-desc">Ofenfertiges Brennholz direkt vom Erzeuger — trocken, gespalten und auf Wunsch zugestellt.</div>
+        <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -392,7 +394,7 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
 </section>
 
 <footer>
-  <div class="f-logo" style="display:flex;align-items:center;gap:10px;"><img src="logokleinfercher.png" alt="Kleinfercher" style="height:36px;width:auto;mix-blend-mode:lighten;filter:brightness(1.5) saturate(1.2) contrast(1.1);opacity:0.5;"> <span style="font-family:Anton,sans-serif;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(221,232,216,0.18);">Holzbringung & Brennholz</span></div>
+  <div class="f-logo" style="display:flex;align-items:center;gap:10px;"><img src="logokleinfercher.png" alt="Kleinfercher" style="height:36px;width:auto;filter:brightness(1.5) saturate(1.2) contrast(1.1);opacity:0.5;"> <span style="font-family:Anton,sans-serif;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(221,232,216,0.18);">Holzbringung & Brennholz</span></div>
   <div class="f-copy">© 2026 Kleinfercher · 9815 Reißeck · Kärnten</div>
   <div class="f-links"><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
 </footer>
