@@ -1,426 +1,1434 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kleinfercher · Holzbringung & Brennholz · Reißeck</title>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --black:#060c06;
-  --black2:#0e1c0e;
-  --black3:#162816;
-  --black4:#1c3a1e;
-  --green:#3a8230;
-  --green2:#4a9e3e;
-  --green-dim:rgba(58,130,48,0.12);
-  --green-border:rgba(58,130,48,0.25);
-  --blue:#1a65b8;
-  --blue2:#2278d4;
-  --text:#dde8d8;
-  --text2:rgba(221,232,216,0.6);
-  --text3:rgba(221,232,216,0.1);
-  --gray:#4a5848;
-  --gray2:#8a9886;
-  --border:rgba(221,232,216,0.07);
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--black);color:var(--text);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kleinfercher — Holzbringung & Brennholz direkt vom Erzeuger. 9815 Reißeck, Kärnten.">
+  <title>Kleinfercher · Holzbringung & Brennholz · Reißeck, Kärnten</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; }
 
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:300;
-  height:110px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 52px;background:rgba(6,12,6,0.55);
-  backdrop-filter:blur(8px);
-  transition:background 0.5s,border-color 0.5s;
-  border-bottom:1px solid var(--border);
-}
-nav.solid{background:rgba(6,12,6,0.97);backdrop-filter:blur(16px);border-color:var(--border);}
-.nav-logo{display:flex;align-items:center;text-decoration:none;opacity:0;animation:fadeIn 0.8s 0.2s forwards;}
-.nav-logo img{height:100px;width:auto;filter:brightness(1.6) saturate(1.3) contrast(1.1);animation:logoGlow 3.5s ease-in-out infinite;}
-@keyframes logoGlow{
-  0%,100%{filter:brightness(1.6) saturate(1.3) contrast(1.1) drop-shadow(0 0 6px rgba(58,130,48,0.4));}
-  50%{filter:brightness(1.9) saturate(1.5) contrast(1.1) drop-shadow(0 0 16px rgba(58,130,48,0.75)) drop-shadow(0 0 32px rgba(26,101,184,0.3));}
-}
-.nav-r{display:flex;align-items:center;gap:28px;opacity:0;animation:fadeIn 0.8s 0.4s forwards;}
-.nav-r a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color 0.25s;}
-.nav-r a:hover{color:var(--text);}
-.nav-call{background:var(--blue)!important;color:var(--text)!important;padding:9px 22px;transition:background 0.25s!important;}
-.nav-call:hover{background:var(--blue2)!important;}
-.burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;}
-.burger span{width:22px;height:2px;background:var(--text);display:block;transition:all 0.3s;}
-.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.burger.open span:nth-child(2){opacity:0;}
-.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mob-menu{position:fixed;inset:0;background:var(--black);z-index:290;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:28px;transform:translateX(100%);transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);}
-.mob-menu.open{transform:translateX(0);}
-.mob-menu a{font-family:'Anton',sans-serif;font-size:42px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(221,232,216,0.4);text-decoration:none;transition:color 0.25s;}
-.mob-menu a:hover{color:var(--text);}
-.mob-menu .mob-cta{color:var(--blue);}
+    :root {
+      --lb-h:      clamp(40px, 5.5vh, 62px);
+      --void:      #060605;
+      --earth:     #0F0E0C;
+      --ember:     #C8873A;
+      --ember-dim: #8B5E3C;
+      --ash:       #F0EDE8;
+      --fog:       #7A7570;
+      --expo:      cubic-bezier(0.16, 1, 0.3, 1);
+      --circ:      cubic-bezier(0.85, 0, 0.15, 1);
+    }
 
-/* ── HERO ── */
-.hero{position:relative;height:100vh;min-height:600px;overflow:hidden;}
+    body {
+      background: var(--void);
+      color: var(--ash);
+      font-family: 'Cormorant Garamond', serif;
+      cursor: none;
+      overflow-x: hidden;
+    }
 
-/* blue topline */
-.hero-topline{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent 0%,var(--blue) 20%,var(--blue2) 50%,var(--blue) 80%,transparent 100%);z-index:10;animation:topline 4s ease-in-out infinite;}
-@keyframes topline{0%,100%{opacity:0.7;}50%{opacity:1;filter:drop-shadow(0 0 8px var(--blue));}}
+    /* ── CURSOR ── */
+    #cur-dot {
+      position: fixed; width: 6px; height: 6px;
+      background: var(--ember); border-radius: 50%;
+      pointer-events: none; z-index: 99999;
+      transform: translate(-50%,-50%);
+    }
+    #cur-ring {
+      position: fixed; width: 32px; height: 32px;
+      border: 1px solid rgba(200,135,58,.38); border-radius: 50%;
+      pointer-events: none; z-index: 99998;
+      transform: translate(-50%,-50%);
+    }
 
-.slides{position:absolute;inset:0;}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease-in-out;}
-.slide.active{opacity:1;}
-.slide-img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 9s ease-out;}
-.slide.active .slide-img{transform:scale(1);}
+    /* ── SCENE FLASH ── */
+    #scene-flash {
+      position: fixed; inset: 0; z-index: 150;
+      pointer-events: none;
+      background: rgba(200,135,58,1);
+      opacity: 0;
+    }
 
-.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,12,6,0.95) 0%,rgba(6,12,6,0.35) 45%,rgba(6,12,6,0.05) 100%);z-index:2;}
-.hero-grad2{position:absolute;inset:0;background:linear-gradient(100deg,rgba(6,12,6,0.65) 0%,transparent 55%);z-index:2;}
-.hero-diag{position:absolute;bottom:0;right:0;width:0;height:0;border-style:solid;border-width:0 0 120px 100vw;border-color:transparent transparent var(--black) transparent;z-index:3;}
+    /* ── LETTERBOX TOP BAR ── */
+    .lb-top {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--lb-h); z-index: 500;
+      background: #000;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(14px,3vw,36px);
+      opacity: 0;
+      transition: opacity .4s ease;
+    }
+    .lb-top.visible { opacity: 1; }
 
-.hero-content{position:absolute;left:52px;bottom:80px;z-index:5;max-width:min(90vw,800px);}
-.hero-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--text);margin-bottom:18px;display:flex;align-items:center;gap:12px;opacity:0;animation:slideUp 0.7s 0.4s forwards;text-shadow:0 1px 6px rgba(0,0,0,0.7);}
-.hero-eyebrow::before{content:'';width:28px;height:2px;background:var(--green);}
-.hero-h1{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:0.02em;color:var(--text);margin-bottom:22px;display:flex;align-items:center;gap:4px;}
-.hero-h1 .h-big{font-size:clamp(110px,19vw,230px);line-height:0.85;color:var(--text);flex-shrink:0;}
-.hero-h1 .h-rest{display:flex;flex-direction:column;justify-content:center;}
-.hero-h1 .h-rest span{font-size:clamp(38px,6.5vw,80px);line-height:0.92;display:block;}
-.hero-h1 .h-big{opacity:0;animation:slideUp 0.7s 0.5s forwards;}
-.hero-h1 .h-rest{opacity:0;animation:slideUp 0.7s 0.65s forwards;}
-.hero-h1 .h-rest em{font-style:normal;color:var(--blue);}
-.hero-sub{font-size:clamp(13px,1.7vw,16px);color:var(--text2);line-height:1.75;max-width:500px;margin-bottom:36px;opacity:0;animation:slideUp 0.7s 0.85s forwards;}
-.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;opacity:0;animation:slideUp 0.7s 1s forwards;}
+    .lb-timecode {
+      font-family: 'Courier Prime', monospace;
+      font-size: clamp(8px,.85vw,11px);
+      letter-spacing: .16em;
+      color: rgba(200,135,58,.55);
+      min-width: 96px;
+      user-select: none;
+    }
 
-.btn-blue{background:var(--blue);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;padding:15px 36px;transition:background 0.25s;display:inline-block;position:relative;overflow:hidden;}
-.btn-blue::before{content:'';position:absolute;inset:0;background:var(--blue2);transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
-.btn-blue:hover::before{transform:scaleX(1);}
-.btn-blue span{position:relative;z-index:1;}
-.btn-ghost{border:1px solid rgba(221,232,216,0.2);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;padding:15px 36px;transition:all 0.25s;display:inline-block;}
-.btn-ghost:hover{border-color:var(--text);background:rgba(221,232,216,0.06);}
+    .lb-logo {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center;
+    }
+    .lb-logo img {
+      height: clamp(22px,2.6vh,34px);
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: .78;
+      transition: opacity .25s ease;
+    }
+    .lb-logo:hover img { opacity: 1; }
 
-/* slide dots */
-.slide-dots{position:absolute;bottom:48px;left:52px;z-index:5;display:flex;gap:6px;opacity:0;animation:fadeIn 1s 1.2s forwards;}
-.dot{width:32px;height:2px;background:rgba(221,232,216,0.2);cursor:pointer;transition:all 0.35s;}
-.dot.active{background:var(--blue);width:52px;}
-.slide-num{position:absolute;bottom:44px;right:52px;z-index:5;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.15em;color:rgba(221,232,216,0.25);opacity:0;animation:fadeIn 1s 1.2s forwards;}
-.slide-num b{font-size:22px;color:var(--text);font-family:'Anton',sans-serif;}
+    .lb-right {
+      display: flex; align-items: center; gap: clamp(18px,2.5vw,36px);
+    }
+    .lb-nav-links {
+      display: flex; gap: clamp(16px,2vw,32px);
+      list-style: none;
+    }
+    .lb-nav-links a {
+      font-family: 'DM Mono', monospace; font-size: clamp(8px,.85vw,10px);
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--ash); opacity: .5; text-decoration: none;
+      transition: opacity .2s ease; position: relative;
+    }
+    .lb-nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--ember);
+      transition: width .3s var(--expo);
+    }
+    .lb-nav-links a:hover { opacity: 1; }
+    .lb-nav-links a:hover::after { width: 100%; }
 
-/* ── MARQUEE ── */
-.marquee-wrap{background:var(--blue);overflow:hidden;padding:11px 0;}
-.marquee-track{display:flex;animation:marquee 20s linear infinite;}
-.marquee-track:hover{animation-play-state:paused;}
-.mi{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(6,12,6,0.75);white-space:nowrap;padding:0 20px;}
-.ms{color:rgba(6,12,6,0.35);padding:0 4px;}
-@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+    /* mute button */
+    .lb-mute {
+      background: none; border: 1px solid rgba(200,135,58,.22);
+      padding: 5px 8px; cursor: none;
+      display: flex; align-items: center; gap: 6px;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .lb-mute:hover { border-color: rgba(200,135,58,.6); background: rgba(200,135,58,.06); }
+    .lb-mute svg { width: 13px; height: 13px; display: block; }
+    .lb-mute-label {
+      font-family: 'DM Mono', monospace; font-size: 8px;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(200,135,58,.6);
+    }
 
-/* ── LEISTUNGEN ── */
-.leistungen{background:var(--black);padding:96px 0 0;}
-.section-header{padding:0 52px;margin-bottom:52px;}
-.section-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(221,232,216,0.4);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
-.section-tag::before{content:'';width:20px;height:2px;background:var(--green);}
-.section-h{font-family:'Anton',sans-serif;font-size:clamp(44px,6vw,74px);text-transform:uppercase;letter-spacing:0.02em;color:var(--text);line-height:0.88;}
+    /* burger */
+    .lb-burger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: none; padding: 4px;
+    }
+    .lb-burger span { display: block; width: 20px; height: 1px; background: var(--ash); }
 
-/* 2-item grid — left tall, right full */
-.l-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:560px;gap:2px;}
-.l-item{position:relative;overflow:hidden;}
-.l-img{width:100%;height:100%;object-fit:cover;filter:brightness(0.45) saturate(0.75);transition:filter 0.5s,transform 0.7s;}
-.l-item:hover .l-img{filter:brightness(0.65) saturate(1);}
-.l-item:hover .l-img{transform:scale(1.04);}
-.l-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,12,6,0.9) 0%,rgba(6,12,6,0.05) 55%);transition:background 0.4s;}
-.l-item:hover .l-overlay{background:linear-gradient(to top,rgba(26,101,184,0.5) 0%,rgba(6,12,6,0.15) 55%);}
-.l-border{position:absolute;inset:0;border:0px solid var(--blue);transition:border-width 0.3s;}
-.l-item:hover .l-border{border-width:2px;}
-.l-content{position:absolute;bottom:0;left:0;right:0;padding:32px 28px;transform:translateY(4px);transition:transform 0.3s;}
-.l-item:hover .l-content{transform:translateY(0);}
-.l-name{font-family:'Anton',sans-serif;font-size:clamp(24px,3vw,38px);text-transform:uppercase;letter-spacing:0.04em;color:var(--text);line-height:1;margin-bottom:8px;}
-.l-desc{font-size:13px;color:rgba(221,232,216,0.55);line-height:1.6;max-height:0;overflow:hidden;transition:max-height 0.4s,opacity 0.35s;opacity:0;}
-.l-item:hover .l-desc{max-height:80px;opacity:1;}
-.l-item::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--blue);transition:width 0.45s;z-index:3;}
-.l-item:hover::after{width:100%;}
+    /* ── LETTERBOX BOTTOM BAR ── */
+    .lb-bot {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: var(--lb-h); z-index: 500;
+      background: #000;
+      display: flex; align-items: center;
+      padding: 0 clamp(14px,3vw,36px);
+      gap: 16px;
+      opacity: 0;
+      transition: opacity .4s ease;
+    }
+    .lb-bot.visible { opacity: 1; }
 
-/* ── FAKTEN ── */
-.fakten{background:var(--black3);padding:72px 52px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
-.fakt{padding:28px 24px;border-right:1px solid var(--border);position:relative;overflow:hidden;transition:background 0.35s;}
-.fakt:last-child{border-right:none;}
-.fakt::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--green);transition:height 0.4s;}
-.fakt:hover::before{height:100%;}
-.fakt:hover{background:var(--green-dim);}
-.fakt-num{font-family:'Anton',sans-serif;font-size:50px;color:var(--green);line-height:1;letter-spacing:0.02em;}
-.fakt-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);margin-top:6px;}
+    /* film timeline */
+    .lb-timeline {
+      flex: 1;
+      display: flex; flex-direction: column;
+      justify-content: center; gap: 4px;
+    }
+    .lb-tl-perf {
+      height: 5px;
+      background-image: radial-gradient(circle at center, rgba(255,255,255,.11) 2px, transparent 2px);
+      background-size: 14px 5px;
+      background-repeat: repeat-x;
+      background-position: 7px 0;
+    }
+    .lb-tl-track {
+      position: relative; height: 2px;
+      background: rgba(240,237,232,.06);
+      overflow: visible;
+    }
+    .lb-tl-fill {
+      position: absolute; top: 0; left: 0;
+      height: 100%; width: 0%;
+      background: var(--ember);
+      transition: width .08s linear;
+    }
+    .lb-tl-markers { position: absolute; inset: 0; }
+    .tl-tick {
+      position: absolute; top: -5px;
+      width: 1px; height: 12px;
+      background: rgba(200,135,58,.4);
+      cursor: none;
+    }
+    .tl-tick-label {
+      position: absolute; bottom: 100%; left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      background: #000;
+      border: 1px solid rgba(200,135,58,.25);
+      padding: 4px 8px;
+      font-family: 'DM Mono', monospace; font-size: 8px;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--ember); white-space: nowrap;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s ease;
+    }
+    .tl-tick:hover .tl-tick-label { opacity: 1; }
 
-/* ── KONTAKT ── */
-.kontakt{background:var(--black);padding:96px 52px;}
-.kontakt-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
-.kontakt-h{font-family:'Anton',sans-serif;font-size:clamp(40px,5vw,66px);text-transform:uppercase;letter-spacing:0.02em;color:var(--text);line-height:0.88;margin-bottom:20px;}
-.kontakt-h em{font-style:normal;color:var(--blue);}
-.kontakt-body{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:32px;}
-.kontakt-details{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
-.kd{display:flex;gap:14px;}
-.kd-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);width:68px;flex-shrink:0;padding-top:2px;}
-.kd-value{font-size:14px;color:var(--text2);line-height:1.5;}
-.kd-value a{color:var(--text2);text-decoration:none;transition:color 0.25s;}
-.kd-value a:hover{color:var(--text);}
-.kontakt-ctas{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
-.btn-call{background:var(--blue);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;padding:15px 32px;transition:background 0.25s;display:inline-block;}
-.btn-call:hover{background:var(--blue2);}
-.btn-mail{background:var(--black3);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;padding:15px 32px;border:1px solid var(--border);transition:all 0.25s;display:inline-block;}
-.btn-mail:hover{border-color:rgba(221,232,216,0.3);}
+    /* scene counter */
+    .lb-scene {
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(7px,.8vw,9px);
+      letter-spacing: .22em; text-transform: uppercase;
+      color: rgba(200,135,58,.55);
+      white-space: nowrap;
+      min-width: 80px; text-align: right;
+      user-select: none;
+    }
+    #scene-counter { display: inline-block; }
 
-.map-wrap{width:100%;height:260px;overflow:hidden;border:1px solid var(--border);}
-.map-wrap iframe{width:100%;height:100%;border:none;filter:grayscale(100%) invert(85%) contrast(0.85) brightness(0.7) hue-rotate(80deg);}
+    /* ── MOBILE MENU ── */
+    #mob-menu {
+      display: none; position: fixed; inset: 0; z-index: 490;
+      background: rgba(6,6,5,.97);
+      flex-direction: column; justify-content: center;
+      padding: clamp(60px,10vw,120px); gap: 16px;
+      overflow: hidden;
+    }
+    #mob-menu::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: .03;
+      pointer-events: none;
+    }
+    #mob-menu.open { display: flex; }
+    .mob-scene-label {
+      font-family: 'DM Mono', monospace; font-size: 9px;
+      letter-spacing: .3em; text-transform: uppercase;
+      color: rgba(200,135,58,.4); margin-bottom: 20px;
+    }
+    #mob-menu a {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(42px,11vw,72px);
+      color: var(--ash); text-decoration: none; line-height: 1.05;
+      transition: color .2s ease;
+    }
+    #mob-menu a:hover { color: var(--ember); }
+    .mob-cta {
+      margin-top: 28px;
+      font-family: 'Courier Prime', monospace !important;
+      font-size: clamp(16px,4vw,22px) !important;
+      color: var(--ember) !important; font-style: italic;
+    }
 
-.form-wrap{background:var(--black2);padding:36px;border:1px solid var(--border);}
-.form-title{font-family:'Anton',sans-serif;font-size:24px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text);margin-bottom:22px;}
-.form-title em{font-style:normal;color:var(--blue);}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.fg{margin-bottom:12px;}
-.fl{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(221,232,216,0.4);margin-bottom:5px;display:block;}
-.fi{width:100%;background:rgba(221,232,216,0.03);border:1px solid var(--border);color:var(--text);font-family:'Barlow',sans-serif;font-size:14px;padding:11px 13px;outline:none;transition:border-color 0.25s;}
-.fi:focus{border-color:var(--green);}
-.fi::placeholder{color:rgba(221,232,216,0.18);}
-textarea.fi{min-height:78px;resize:none;}
-.form-submit{width:100%;background:var(--blue);color:var(--text);border:none;padding:13px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:background 0.25s;margin-top:4px;}
-.form-submit:hover{background:var(--blue2);}
+    /* ── LOADER ── */
+    #loader {
+      position: fixed; inset: 0; z-index: 9000;
+      background: var(--void);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 24px;
+    }
+    .ldr-reel-wrap {
+      position: relative; width: 80px; height: 80px;
+    }
+    .ldr-reel-svg {
+      width: 80px; height: 80px;
+      animation: reel-spin 2.4s linear infinite;
+    }
+    @keyframes reel-spin { to { transform: rotate(360deg); } }
+    .ldr-reel-center {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ldr-reel-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--ember);
+    }
+    .ldr-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(22px,4vw,44px);
+      letter-spacing: .18em; color: var(--ash); opacity: .18;
+    }
+    .ldr-frame {
+      font-family: 'Courier Prime', monospace;
+      font-size: clamp(10px,1.2vw,13px);
+      letter-spacing: .24em; color: var(--ember);
+    }
+    .ldr-label {
+      font-family: 'DM Mono', monospace; font-size: 8px;
+      letter-spacing: .32em; text-transform: uppercase;
+      color: rgba(122,117,112,.45);
+    }
+    .ldr-track {
+      width: min(260px,50vw); height: 1px;
+      background: rgba(240,237,232,.06); position: relative; overflow: hidden;
+    }
+    .ldr-fill { position: absolute; top:0; left:0; height:100%; width:0%; background: var(--ember); }
 
-footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
-.f-logo{font-family:'Anton',sans-serif;font-size:15px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(221,232,216,0.18);}
-.f-logo em{font-style:normal;color:rgba(26,101,184,0.4);}
-.f-copy{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.06em;color:rgba(221,232,216,0.12);}
-.f-links{display:flex;gap:18px;}
-.f-links a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;color:rgba(221,232,216,0.12);text-decoration:none;transition:color 0.25s;}
-.f-links a:hover{color:rgba(221,232,216,0.4);}
+    /* ── FILM SECTION ── */
+    #film { position: relative; height: 900vh; }
+    #film-sticky {
+      position: sticky; top: 0;
+      height: 100vh; height: 100dvh;
+      overflow: hidden;
+    }
+    #main-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 40%;
+    }
+    #film-vignette {
+      position: absolute; inset: 0; z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(ellipse at 50% 60%, transparent 35%, rgba(6,6,5,.75) 100%);
+    }
+    #grade-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      pointer-events: none;
+      background: rgba(0,0,0,0);
+      transition: background 1.4s ease;
+    }
+    .film-grad {
+      position: absolute; inset: 0; z-index: 3; pointer-events: none;
+      background: linear-gradient(
+        to top,
+        rgba(6,6,5,.94) 0%,
+        rgba(6,6,5,.2) 34%,
+        rgba(6,6,5,.02) 62%,
+        rgba(6,6,5,.15) 100%
+      );
+    }
+    #grain {
+      position: absolute; inset: 0; z-index: 4;
+      pointer-events: none; opacity: .055;
+      mix-blend-mode: overlay; image-rendering: pixelated;
+    }
+    #chapter-label {
+      position: absolute;
+      bottom: calc(var(--lb-h) + 14px);
+      left: clamp(28px,6vw,100px);
+      font-family: 'DM Mono', monospace; font-size: 8px;
+      letter-spacing: .3em; text-transform: uppercase;
+      color: rgba(122,117,112,.38); z-index: 15;
+    }
 
-/* ── REVEAL ── */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.9s,transform 0.9s;}
-.reveal.in{opacity:1;transform:translateY(0);}
-.reveal-l{opacity:0;transform:translateX(-30px);transition:opacity 0.9s,transform 0.9s;}
-.reveal-l.in{opacity:1;transform:translateX(0);}
-.reveal-r{opacity:0;transform:translateX(30px);transition:opacity 0.9s,transform 0.9s;}
-.reveal-r.in{opacity:1;transform:translateX(0);}
-.d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}
+    /* ── CHAPTERS SHARED ── */
+    .chapter {
+      position: absolute; inset: 0; z-index: 10;
+      opacity: 0; pointer-events: none;
+      display: flex; flex-direction: column;
+      padding: calc(var(--lb-h) + clamp(30px,5vh,64px)) clamp(28px,6vw,100px) calc(var(--lb-h) + clamp(24px,4vh,52px));
+    }
 
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes slideUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+    /* film slate — hero detail */
+    .film-slate {
+      position: absolute;
+      top: calc(var(--lb-h) + 14px);
+      right: clamp(28px,6vw,100px);
+      font-family: 'Courier Prime', monospace; font-size: 9px;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(200,135,58,.38); line-height: 1.8;
+      text-align: right; z-index: 15;
+      pointer-events: none;
+    }
 
-/* ── RESPONSIVE ── */
-@media(max-width:1024px){
-  nav{padding:0 20px;height:90px;}.nav-r{display:none;}.burger{display:flex;}
-  .nav-logo img{height:80px;}
-  .hero-content{left:20px;bottom:60px;}
-  .slide-num{display:none;}
-  .slide-dots{left:20px;}.slide-num{right:20px;}
-  .l-grid{grid-template-columns:1fr;grid-template-rows:auto;}
-  .l-item{min-height:260px;}
-  .fakten{grid-template-columns:1fr 1fr;padding:52px 20px;}
-  .fakt{border-right:none;border-bottom:1px solid var(--border);padding:18px 16px;}
-  .fakt-num{font-size:32px!important;}
-  .fakt-label{font-size:8px;}
-  .kontakt{padding:70px 20px;}.kontakt-inner{grid-template-columns:1fr;}
-  .section-header{padding:0 20px;}
-  footer{padding:16px 20px;flex-direction:column;align-items:flex-start;}
-}
-@media(max-width:600px){
-  .hero-ctas{flex-direction:column;}
-  .form-row{grid-template-columns:1fr;}
-  .l-item{min-height:220px;}
-  .fakten{grid-template-columns:1fr 1fr;}
-}
+    /* ── HERO ── */
+    #ch-hero { justify-content: flex-end; }
+    .hero-loc {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'DM Mono', monospace; font-size: clamp(8px,.9vw,10px);
+      letter-spacing: .28em; text-transform: uppercase;
+      color: var(--ember); margin-bottom: 16px;
+    }
+    .loc-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--ember); flex-shrink: 0;
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:.25; transform:scale(.5); }
+    }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(17vw,20vw,240px);
+      line-height: .86; letter-spacing: -.01em;
+      color: var(--ash); margin-bottom: clamp(12px,2vh,24px);
+    }
+    .hero-line { display: block; overflow: hidden; }
+    .hero-char { display: inline-block; transform: translateY(115%); }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(16px,1.9vw,26px); font-style: italic; font-weight: 300;
+      color: var(--fog); margin-bottom: clamp(24px,3.5vh,42px);
+      opacity: 0; transform: translateY(10px);
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; opacity: 0; }
 
-/* short viewport fix */
-@media(max-height:750px){
-  .hero-h1{font-size:clamp(44px,9vw,80px)!important;}
-  .hero-sub{display:none;}
-  .hero-content{bottom:50px;}
-}
-@media(max-height:600px){
-  .hero-h1{font-size:clamp(36px,8vw,64px)!important;}
-  .hero-eyebrow{display:none;}
-  .hero-content{bottom:40px;}
-}
-</style>
+    /* scroll indicator */
+    #scroll-ind {
+      position: absolute; bottom: calc(var(--lb-h) + clamp(20px,3.5vh,40px));
+      right: clamp(24px,5vw,80px);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      z-index: 11; opacity: 0;
+    }
+    .si-line {
+      width: 1px; height: 44px;
+      background: rgba(122,117,112,.22); position: relative; overflow: hidden;
+    }
+    .si-line::after {
+      content: ''; position: absolute; top: -100%; left: 0;
+      width: 1px; height: 100%; background: var(--ember);
+      animation: si 1.9s var(--circ) infinite;
+    }
+    @keyframes si { 0% { top:-100%; } 100% { top:200%; } }
+    .si-txt {
+      font-family: 'DM Mono', monospace; font-size: 7px;
+      letter-spacing: .32em; text-transform: uppercase;
+      color: var(--fog); writing-mode: vertical-rl;
+    }
+
+    /* ── PHILOSOPHY ── */
+    #ch-philosophy { justify-content: center; }
+    .ph-eye {
+      font-family: 'DM Mono', monospace; font-size: clamp(8px,.9vw,10px);
+      letter-spacing: .32em; text-transform: uppercase; color: var(--ember);
+      margin-bottom: 24px; opacity: 0; transform: translateY(16px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    #ch-philosophy.active .ph-eye { opacity:1; transform:translateY(0); transition-delay:.2s; }
+    .ph-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(10vw,13vw,156px); line-height: .88;
+      color: var(--ash); margin-bottom: 26px;
+    }
+    .ph-line { display: block; overflow: hidden; }
+    .ph-inner {
+      display: block; transform: translateY(108%);
+      transition: transform .84s var(--expo);
+    }
+    #ch-philosophy.active .ph-line:nth-child(1) .ph-inner { transform:translateY(0); transition-delay:.06s; }
+    #ch-philosophy.active .ph-line:nth-child(2) .ph-inner { transform:translateY(0); transition-delay:.16s; }
+    #ch-philosophy.active .ph-line:nth-child(3) .ph-inner { transform:translateY(0); transition-delay:.26s; }
+    .ph-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(17px,1.9vw,28px); font-style: italic; font-weight: 300;
+      color: var(--fog); opacity: 0; transform: translateY(12px);
+      transition: opacity .7s ease .54s, transform .7s ease .54s;
+    }
+    #ch-philosophy.active .ph-sub { opacity:1; transform:translateY(0); }
+
+    /* ── SERVICE SHARED ── */
+    .ch-svc { justify-content: flex-end; }
+    .svc-num {
+      font-family: 'DM Mono', monospace; font-size: clamp(8px,.9vw,11px);
+      letter-spacing: .28em; text-transform: uppercase; color: var(--ember);
+      margin-bottom: 12px; opacity: 0; transform: translateY(12px);
+      transition: opacity .5s ease .1s, transform .5s ease .1s;
+    }
+    .ch-svc.active .svc-num { opacity:1; transform:translateY(0); }
+    .svc-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(9vw,12vw,142px); line-height: .87;
+      color: var(--ash); margin-bottom: 22px;
+    }
+    .svc-hline { display: block; overflow: hidden; }
+    .svc-hinner {
+      display: block; transform: translateY(108%);
+      transition: transform .78s var(--expo);
+    }
+    .ch-svc.active .svc-hline:nth-child(1) .svc-hinner { transform:translateY(0); transition-delay:.06s; }
+    .ch-svc.active .svc-hline:nth-child(2) .svc-hinner { transform:translateY(0); transition-delay:.16s; }
+    .svc-body {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 34px;
+      max-width: 840px; opacity: 0; transform: translateY(16px);
+      transition: opacity .65s ease .4s, transform .65s ease .4s;
+    }
+    .ch-svc.active .svc-body { opacity:1; transform:translateY(0); }
+    .svc-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(15px,1.5vw,20px); font-weight: 300;
+      color: var(--fog); line-height: 1.78;
+    }
+    .svc-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .svc-list li {
+      font-family: 'DM Mono', monospace; font-size: clamp(8px,.9vw,11px);
+      letter-spacing: .16em; text-transform: uppercase;
+      color: rgba(240,237,232,.65);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .svc-list li::before {
+      content: ''; width: 16px; height: 1px;
+      background: var(--ember); flex-shrink: 0;
+    }
+    .svc-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 24px; border: 1px solid rgba(200,135,58,.38);
+      color: var(--ember); font-family: 'DM Mono', monospace;
+      font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+      text-decoration: none; margin-top: 20px; align-self: flex-start;
+      transition: background .3s ease, color .3s ease, border-color .3s ease;
+    }
+    .svc-cta:hover { background: var(--ember); color: var(--void); border-color: var(--ember); }
+
+    /* ── BRENNHOLZ ── */
+    #ch-brennholz {
+      align-items: flex-end; text-align: right;
+      padding-right: clamp(28px,8vw,120px); justify-content: center;
+    }
+    .brn-num {
+      font-family: 'DM Mono', monospace; font-size: clamp(8px,.9vw,11px);
+      letter-spacing: .28em; text-transform: uppercase; color: var(--ember);
+      margin-bottom: 6px; opacity: 0; transform: translateY(12px);
+      transition: opacity .5s ease .1s, transform .5s ease .1s;
+    }
+    #ch-brennholz.active .brn-num { opacity:1; transform:translateY(0); }
+    .brn-species {
+      display: block; overflow: hidden;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(16vw,20vw,238px); line-height: .84; color: var(--ash);
+    }
+    .brn-si {
+      display: block; transform: translateY(108%);
+      transition: transform .94s var(--expo) .06s;
+    }
+    #ch-brennholz.active .brn-si { transform:translateY(0); }
+    .brn-price-wrap {
+      margin-top: 6px; margin-bottom: 14px;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity .65s ease .36s, transform .65s ease .36s;
+    }
+    #ch-brennholz.active .brn-price-wrap { opacity:1; transform:translateY(0); }
+    .brn-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(10vw,13vw,154px); line-height: .88; color: var(--ember);
+    }
+    .brn-price-lbl {
+      font-family: 'DM Mono', monospace; font-size: clamp(8px,.95vw,11px);
+      letter-spacing: .2em; text-transform: uppercase; color: var(--fog); margin-top: 4px;
+    }
+    .brn-tags {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity .65s ease .56s, transform .65s ease .56s;
+    }
+    #ch-brennholz.active .brn-tags { opacity:1; transform:translateY(0); }
+    .brn-tag {
+      font-family: 'DM Mono', monospace; font-size: clamp(8px,.85vw,10px);
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(240,237,232,.55);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .brn-tag::after { content:''; width:14px; height:1px; background:var(--ember); }
+    .brn-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 24px; border: 1px solid rgba(200,135,58,.38);
+      color: var(--ember); font-family: 'DM Mono', monospace;
+      font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+      text-decoration: none; margin-top: 16px;
+      transition: background .3s ease, color .3s ease, border-color .3s ease;
+    }
+    .brn-cta:hover { background: var(--ember); color: var(--void); border-color: var(--ember); }
+
+    /* ── FAKTEN ── */
+    #ch-fakten { justify-content: center; }
+    .fk-eye {
+      font-family: 'DM Mono', monospace; font-size: clamp(8px,.9vw,10px);
+      letter-spacing: .32em; text-transform: uppercase; color: var(--ember);
+      margin-bottom: 40px; opacity: 0; transform: translateY(12px);
+      transition: opacity .5s ease .1s, transform .5s ease .1s;
+    }
+    #ch-fakten.active .fk-eye { opacity:1; transform:translateY(0); }
+    .fk-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+    .fakt {
+      padding-right: clamp(18px,3vw,46px);
+      border-right: 1px solid rgba(200,135,58,.12);
+      opacity: 0; transform: translateY(18px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fakt:last-child { border-right:none; padding-left:clamp(18px,3vw,46px); padding-right:0; }
+    .fakt:not(:first-child):not(:last-child) { padding-left:clamp(18px,3vw,46px); }
+    #ch-fakten.active .fakt:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:.22s; }
+    #ch-fakten.active .fakt:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:.36s; }
+    #ch-fakten.active .fakt:nth-child(3) { opacity:1; transform:translateY(0); transition-delay:.50s; }
+    #ch-fakten.active .fakt:nth-child(4) { opacity:1; transform:translateY(0); transition-delay:.64s; }
+    .fakt-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(10vw,11vw,110px); line-height: .88; color: var(--ash);
+    }
+    .fakt-lbl {
+      font-family: 'DM Mono', monospace; font-size: clamp(8px,.85vw,10px);
+      letter-spacing: .22em; text-transform: uppercase; color: var(--fog); margin-top: 8px;
+    }
+
+    /* ── KONTAKT CHAPTER ── */
+    #ch-kontakt { justify-content: flex-end; }
+    .kt-eye {
+      font-family: 'DM Mono', monospace; font-size: clamp(8px,.9vw,10px);
+      letter-spacing: .32em; text-transform: uppercase; color: var(--ember);
+      margin-bottom: 10px; opacity: 0; transform: translateY(12px);
+      transition: opacity .5s ease .15s, transform .5s ease .15s;
+    }
+    #ch-kontakt.active .kt-eye { opacity:1; transform:translateY(0); }
+    .kt-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(14vw,18vw,218px); line-height: .86;
+      color: var(--ash); margin-bottom: 16px; overflow: hidden;
+    }
+    .kt-head-inner {
+      display: block; transform: translateY(108%);
+      transition: transform .86s var(--expo) .26s;
+    }
+    #ch-kontakt.active .kt-head-inner { transform:translateY(0); }
+    .kt-phone {
+      display: block; font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(7vw,9.5vw,112px); color: var(--ember);
+      text-decoration: none; line-height: .9; margin-bottom: 12px;
+      opacity: 0; transform: translateY(16px);
+      transition: opacity .6s ease .46s, transform .6s ease .46s, color .25s ease;
+    }
+    #ch-kontakt.active .kt-phone { opacity:1; transform:translateY(0); }
+    .kt-phone:hover { color: var(--ash); }
+    .kt-addr {
+      font-family: 'DM Mono', monospace; font-size: clamp(8px,.9vw,11px);
+      letter-spacing: .22em; text-transform: uppercase; color: var(--fog);
+      opacity: 0; transform: translateY(10px);
+      transition: opacity .6s ease .64s, transform .6s ease .64s;
+    }
+    #ch-kontakt.active .kt-addr { opacity:1; transform:translateY(0); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 11px 26px; font-family: 'DM Mono', monospace;
+      font-size: 10px; letter-spacing: .17em; text-transform: uppercase;
+      text-decoration: none; cursor: none;
+      transition: all .3s var(--expo);
+    }
+    .btn-outline {
+      border: 1px solid rgba(240,237,232,.22); color: var(--ash);
+    }
+    .btn-outline:hover { border-color:rgba(240,237,232,.55); background:rgba(240,237,232,.04); }
+    .btn-solid { background: var(--ember); color: var(--void); border: 1px solid var(--ember); }
+    .btn-solid:hover { background: #D4943F; border-color: #D4943F; }
+
+    /* ── CREDITS / CONTACT SECTION ── */
+    #credits-section {
+      background: #000;
+      padding: clamp(80px,12vh,140px) clamp(28px,8vw,120px);
+      border-top: 1px solid rgba(200,135,58,.06);
+    }
+
+    /* decorative credit roll */
+    .credit-roll {
+      text-align: center; margin-bottom: clamp(60px,8vh,100px);
+      position: relative;
+    }
+    .credit-roll::before {
+      content: '';
+      position: absolute; top: -clamp(40px,6vh,60px); left: 50%;
+      transform: translateX(-50%);
+      width: 1px; height: clamp(30px,5vh,50px);
+      background: linear-gradient(to bottom, transparent, rgba(200,135,58,.35));
+    }
+    .credit-item {
+      margin-bottom: clamp(28px,4vh,44px);
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .credit-item.visible { opacity:1; transform:translateY(0); }
+    .credit-role {
+      font-family: 'DM Mono', monospace; font-size: clamp(8px,.85vw,10px);
+      letter-spacing: .36em; text-transform: uppercase;
+      color: rgba(200,135,58,.5); margin-bottom: 6px;
+    }
+    .credit-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px,2.4vw,34px); font-style: italic; font-weight: 300;
+      color: var(--ash);
+    }
+    .credit-divider {
+      width: 1px; height: clamp(30px,4vh,48px);
+      background: rgba(200,135,58,.2);
+      margin: 0 auto clamp(28px,4vh,44px);
+      opacity: 0; transition: opacity .8s ease .2s;
+    }
+    .credit-divider.visible { opacity: 1; }
+
+    /* form */
+    .cfs-wrap { max-width: 760px; margin: 0 auto; }
+    .cfs-head-wrap { text-align: center; margin-bottom: clamp(40px,6vh,64px); }
+    .cfs-eye {
+      font-family: 'DM Mono', monospace; font-size: 9px;
+      letter-spacing: .32em; text-transform: uppercase;
+      color: var(--ember); margin-bottom: 12px; display: block;
+    }
+    .cfs-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(8vw,11vw,100px); line-height: .88;
+      color: var(--ash);
+    }
+    .cfs-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(15px,1.6vw,22px); font-style: italic; font-weight: 300;
+      color: var(--fog); margin-top: 12px;
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .fg { display: flex; flex-direction: column; gap: 6px; }
+    .fg.full { grid-column: 1/-1; }
+    .fg label {
+      font-family: 'DM Mono', monospace; font-size: 8px;
+      letter-spacing: .28em; text-transform: uppercase; color: rgba(122,117,112,.7);
+    }
+    .fg input, .fg select, .fg textarea {
+      background: rgba(240,237,232,.02);
+      border: none; border-bottom: 1px solid rgba(240,237,232,.1); border-radius: 0;
+      color: var(--ash); font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; font-weight: 300; padding: 11px 0;
+      outline: none; -webkit-appearance: none;
+      transition: border-color .25s ease;
+    }
+    .fg input::placeholder, .fg textarea::placeholder { color: rgba(122,117,112,.32); }
+    .fg select option { background: #000; color: var(--ash); }
+    .fg input:focus, .fg select:focus, .fg textarea:focus {
+      border-color: rgba(200,135,58,.5);
+    }
+    .fg textarea { min-height: 100px; resize: vertical; }
+    .form-submit {
+      grid-column:1/-1; display:flex;
+      justify-content:center; margin-top:14px;
+    }
+    .form-submit button {
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 14px 44px; background: transparent;
+      color: var(--ash); border: 1px solid rgba(240,237,232,.22);
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      letter-spacing: .2em; text-transform: uppercase; cursor: none;
+      transition: background .3s ease, border-color .3s ease, color .3s ease;
+    }
+    .form-submit button:hover {
+      background: var(--ember); border-color: var(--ember); color: var(--void);
+    }
+    .form-note {
+      font-family: 'Courier Prime', monospace; font-size: 13px;
+      font-style: italic; color: var(--fog);
+      opacity: .5; text-align: center; margin-top: 24px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #000;
+      border-top: 1px solid rgba(240,237,232,.04);
+      padding: 22px clamp(24px,5vw,80px);
+      padding-bottom: calc(22px + var(--lb-h));
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .ft-logo img { height: 28px; filter: brightness(0) invert(1); opacity: .24; }
+    .ft-copy {
+      font-family: 'DM Mono', monospace; font-size: 8px;
+      letter-spacing: .16em; color: rgba(122,117,112,.35);
+    }
+    .ft-links { display: flex; gap: 20px; }
+    .ft-links a {
+      font-family: 'DM Mono', monospace; font-size: 8px;
+      letter-spacing: .16em; color: rgba(122,117,112,.3);
+      text-decoration: none; text-transform: uppercase;
+      transition: color .25s ease;
+    }
+    .ft-links a:hover { color: var(--fog); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .lb-nav-links { display: none; }
+      .lb-mute .lb-mute-label { display: none; }
+      .lb-burger { display: flex; }
+      .lb-timecode { display: none; }
+      .hero-title { font-size: clamp(20vw,26vw,160px); }
+      .hero-loc { display: none; }
+      .ph-title { font-size: clamp(12vw,16vw,118px); }
+      .svc-head { font-size: clamp(11vw,14vw,98px); }
+      .svc-body { grid-template-columns: 1fr; gap: 18px; }
+      #ch-brennholz { padding-right: clamp(20px,6vw,60px); }
+      .brn-species { font-size: clamp(18vw,22vw,158px); }
+      .brn-price { font-size: clamp(12vw,16vw,118px); }
+      .brn-tag::after { display: none; }
+      .fk-grid { grid-template-columns: 1fr 1fr; }
+      .fakt { padding-right: 18px; }
+      .fakt:nth-child(even) { border-right:none; padding-left:18px; padding-right:0; }
+      .fakt:nth-child(3), .fakt:nth-child(4) {
+        border-top: 1px solid rgba(200,135,58,.12); padding-top: 20px; margin-top: 20px;
+      }
+      .fakt:last-child { padding-left: 18px; padding-right: 0; }
+      .fakt-val { font-size: 16vw; }
+      .kt-head { font-size: clamp(16vw,20vw,158px); }
+      .kt-phone { font-size: clamp(9vw,12vw,88px); }
+      .form-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .lb-scene { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav">
-  <a href="#" class="nav-logo"><img src="logokleinfercher.png" alt="Kleinfercher Holzbringung & Brennholz"></a>
-  <div class="nav-r">
-    <a href="#leistungen">Leistungen</a>
-    <a href="#kontakt">Kontakt</a>
-    <a href="tel:06644154196" class="nav-call">☎ Jetzt anrufen</a>
-  </div>
-  <button class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-</nav>
+  <div id="cur-dot"></div>
+  <div id="cur-ring"></div>
+  <div id="scene-flash"></div>
 
-<div class="mob-menu" id="mobMenu">
-  <img src="logokleinfercher.png" alt="Kleinfercher" style="height:160px;width:auto;filter:brightness(1.7) saturate(1.4) drop-shadow(0 0 28px rgba(58,130,48,0.7));margin-bottom:8px;">
-  <a href="#leistungen" onclick="closeMenu()">Leistungen</a>
-  <a href="#kontakt" onclick="closeMenu()">Kontakt</a>
-  <a href="tel:06644154196" class="mob-cta" onclick="closeMenu()">☎ Anrufen</a>
-</div>
+  <!-- AUDIO -->
+  <audio id="ambient" src="ambient.mp3" loop preload="none"></audio>
 
-<!-- HERO -->
-<section class="hero" id="hero">
-  <div class="hero-topline"></div>
-  <div class="slides" id="slides">
-    <div class="slide active"><picture><source media="(max-width:768px)" srcset="6.png"><img src="1.png" alt="" class="slide-img" style="object-position:70% center;"></picture></div>
-    <div class="slide"><picture><source media="(max-width:768px)" srcset="7.png"><img src="2.png" alt="" class="slide-img" style="object-position:65% center;"></picture></div>
-    <div class="slide"><picture><source media="(max-width:768px)" srcset="8.png"><img src="3.png" alt="" class="slide-img" style="object-position:60% center;"></picture></div>
-  </div>
-  <div class="hero-grad"></div>
-  <div class="hero-grad2"></div>
-  <div class="hero-diag"></div>
-
-  <div class="hero-content">
-    <div class="hero-eyebrow">Reißeck · Kärnten · 9815</div>
-    <h1 class="hero-h1">
-      <span class="h-big">H</span>
-      <div class="h-rest">
-        <span>OLZ AUS DEM</span>
-        <span>ERZ DES <em>WALDES.</em></span>
-      </div>
-    </h1>
-    <p class="hero-sub">Professionelle Holzbringung & erstklassiges Brennholz direkt vom Erzeuger — zuverlässig, regional, nachhaltig.</p>
-    <div class="hero-ctas">
-      <a href="#leistungen" class="btn-blue"><span>Unsere Leistungen</span></a>
-      <a href="#kontakt" class="btn-ghost">Anfrage senden</a>
-    </div>
-  </div>
-
-  <div class="slide-dots" id="dots">
-    <div class="dot active" onclick="goToSlide(0)"></div>
-    <div class="dot" onclick="goToSlide(1)"></div>
-    <div class="dot" onclick="goToSlide(2)"></div>
-  </div>
-  <div class="slide-num"><b id="current-num">1</b> / 3</div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span class="mi">Holzbringung</span><span class="ms">·</span>
-    <span class="mi">Brennholz</span><span class="ms">·</span>
-    <span class="mi">Direktverkauf</span><span class="ms">·</span>
-    <span class="mi">Reißeck</span><span class="ms">·</span>
-    <span class="mi">Kärnten</span><span class="ms">·</span>
-    <span class="mi">Regional</span><span class="ms">·</span>
-    <span class="mi">Nachhaltig</span><span class="ms">·</span>
-    <span class="mi">Holzbringung</span><span class="ms">·</span>
-    <span class="mi">Brennholz</span><span class="ms">·</span>
-    <span class="mi">Direktverkauf</span><span class="ms">·</span>
-    <span class="mi">Reißeck</span><span class="ms">·</span>
-    <span class="mi">Kärnten</span><span class="ms">·</span>
-    <span class="mi">Regional</span><span class="ms">·</span>
-    <span class="mi">Nachhaltig</span><span class="ms">·</span>
-  </div>
-</div>
-
-<!-- LEISTUNGEN -->
-<section class="leistungen" id="leistungen">
-  <div class="section-header reveal">
-    <div class="section-tag">Was wir anbieten</div>
-    <h2 class="section-h">Leistungen</h2>
-  </div>
-  <div class="l-grid">
-    <a href="holzbringung.html" class="l-item" style="display:block;text-decoration:none;">
-      <picture><source media="(max-width:768px)" srcset="9.png"><img src="4.png" alt="Holzbringung" class="l-img"></picture>
-      <div class="l-overlay"></div>
-      <div class="l-border"></div>
-      <div class="l-content">
-        <div class="l-name">Holzbringung</div>
-        <div class="l-desc">Professionelle Holzernte und Bringung im Gelände — mit modernem Gerät, schonend für Wald und Boden.</div>
-        <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
-      </div>
+  <!-- TOP LETTERBOX BAR -->
+  <div class="lb-top" id="lb-top">
+    <div class="lb-timecode" id="lb-timecode">00:00:00:00</div>
+    <a href="#" class="lb-logo" aria-label="Kleinfercher" data-film-go="0">
+      <img src="logokleinfercher.png" alt="Kleinfercher">
     </a>
-    <a href="brennholz.html" class="l-item" style="display:block;text-decoration:none;">
-      <picture><source media="(max-width:768px)" srcset="10.png"><img src="5.png" alt="Brennholz" class="l-img"></picture>
-      <div class="l-overlay"></div>
-      <div class="l-border"></div>
-      <div class="l-content">
-        <div class="l-name">Brennholz</div>
-        <div class="l-desc">Ofenfertiges Brennholz direkt vom Erzeuger — trocken, gespalten und auf Wunsch zugestellt.</div>
-        <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
+    <div class="lb-right">
+      <ul class="lb-nav-links">
+        <li><a href="#" data-film-go="0.38">Leistungen</a></li>
+        <li><a href="#" data-film-go="0.55">Brennholz</a></li>
+        <li><a href="#" data-go-section="credits-section">Kontakt</a></li>
+      </ul>
+      <button class="lb-mute" id="lb-mute" aria-label="Ton umschalten">
+        <svg id="mute-icon-on" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 4.5H3.5L6.5 2V11L3.5 8.5H1V4.5Z" stroke="rgba(200,135,58,0.7)" stroke-width="1" stroke-linejoin="round"/>
+          <path d="M8.5 3.5C9.5 4.3 10.2 5.3 10.2 6.5C10.2 7.7 9.5 8.7 8.5 9.5" stroke="rgba(200,135,58,0.7)" stroke-width="1" stroke-linecap="round"/>
+          <path d="M9.8 1.5C11.4 2.7 12.5 4.5 12.5 6.5C12.5 8.5 11.4 10.3 9.8 11.5" stroke="rgba(200,135,58,0.4)" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+        <svg id="mute-icon-off" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+          <path d="M1 4.5H3.5L6.5 2V11L3.5 8.5H1V4.5Z" stroke="rgba(200,135,58,0.4)" stroke-width="1" stroke-linejoin="round"/>
+          <line x1="8.5" y1="4" x2="12" y2="9" stroke="rgba(200,135,58,0.5)" stroke-width="1" stroke-linecap="round"/>
+          <line x1="12" y1="4" x2="8.5" y2="9" stroke="rgba(200,135,58,0.5)" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+        <span class="lb-mute-label" id="mute-label">Ton</span>
+      </button>
+      <button class="nav-burger lb-burger" id="burger-btn" aria-label="Menü">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- BOTTOM LETTERBOX BAR -->
+  <div class="lb-bot" id="lb-bot">
+    <div class="lb-timeline">
+      <div class="lb-tl-perf"></div>
+      <div class="lb-tl-track">
+        <div class="lb-tl-fill" id="tl-fill"></div>
+        <div class="lb-tl-markers" id="tl-markers"></div>
       </div>
+      <div class="lb-tl-perf"></div>
+    </div>
+    <div class="lb-scene">
+      <span id="scene-counter">SCENE 01 · 06</span>
+    </div>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div id="mob-menu">
+    <div class="mob-scene-label">Menü — Kleinfercher</div>
+    <a href="#" data-film-go="0.38">Leistungen</a>
+    <a href="#" data-film-go="0.55">Brennholz</a>
+    <a href="#" data-go-section="credits-section">Kontakt</a>
+    <a href="tel:+436644154196" class="mob-cta">☎ Anrufen</a>
+  </div>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="ldr-reel-wrap">
+      <svg class="ldr-reel-svg" viewBox="0 0 80 80" fill="none">
+        <circle cx="40" cy="40" r="37" stroke="rgba(200,135,58,0.22)" stroke-width="1.5"/>
+        <circle cx="40" cy="40" r="14" stroke="rgba(200,135,58,0.32)" stroke-width="1.5"/>
+        <circle cx="40" cy="5" r="4" fill="rgba(200,135,58,0.18)"/>
+        <circle cx="63.2" cy="15" r="4" fill="rgba(200,135,58,0.18)"/>
+        <circle cx="74" cy="40" r="4" fill="rgba(200,135,58,0.18)"/>
+        <circle cx="63.2" cy="65" r="4" fill="rgba(200,135,58,0.18)"/>
+        <circle cx="40" cy="75" r="4" fill="rgba(200,135,58,0.18)"/>
+        <circle cx="16.8" cy="65" r="4" fill="rgba(200,135,58,0.18)"/>
+        <circle cx="6" cy="40" r="4" fill="rgba(200,135,58,0.18)"/>
+        <circle cx="16.8" cy="15" r="4" fill="rgba(200,135,58,0.18)"/>
+        <line x1="40" y1="26" x2="40" y2="54" stroke="rgba(200,135,58,0.14)" stroke-width="1"/>
+        <line x1="26.8" y1="33" x2="53.2" y2="47" stroke="rgba(200,135,58,0.14)" stroke-width="1"/>
+        <line x1="26.8" y1="47" x2="53.2" y2="33" stroke="rgba(200,135,58,0.14)" stroke-width="1"/>
+      </svg>
+      <div class="ldr-reel-center"><div class="ldr-reel-dot"></div></div>
+    </div>
+    <div class="ldr-title">Kleinfercher</div>
+    <div class="ldr-frame" id="ldr-frame">FRAME 0000</div>
+    <div class="ldr-track"><div class="ldr-fill" id="ldr-fill"></div></div>
+    <div class="ldr-label">Wird geladen</div>
+  </div>
+
+  <!-- FILM -->
+  <section id="film">
+    <div id="film-sticky">
+      <video id="main-video" src="video.mp4" preload="auto" muted playsinline></video>
+      <div id="film-vignette"></div>
+      <div id="grade-overlay"></div>
+      <div class="film-grad"></div>
+      <canvas id="grain"></canvas>
+      <div id="chapter-label"></div>
+
+      <!-- HERO -->
+      <div class="chapter" id="ch-hero">
+        <div class="film-slate">
+          PROD: KLEINFERCHER<br>
+          CAM: REISSECK<br>
+          DIR: NATUR
+        </div>
+        <div class="hero-loc">
+          <span class="loc-dot"></span>
+          <span>9815 Reißeck · Kärnten · Austria</span>
+        </div>
+        <h1 class="hero-title" aria-label="Kleinfercher">
+          <span class="hero-line">
+            <span class="hero-char">K</span><span class="hero-char">L</span><span class="hero-char">E</span><span class="hero-char">I</span><span class="hero-char">N</span>
+          </span>
+          <span class="hero-line">
+            <span class="hero-char">F</span><span class="hero-char">E</span><span class="hero-char">R</span><span class="hero-char">C</span><span class="hero-char">H</span><span class="hero-char">E</span><span class="hero-char">R</span>
+          </span>
+        </h1>
+        <p class="hero-tagline">Holz aus dem Herzen des Waldes</p>
+        <div class="hero-ctas">
+          <a href="#" data-film-go="0.38" class="btn btn-outline">
+            Leistungen
+            <svg width="12" height="12" viewBox="0 0 13 13" fill="none">
+              <path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="tel:+436644154196" class="btn btn-solid">Jetzt anfragen</a>
+        </div>
+        <div id="scroll-ind">
+          <div class="si-line"></div>
+          <span class="si-txt">Scroll</span>
+        </div>
+      </div>
+
+      <!-- PHILOSOPHY -->
+      <div class="chapter" id="ch-philosophy">
+        <div class="ph-eye">Reißeck · Kärnten · Österreich</div>
+        <div class="ph-title">
+          <span class="ph-line"><span class="ph-inner">WO HOLZ</span></span>
+          <span class="ph-line"><span class="ph-inner">GESPROCHEN</span></span>
+          <span class="ph-line"><span class="ph-inner">WIRD</span></span>
+        </div>
+        <p class="ph-sub">Direkt. Ehrlich. Regional. — Kein Mittelsmann, kein Umweg.</p>
+      </div>
+
+      <!-- HOLZBRINGUNG -->
+      <div class="chapter ch-svc" id="ch-holzbringung">
+        <div class="svc-num">01 / Holzbringung</div>
+        <div class="svc-head">
+          <span class="svc-hline"><span class="svc-hinner">AUS DEM</span></span>
+          <span class="svc-hline"><span class="svc-hinner">WALD</span></span>
+        </div>
+        <div class="svc-body">
+          <p class="svc-desc">Professionelle Holzernte und Bringung im Gelände — schonend für den Wald, zuverlässig für Sie. Modernes Gerät, tiefes Wissen, respektvoller Umgang mit Boden und Bestand.</p>
+          <ul class="svc-list">
+            <li>Regional & verlässlich</li>
+            <li>Schonend für den Wald</li>
+            <li>Auch schwieriges Gelände</li>
+            <li>Persönliche Beratung</li>
+          </ul>
+        </div>
+        <a href="tel:+436644154196" class="svc-cta">☎ Jetzt anfragen</a>
+      </div>
+
+      <!-- BRENNHOLZ -->
+      <div class="chapter" id="ch-brennholz">
+        <div class="brn-num">02 / Brennholz</div>
+        <span class="brn-species"><span class="brn-si">FICHTE</span></span>
+        <div class="brn-price-wrap">
+          <div class="brn-price">€ 80</div>
+          <div class="brn-price-lbl">pro Schüttraummeter (SRM)</div>
+        </div>
+        <div class="brn-tags">
+          <span class="brn-tag">Trocken & gespalten</span>
+          <span class="brn-tag">Direkt vom Erzeuger</span>
+          <span class="brn-tag">Zustellung möglich</span>
+          <a href="tel:+436644154196" class="brn-cta">☎ Jetzt bestellen</a>
+        </div>
+      </div>
+
+      <!-- FAKTEN -->
+      <div class="chapter" id="ch-fakten">
+        <div class="fk-eye">Warum Kleinfercher</div>
+        <div class="fk-grid">
+          <div class="fakt">
+            <div class="fakt-val">100%</div>
+            <div class="fakt-lbl">Regional</div>
+          </div>
+          <div class="fakt">
+            <div class="fakt-val">24/7</div>
+            <div class="fakt-lbl">Erreichbar</div>
+          </div>
+          <div class="fakt">
+            <div class="fakt-val">0</div>
+            <div class="fakt-lbl">Mittelsleute</div>
+          </div>
+          <div class="fakt">
+            <div class="fakt-val">KTN</div>
+            <div class="fakt-lbl">Kärnten</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KONTAKT CHAPTER -->
+      <div class="chapter" id="ch-kontakt">
+        <div class="kt-eye">Bereit loszulegen?</div>
+        <div class="kt-head"><span class="kt-head-inner">BEREIT?</span></div>
+        <a href="tel:+436644154196" class="kt-phone">0664 4154196</a>
+        <div class="kt-addr">9815 Reißeck · Kärnten · Austria</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CREDITS / CONTACT SECTION -->
+  <section id="credits-section">
+    <div class="credit-roll" id="credit-roll">
+      <div class="credit-item" data-delay="0">
+        <div class="credit-role">Regie</div>
+        <div class="credit-name">Die Natur</div>
+      </div>
+      <div class="credit-divider"></div>
+      <div class="credit-item" data-delay="1">
+        <div class="credit-role">Kamera</div>
+        <div class="credit-name">Das Licht der Alpen</div>
+      </div>
+      <div class="credit-divider"></div>
+      <div class="credit-item" data-delay="2">
+        <div class="credit-role">Schnitt</div>
+        <div class="credit-name">Generationen</div>
+      </div>
+      <div class="credit-divider"></div>
+      <div class="credit-item" data-delay="3">
+        <div class="credit-role">Produktion</div>
+        <div class="credit-name">Kleinfercher · Reißeck</div>
+      </div>
+    </div>
+
+    <div class="cfs-wrap">
+      <div class="cfs-head-wrap">
+        <span class="cfs-eye">Direkte Anfrage</span>
+        <div class="cfs-head">SCHREIB<br>UNS</div>
+        <p class="cfs-sub">Wir antworten schnell — oft noch am selben Tag.</p>
+      </div>
+      <form class="form-grid" onsubmit="return false;">
+        <div class="fg">
+          <label for="f-vn">Vorname</label>
+          <input type="text" id="f-vn" name="vorname" placeholder="Max">
+        </div>
+        <div class="fg">
+          <label for="f-nn">Nachname</label>
+          <input type="text" id="f-nn" name="nachname" placeholder="Mustermann">
+        </div>
+        <div class="fg">
+          <label for="f-tel">Telefon</label>
+          <input type="tel" id="f-tel" name="tel" placeholder="+43 664 ...">
+        </div>
+        <div class="fg">
+          <label for="f-mail">E-Mail</label>
+          <input type="email" id="f-mail" name="email" placeholder="max@beispiel.at">
+        </div>
+        <div class="fg full">
+          <label for="f-svc">Leistung</label>
+          <select id="f-svc" name="leistung">
+            <option value="">Bitte auswählen</option>
+            <option value="holzbringung">Holzbringung</option>
+            <option value="brennholz">Brennholz — Fichte €80 / SRM</option>
+            <option value="sonstiges">Sonstiges</option>
+          </select>
+        </div>
+        <div class="fg full">
+          <label for="f-msg">Anfrage</label>
+          <textarea id="f-msg" name="anfrage" placeholder="Ihre Nachricht..."></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit">
+            Anfrage absenden
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="ft-logo" data-film-go="0" aria-label="Zurück zum Anfang">
+      <img src="logokleinfercher.png" alt="Kleinfercher">
     </a>
-  </div>
-</section>
-
-<!-- FAKTEN -->
-<div class="fakten">
-  <div class="fakt reveal"><div class="fakt-num">100%</div><div class="fakt-label">Regional</div></div>
-  <div class="fakt reveal d1"><div class="fakt-num">24/7</div><div class="fakt-label">Erreichbar</div></div>
-  <div class="fakt reveal d2"><div class="fakt-num">Direkt</div><div class="fakt-label">Vom Erzeuger</div></div>
-  <div class="fakt reveal d3"><div class="fakt-num">Kärnten</div><div class="fakt-label">Heimat & Einsatzgebiet</div></div>
-</div>
-
-<!-- KONTAKT -->
-<section class="kontakt" id="kontakt">
-  <div class="kontakt-inner">
-    <div class="kontakt-left">
-      <div class="section-tag reveal">Kontakt</div>
-      <h2 class="kontakt-h reveal d1">Wir sind<br>für Sie <em>da.</em></h2>
-      <p class="kontakt-body reveal d2">Rufen Sie uns an oder schicken Sie uns eine Anfrage — wir antworten rasch und unkompliziert.</p>
-      <div class="kontakt-details reveal d2">
-        <div class="kd"><div class="kd-label">Adresse</div><div class="kd-value">9815 Reißeck, Kärnten</div></div>
-        <div class="kd"><div class="kd-label">Telefon</div><div class="kd-value"><a href="tel:06644154196">0664 4154196</a></div></div>
-      </div>
-      <div class="kontakt-ctas reveal d3">
-        <a href="tel:06644154196" class="btn-call">☎ Jetzt anrufen</a>
-        <a href="#kontakt-form" class="btn-mail">✉ Anfrage</a>
-      </div>
-      <div class="map-wrap reveal d3">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21400!2d13.35!3d46.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477749e2e2e2e2e3%3A0x0!2sRei%C3%9Feck%2C+9815+K%C3%A4rnten!5e0!3m2!1sde!2sat!4v1" allowfullscreen="" loading="lazy"></iframe>
-      </div>
+    <div class="ft-copy">© 2026 Kleinfercher · 9815 Reißeck · Kärnten</div>
+    <div class="ft-links">
+      <a href="#">Impressum</a>
+      <a href="#">Datenschutz</a>
     </div>
-    <div class="form-wrap reveal-r" id="kontakt-form">
-      <div class="form-title">Anfrage <em>senden</em></div>
-      <div class="form-row">
-        <div class="fg"><label class="fl">Vorname</label><input type="text" class="fi" placeholder="Ihr Vorname"></div>
-        <div class="fg"><label class="fl">Nachname</label><input type="text" class="fi" placeholder="Ihr Nachname"></div>
-      </div>
-      <div class="fg"><label class="fl">Telefon</label><input type="tel" class="fi" placeholder="+43 ..."></div>
-      <div class="fg"><label class="fl">E-Mail</label><input type="email" class="fi" placeholder="ihre@email.at"></div>
-      <div class="fg">
-        <label class="fl">Leistung</label>
-        <select class="fi">
-          <option>Holzbringung</option>
-          <option>Brennholz</option>
-          <option>Beides</option>
-        </select>
-      </div>
-      <div class="fg"><label class="fl">Ihre Anfrage</label><textarea class="fi" placeholder="Beschreiben Sie Ihr Anliegen..."></textarea></div>
-      <button class="form-submit">Anfrage absenden →</button>
-    </div>
-  </div>
-</section>
+  </footer>
 
-<footer>
-  <div class="f-logo" style="display:flex;align-items:center;gap:10px;"><img src="logokleinfercher.png" alt="Kleinfercher" style="height:36px;width:auto;filter:brightness(1.5) saturate(1.2) contrast(1.1);opacity:0.5;"> <span style="font-family:Anton,sans-serif;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(221,232,216,0.18);">Holzbringung & Brennholz</span></div>
-  <div class="f-copy">© 2026 Kleinfercher · 9815 Reißeck · Kärnten</div>
-  <div class="f-links"><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
-</footer>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+  'use strict';
 
-<script>
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>60));
+  /* ─── GRAIN ─── */
+  function initGrain() {
+    const canvas = document.getElementById('grain');
+    const ctx = canvas.getContext('2d');
+    const S = 3;
+    let w, h;
+    function resize() {
+      w = Math.ceil(window.innerWidth / S);
+      h = Math.ceil(window.innerHeight / S);
+      canvas.width = w; canvas.height = h;
+      canvas.style.width  = window.innerWidth  + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    let f = 0;
+    (function tick() {
+      if (++f % 3 === 0) {
+        const id = ctx.createImageData(w, h);
+        const d  = id.data;
+        for (let i = 0; i < d.length; i += 4) {
+          const v = (Math.random() * 255) | 0;
+          d[i] = d[i+1] = d[i+2] = v; d[i+3] = 255;
+        }
+        ctx.putImageData(id, 0, 0);
+      }
+      requestAnimationFrame(tick);
+    })();
+  }
 
-let cur=0;
-const slides=document.querySelectorAll('.slide');
-const dots=document.querySelectorAll('.dot');
-function goToSlide(n){
-  slides[cur].classList.remove('active');
-  dots[cur].classList.remove('active');
-  cur=n;
-  slides[cur].classList.add('active');
-  dots[cur].classList.add('active');
-  document.getElementById('current-num').textContent=cur+1;
-}
-let timer=setInterval(()=>goToSlide((cur+1)%3),5500);
-dots.forEach((d,i)=>d.addEventListener('click',()=>{clearInterval(timer);goToSlide(i);timer=setInterval(()=>goToSlide((cur+1)%3),5500);}));
+  /* ─── CURSOR ─── */
+  function initCursor() {
+    const dot  = document.getElementById('cur-dot');
+    const ring = document.getElementById('cur-ring');
+    const dx = gsap.quickTo(dot,  'x', { duration: 0.07, ease: 'none' });
+    const dy = gsap.quickTo(dot,  'y', { duration: 0.07, ease: 'none' });
+    const rx = gsap.quickTo(ring, 'x', { duration: 0.28, ease: 'power2.out' });
+    const ry = gsap.quickTo(ring, 'y', { duration: 0.28, ease: 'power2.out' });
+    window.addEventListener('mousemove', e => { dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY); });
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        gsap.to(dot,  { scale: 1.8, duration: 0.2 });
+        gsap.to(ring, { scale: 1.5, borderColor: 'rgba(200,135,58,0.9)', duration: 0.2 });
+      });
+      el.addEventListener('mouseleave', () => {
+        gsap.to(dot,  { scale: 1, duration: 0.2 });
+        gsap.to(ring, { scale: 1, borderColor: 'rgba(200,135,58,0.38)', duration: 0.2 });
+      });
+    });
+  }
 
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:0.07});
-document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(r=>obs.observe(r));
+  /* ─── LOADER ─── */
+  function runLoader(onDone) {
+    const fill  = document.getElementById('ldr-fill');
+    const frame = document.getElementById('ldr-frame');
+    const TOTAL_FRAMES = 2400;
+    const o = { v: 0 };
+    gsap.to(o, {
+      v: 100, duration: 2.4, ease: 'power2.inOut',
+      onUpdate() {
+        const n = Math.round(o.v);
+        fill.style.width = n + '%';
+        frame.textContent = 'FRAME ' + String(Math.round(n / 100 * TOTAL_FRAMES)).padStart(4, '0');
+      },
+      onComplete() {
+        gsap.to('#loader', {
+          yPercent: -100, duration: 1.0,
+          ease: 'power4.inOut', onComplete: onDone
+        });
+      }
+    });
+  }
 
-function toggleMenu(){document.getElementById('burger').classList.toggle('open');document.getElementById('mobMenu').classList.toggle('open');document.body.style.overflow=document.getElementById('mobMenu').classList.contains('open')?'hidden':'';}
-function closeMenu(){document.getElementById('burger').classList.remove('open');document.getElementById('mobMenu').classList.remove('open');document.body.style.overflow='';}
-</script>
+  /* ─── PROJECTOR FLICKER ─── */
+  function initFlicker() {
+    const video = document.getElementById('main-video');
+    function flicker() {
+      const delay = 3 + Math.random() * 14;
+      gsap.delayedCall(delay, () => {
+        gsap.to(video, {
+          opacity: 0.93 + Math.random() * 0.04,
+          duration: 0.04 + Math.random() * 0.04,
+          yoyo: true, repeat: 1,
+          ease: 'none',
+          onComplete: flicker
+        });
+      });
+    }
+    flicker();
+  }
+
+  /* ─── HERO ANIMATION ─── */
+  function heroIn() {
+    gsap.to('.hero-char', {
+      translateY: '0%', duration: 1.1,
+      ease: 'power4.out', stagger: 0.042
+    });
+    gsap.to('.hero-tagline', { opacity:1, y:0, duration:.9, ease:'power3.out', delay:.56 });
+    gsap.to('.hero-ctas',    { opacity:1,     duration:.8, ease:'power3.out', delay:.82 });
+    gsap.to('#scroll-ind',   { opacity:1,     duration:.8,                   delay:1.05 });
+    gsap.to('.lb-top',       { opacity:1,     duration:.7,                   delay:.4   });
+    gsap.to('.lb-bot',       { opacity:1,     duration:.7,                   delay:.5   });
+    document.getElementById('lb-top').classList.add('visible');
+    document.getElementById('lb-bot').classList.add('visible');
+  }
+
+  /* ─── TIMECODE ─── */
+  function toTimecode(p, duration) {
+    const total = (duration && isFinite(duration) && duration > 0) ? duration : 180;
+    const sec = p * total;
+    const h = Math.floor(sec / 3600);
+    const m = Math.floor((sec % 3600) / 60);
+    const s = Math.floor(sec % 60);
+    const f = Math.floor((sec % 1) * 24);
+    return [h, m, s, f].map(n => String(n).padStart(2, '0')).join(':');
+  }
+
+  /* ─── COLOR GRADE ─── */
+  const GRADES = {
+    'ch-hero':         'rgba(0,0,0,0)',
+    'ch-philosophy':   'rgba(30,45,60,0.16)',
+    'ch-holzbringung': 'rgba(42,28,14,0.14)',
+    'ch-brennholz':    'rgba(80,38,8,0.20)',
+    'ch-fakten':       'rgba(22,20,32,0.14)',
+    'ch-kontakt':      'rgba(8,8,14,0.28)',
+  };
+  const gradeOverlay = document.getElementById('grade-overlay');
+
+  /* ─── SCENE COUNTER ─── */
+  let sceneNumEl = document.getElementById('scene-counter');
+  function updateSceneCounter(num) {
+    gsap.to(sceneNumEl, { y: -7, opacity: 0, duration: 0.18, onComplete: () => {
+      sceneNumEl.textContent = 'SCENE ' + String(num).padStart(2,'0') + ' · 06';
+      gsap.fromTo(sceneNumEl, { y: 7, opacity: 0 }, { y: 0, opacity: 1, duration: 0.24 });
+    }});
+  }
+
+  /* ─── SCENE FLASH ─── */
+  function flashScene() {
+    gsap.fromTo('#scene-flash',
+      { opacity: 0.22 },
+      { opacity: 0, duration: 0.55, ease: 'power2.out' }
+    );
+  }
+
+  /* ─── CHAPTER SYSTEM ─── */
+  const CHAPTERS = [
+    { id:'ch-hero',         from:0,    to:0.23, label:'00 — Einführung',   scene: 1 },
+    { id:'ch-philosophy',   from:0.23, to:0.38, label:'01 — Der Wald',     scene: 2 },
+    { id:'ch-holzbringung', from:0.38, to:0.55, label:'02 — Holzbringung', scene: 3 },
+    { id:'ch-brennholz',    from:0.55, to:0.72, label:'03 — Brennholz',    scene: 4 },
+    { id:'ch-fakten',       from:0.72, to:0.87, label:'04 — Über Uns',     scene: 5 },
+    { id:'ch-kontakt',      from:0.87, to:1.00, label:'05 — Kontakt',      scene: 6 },
+  ];
+
+  CHAPTERS.forEach(ch => {
+    ch.el  = document.getElementById(ch.id);
+    ch.set = gsap.quickTo(ch.el, 'opacity', { duration: 0.48, ease: 'power2.out' });
+  });
+
+  /* ─── TIMELINE MARKERS ─── */
+  function buildTimelineMarkers() {
+    const markersEl = document.getElementById('tl-markers');
+    CHAPTERS.forEach((ch, i) => {
+      if (i === 0) return;
+      const tick = document.createElement('div');
+      tick.className = 'tl-tick';
+      tick.style.left = (ch.from * 100) + '%';
+      const lbl = document.createElement('div');
+      lbl.className = 'tl-tick-label';
+      lbl.textContent = ch.label;
+      tick.appendChild(lbl);
+      tick.addEventListener('click', () => scrollToFilm(ch.from));
+      markersEl.appendChild(tick);
+    });
+  }
+
+  let prevCh = null;
+  const chLabel = document.getElementById('chapter-label');
+  const tlFill  = document.getElementById('tl-fill');
+  const tcEl    = document.getElementById('lb-timecode');
+  const video   = document.getElementById('main-video');
+
+  function updateChapters(p) {
+    tlFill.style.width = (p * 100) + '%';
+    tcEl.textContent = toTimecode(p, video.duration);
+
+    let active = null;
+    CHAPTERS.forEach(ch => {
+      const on = p >= ch.from && p < ch.to;
+      ch.set(on ? 1 : 0);
+      ch.el.style.pointerEvents = on ? 'auto' : 'none';
+      if (on) active = ch;
+    });
+
+    if (active && active.id !== prevCh) {
+      if (prevCh) document.getElementById(prevCh)?.classList.remove('active');
+      active.el.classList.add('active');
+      chLabel.textContent = active.label;
+      gradeOverlay.style.background = GRADES[active.id] || 'rgba(0,0,0,0)';
+      updateSceneCounter(active.scene);
+      if (prevCh !== null) flashScene();
+      prevCh = active.id;
+    }
+
+    if (p > 0.04) gsap.to('#scroll-ind', { opacity:0, duration:.5 });
+  }
+
+  /* ─── AMBIENT AUDIO ─── */
+  let audioEnabled = false;
+  const audioEl    = document.getElementById('ambient');
+  const muteBtn    = document.getElementById('lb-mute');
+  const iconOn     = document.getElementById('mute-icon-on');
+  const iconOff    = document.getElementById('mute-icon-off');
+  const muteLabel  = document.getElementById('mute-label');
+
+  function initAudio() {
+    audioEl.volume = 0;
+    muteBtn.addEventListener('click', () => {
+      audioEnabled = !audioEnabled;
+      if (audioEnabled) {
+        audioEl.play().catch(() => { audioEnabled = false; });
+        gsap.to(audioEl, { volume: 0.36, duration: 1.4, ease: 'power2.out' });
+        iconOn.style.display  = 'none';
+        iconOff.style.display = 'block';
+        muteLabel.textContent = 'Stumm';
+      } else {
+        gsap.to(audioEl, { volume: 0, duration: 1.0, ease: 'power2.in',
+          onComplete: () => audioEl.pause()
+        });
+        iconOn.style.display  = 'block';
+        iconOff.style.display = 'none';
+        muteLabel.textContent = 'Ton';
+      }
+    });
+  }
+
+  /* ─── CREDITS SCROLL OBSERVER ─── */
+  function initCreditsObserver() {
+    const items = document.querySelectorAll('.credit-item, .credit-divider');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = parseFloat(entry.target.dataset.delay || 0) * 0.18;
+          setTimeout(() => entry.target.classList.add('visible'), delay * 1000);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    items.forEach(el => observer.observe(el));
+  }
+
+  /* ─── MAIN INIT ─── */
+  let lenis;
+
+  function init() {
+    initGrain();
+    initCursor();
+    initFlicker();
+    initAudio();
+    buildTimelineMarkers();
+    initCreditsObserver();
+    heroIn();
+
+    const filmEl = document.getElementById('film');
+    video.pause(); video.currentTime = 0;
+
+    lenis = new Lenis({
+      duration: 0.82,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    lenis.on('scroll', ({ scroll }) => {
+      const top   = filmEl.offsetTop;
+      const range = filmEl.offsetHeight - window.innerHeight;
+      const p     = Math.max(0, Math.min(1, (scroll - top) / range));
+
+      if (video.readyState >= 2) video.currentTime = p * video.duration;
+      updateChapters(p);
+    });
+
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    updateChapters(0);
+
+    /* scroll nav links */
+    function scrollToFilm(progress) {
+      const top   = filmEl.offsetTop;
+      const range = filmEl.offsetHeight - window.innerHeight;
+      lenis.scrollTo(top + range * progress, {
+        duration: 1.9,
+        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+      });
+    }
+
+    document.querySelectorAll('[data-film-go]').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        scrollToFilm(parseFloat(el.dataset.filmGo));
+        closeMob();
+      });
+    });
+
+    document.querySelectorAll('[data-go-section]').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        lenis.scrollTo('#' + el.dataset.goSection, { duration: 1.9 });
+        closeMob();
+      });
+    });
+  }
+
+  /* ─── MOBILE MENU ─── */
+  let mobOpen = false;
+  function closeMob() {
+    if (!mobOpen) return;
+    mobOpen = false;
+    document.getElementById('mob-menu').classList.remove('open');
+    const s = document.querySelectorAll('.lb-burger span');
+    gsap.to(s[0], { rotation:0, y:0, duration:.3 });
+    gsap.to(s[1], { rotation:0, y:0, duration:.3 });
+  }
+
+  document.getElementById('burger-btn').addEventListener('click', () => {
+    mobOpen = !mobOpen;
+    document.getElementById('mob-menu').classList.toggle('open', mobOpen);
+    const s = document.querySelectorAll('.lb-burger span');
+    if (mobOpen) {
+      gsap.to(s[0], { rotation:45,  y: 6, duration:.3 });
+      gsap.to(s[1], { rotation:-45, y:-6, duration:.3 });
+    } else {
+      gsap.to(s[0], { rotation:0, y:0, duration:.3 });
+      gsap.to(s[1], { rotation:0, y:0, duration:.3 });
+    }
+  });
+
+  /* ─── BOOT ─── */
+  runLoader(init);
+  </script>
 </body>
 </html>
