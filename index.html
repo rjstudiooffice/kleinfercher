@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&family=Courier+Prime:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: auto; }
+    html { scroll-behavior: smooth; }
 
     :root {
       --lb-h:      clamp(40px, 5.5vh, 62px);
@@ -282,9 +282,9 @@
     .ldr-fill { position: absolute; top:0; left:0; height:100%; width:0%; background: var(--ember); }
 
     /* ── FILM SECTION ── */
-    #film { position: relative; height: 900vh; }
+    #film { position: relative; height: 100vh; height: 100dvh; }
     #film-sticky {
-      position: sticky; top: 0;
+      position: relative;
       height: 100vh; height: 100dvh;
       overflow: hidden;
     }
@@ -1084,9 +1084,7 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script>
   'use strict';
 
@@ -1262,7 +1260,14 @@
       lbl.className = 'tl-tick-label';
       lbl.textContent = ch.label;
       tick.appendChild(lbl);
-      tick.addEventListener('click', () => scrollToFilm(ch.from));
+      tick.addEventListener('click', () => {
+        if (video.duration) {
+          video.currentTime = ch.from * video.duration;
+          updateChapters(ch.from);
+          filmDone = false;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
       markersEl.appendChild(tick);
     });
   }
@@ -1342,9 +1347,55 @@
     items.forEach(el => observer.observe(el));
   }
 
-  /* ─── MAIN INIT ─── */
-  let lenis;
+  /* ─── VIDEO SCRUB ENGINE ─── */
+  let filmDone  = false;
+  let touchY    = 0;
 
+  const SCRUB_MOUSE = 0.06;  // seconds per wheel-pixel (mouse/trackpad)
+  const SCRUB_TOUCH = 0.10;  // seconds per touch-pixel
+
+  function isFilmVisible() {
+    const rect = document.getElementById('film').getBoundingClientRect();
+    return rect.top > -10 && rect.top < 10;
+  }
+
+  function scrubBy(pixels) {
+    if (!video.duration || isNaN(video.duration)) return;
+    const t = Math.max(0, Math.min(video.duration, video.currentTime + pixels));
+    video.currentTime = t;
+    const p = t / video.duration;
+    updateChapters(p);
+    filmDone = p >= 0.995;
+  }
+
+  function initScrub() {
+    /* ── WHEEL (mouse + trackpad) ── */
+    window.addEventListener('wheel', (e) => {
+      if (!isFilmVisible()) return;
+      if (filmDone && e.deltaY > 0) return; // let page scroll to credits
+      e.preventDefault();
+      const px = e.deltaMode === 1 ? e.deltaY * 30
+               : e.deltaMode === 2 ? e.deltaY * 300
+               : e.deltaY;
+      scrubBy(px * SCRUB_MOUSE);
+    }, { passive: false });
+
+    /* ── TOUCH ── */
+    window.addEventListener('touchstart', (e) => {
+      touchY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isFilmVisible()) return;
+      const dy = touchY - e.touches[0].clientY;
+      touchY = e.touches[0].clientY;
+      if (filmDone && dy > 0) return;
+      e.preventDefault();
+      scrubBy(dy * SCRUB_TOUCH);
+    }, { passive: false });
+  }
+
+  /* ─── MAIN INIT ─── */
   function init() {
     initGrain();
     initCursor();
@@ -1354,50 +1405,32 @@
     initCreditsObserver();
     heroIn();
 
-    const filmEl = document.getElementById('film');
-    video.pause(); video.currentTime = 0;
-
-    lenis = new Lenis({
-      duration: 0.82,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-
-    lenis.on('scroll', ({ scroll }) => {
-      const top   = filmEl.offsetTop;
-      const range = filmEl.offsetHeight - window.innerHeight;
-      const p     = Math.max(0, Math.min(1, (scroll - top) / range));
-
-      if (video.readyState >= 2) video.currentTime = p * video.duration;
-      updateChapters(p);
-    });
-
-    gsap.ticker.add(t => lenis.raf(t * 1000));
-    gsap.ticker.lagSmoothing(0);
+    video.pause();
+    video.currentTime = 0;
     updateChapters(0);
+    initScrub();
 
-    /* scroll nav links */
-    function scrollToFilm(progress) {
-      const top   = filmEl.offsetTop;
-      const range = filmEl.offsetHeight - window.innerHeight;
-      lenis.scrollTo(top + range * progress, {
-        duration: 1.9,
-        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-      });
-    }
-
+    /* nav: data-film-go → seek video + scroll back to top */
     document.querySelectorAll('[data-film-go]').forEach(el => {
       el.addEventListener('click', e => {
         e.preventDefault();
-        scrollToFilm(parseFloat(el.dataset.filmGo));
+        const p = parseFloat(el.dataset.filmGo);
+        window.scrollTo({ top: 0 });
+        if (video.duration) {
+          video.currentTime = p * video.duration;
+          updateChapters(p);
+          filmDone = false;
+        }
         closeMob();
       });
     });
 
+    /* nav: data-go-section → scroll to section */
     document.querySelectorAll('[data-go-section]').forEach(el => {
       el.addEventListener('click', e => {
         e.preventDefault();
-        lenis.scrollTo('#' + el.dataset.goSection, { duration: 1.9 });
+        document.getElementById(el.dataset.goSection)
+          ?.scrollIntoView({ behavior: 'smooth' });
         closeMob();
       });
     });
