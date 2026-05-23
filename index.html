@@ -11,11 +11,13 @@
 :root {
   --bg:      #060c06;
   --bg1:     #0e1c0e;
+  --bg2:     #1c3a1e;
   --border:  rgba(221,232,216,.08);
   --grey:    #4a5848;
   --grey-lt: #8a9886;
   --white:   #dde8d8;
   --green:   #3a8230;
+  --green-dk:#2d6824;
   --blue:    #1a65b8;
   --blue-dk: #1450a0;
   --ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -54,11 +56,12 @@ nav.scrolled {
 .nav-call {
   font-family:'Space Mono',monospace; font-size:.6rem; font-weight:700;
   letter-spacing:.1em; color:var(--white) !important; opacity:1 !important;
-  border:1px solid rgba(26,101,184,.4); padding:8px 14px;
-  transition:background .2s, border-color .2s !important;
+  border:1px solid rgba(26,101,184,.5); padding:8px 14px;
+  transition:background .25s !important;
 }
 .nav-call:hover { background:var(--blue); border-color:var(--blue); }
 
+/* burger */
 .burger {
   display:none; flex-direction:column; gap:5px;
   background:none; border:none; cursor:pointer; padding:4px;
@@ -77,7 +80,9 @@ nav.scrolled {
 }
 
 /* ── HERO ── */
-.hero { position:relative; height:100vh; min-height:620px; overflow:hidden; }
+.hero {
+  position:relative; height:100vh; min-height:620px; overflow:hidden;
+}
 .hero-topline {
   position:absolute; top:0; left:0; right:0; height:3px;
   background:var(--blue); z-index:10;
@@ -105,16 +110,21 @@ nav.scrolled {
   to   { transform:scale(1.06); }
 }
 
-.hero-overlay {
+/* gradients */
+.hero-grad {
   position:absolute; inset:0; z-index:2;
-  background:
-    linear-gradient(to top,  #060c06 0%, rgba(6,12,6,.85) 18%, rgba(6,12,6,.38) 46%, rgba(6,12,6,.06) 72%, transparent 100%),
-    linear-gradient(to right, rgba(6,12,6,.52) 0%, rgba(6,12,6,.22) 44%, transparent 70%);
+  background:linear-gradient(to right, rgba(6,12,6,.88) 0%, rgba(6,12,6,.55) 45%, rgba(6,12,6,.15) 100%);
+}
+.hero-grad2 {
+  position:absolute; inset:0; z-index:2;
+  background:linear-gradient(to top, rgba(6,12,6,.9) 0%, rgba(6,12,6,.2) 40%, transparent 70%);
 }
 
+/* hero content */
 .hero-content {
   position:absolute; bottom:0; left:0; z-index:5;
-  padding:0 6vw 80px; max-width:720px;
+  padding:0 6vw 60px;
+  max-width:720px;
 }
 .hero-eyebrow {
   font-family:'Space Mono',monospace; font-size:.62rem; font-weight:400;
@@ -128,7 +138,8 @@ nav.scrolled {
   font-family:'Anton',sans-serif;
   font-size:clamp(3rem,7.5vw,8rem);
   line-height:.9; text-transform:uppercase;
-  margin-bottom:22px; overflow:hidden;
+  margin-bottom:20px;
+  overflow:hidden;
 }
 .hero-h1 .l1 {
   display:block; color:var(--white);
@@ -153,40 +164,34 @@ nav.scrolled {
   letter-spacing:.12em; text-transform:uppercase;
   background:var(--blue); color:var(--white);
   padding:13px 24px; text-decoration:none;
-  transition:background .2s;
+  transition:background .25s;
 }
 .btn-primary:hover { background:var(--blue-dk); }
 .btn-ghost {
   font-family:'Space Mono',monospace; font-size:.65rem; font-weight:400;
   letter-spacing:.12em; text-transform:uppercase;
-  border:1px solid rgba(221,232,216,.2); color:var(--white);
+  border:1px solid rgba(221,232,216,.25); color:var(--white);
   padding:13px 24px; text-decoration:none;
-  transition:border-color .2s, color .2s;
+  transition:border-color .25s, color .25s;
 }
 .btn-ghost:hover { border-color:var(--blue); color:var(--blue); }
 
-/* slide progress indicator */
+/* slide dots + counter */
 .slide-ui {
-  position:absolute; bottom:80px; right:6vw; z-index:6;
+  position:absolute; bottom:60px; right:6vw; z-index:6;
   display:flex; flex-direction:column; align-items:flex-end; gap:10px;
 }
-.sp-index {
-  font-family:'Space Mono',monospace; font-size:.5rem;
-  letter-spacing:.2em; color:rgba(221,232,216,.5);
+.slide-counter {
+  font-family:'Space Mono',monospace; font-size:.55rem;
+  letter-spacing:.15em; color:rgba(221,232,216,.4);
 }
-.sp-total {
-  font-family:'Space Mono',monospace; font-size:.5rem;
-  letter-spacing:.2em; color:rgba(221,232,216,.2);
+.slide-dots { display:flex; gap:6px; }
+.sdot {
+  width:20px; height:2px; background:rgba(221,232,216,.25);
+  border:none; cursor:pointer; padding:0;
+  transition:background .3s, width .4s;
 }
-.sp-track {
-  width:1px; height:80px;
-  background:rgba(221,232,216,.1);
-  position:relative;
-}
-.sp-bar {
-  position:absolute; top:0; left:0; right:0;
-  background:var(--blue); height:0%;
-}
+.sdot.active { background:var(--blue); width:32px; }
 
 /* scroll indicator */
 .scroll-indicator {
@@ -211,12 +216,12 @@ nav.scrolled {
 
 /* ── TICKER ── */
 .ticker-wrap {
-  background:var(--bg1); overflow:hidden;
+  background:var(--bg1); overflow:hidden; padding:0;
   border-top:1px solid var(--border); border-bottom:1px solid var(--border);
 }
 .ticker-track {
   display:flex; width:max-content;
-  animation:ticker 22s linear infinite;
+  animation:ticker 20s linear infinite;
   padding:13px 0;
 }
 .ticker-item {
@@ -272,6 +277,7 @@ nav.scrolled {
   mix-blend-mode:multiply;
   z-index:1; pointer-events:none;
 }
+.l-item:hover img { transform:scale(1.05); filter:brightness(.82) saturate(.85); }
 .l-overlay-grad {
   position:absolute; inset:0;
   background:linear-gradient(to top, rgba(6,12,6,.92) 0%, rgba(6,12,6,.3) 50%, transparent 100%);
@@ -285,7 +291,7 @@ nav.scrolled {
 
 .l-item-content {
   position:absolute; bottom:0; left:0; right:0;
-  padding:24px 26px; z-index:3;
+  padding:24px 26px; z-index:2;
 }
 .l-tag {
   font-family:'Space Mono',monospace; font-size:.55rem;
@@ -319,7 +325,9 @@ nav.scrolled {
   font-size:.85rem; line-height:1.65; color:rgba(221,232,216,.55);
   max-width:320px; margin-bottom:14px;
 }
-.l-feats-sm { list-style:none; display:flex; flex-direction:column; gap:7px; }
+.l-feats-sm {
+  list-style:none; display:flex; flex-direction:column; gap:7px;
+}
 .l-feats-sm li {
   font-family:'Space Mono',monospace; font-size:.58rem;
   letter-spacing:.04em; color:rgba(221,232,216,.6);
@@ -327,6 +335,7 @@ nav.scrolled {
 }
 .l-feats-sm li::before { content:''; width:14px; height:1px; background:var(--green); flex-shrink:0; }
 
+/* text-only cells */
 .l-item.text-cell {
   background:var(--bg1);
   display:flex; flex-direction:column; justify-content:flex-end;
@@ -334,7 +343,6 @@ nav.scrolled {
   border-top:1px solid rgba(58,130,48,.18);
   transition:background .3s, box-shadow .3s;
 }
-.l-item.text-cell:hover { background:rgba(255,255,255,.015); }
 .l-item.text-cell .l-tag { margin-bottom:6px; }
 
 /* stagger grid items on reveal */
@@ -381,7 +389,8 @@ nav.scrolled {
 }
 .k-map {
   width:100%; aspect-ratio:4/3;
-  border:none; filter:grayscale(1) brightness(.7) contrast(1.1); display:block;
+  border:none; filter:grayscale(1) brightness(.7) contrast(1.1);
+  display:block;
 }
 .k-info { display:flex; flex-direction:column; gap:20px; margin-top:28px; }
 .k-row { display:flex; align-items:center; gap:14px; }
@@ -392,10 +401,12 @@ nav.scrolled {
 }
 .k-lbl {
   font-family:'Space Mono',monospace; font-size:.55rem;
-  letter-spacing:.16em; text-transform:uppercase; color:var(--grey); margin-bottom:2px;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--grey);
+  margin-bottom:2px;
 }
 .k-val { font-size:.9rem; font-weight:300; color:var(--white); }
 
+/* form */
 .k-form { display:flex; flex-direction:column; gap:14px; }
 .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 .fg { display:flex; flex-direction:column; gap:6px; }
@@ -404,12 +415,13 @@ nav.scrolled {
   letter-spacing:.18em; text-transform:uppercase; color:var(--grey);
 }
 .fg input, .fg select, .fg textarea {
-  background:transparent;
+  background:rgba(255,255,255,.04);
   border:0; border-bottom:1px solid rgba(221,232,216,.1);
   color:var(--white);
   font-family:'Barlow',sans-serif; font-size:.9rem; font-weight:300;
   padding:12px 0; outline:none; border-radius:0; width:100%;
   transition:border-color .3s; -webkit-appearance:none;
+  background:transparent;
 }
 .fg input:focus, .fg select:focus, .fg textarea:focus { border-color:var(--green); }
 .fg input::placeholder, .fg textarea::placeholder { color:rgba(221,232,216,.18); }
@@ -417,18 +429,19 @@ nav.scrolled {
 .fg textarea { min-height:100px; resize:none; }
 .fg.wide { grid-column:1/-1; }
 .k-submit {
-  font-family:'Space Mono',monospace; font-size:.65rem; font-weight:700;
-  letter-spacing:.12em; text-transform:uppercase;
+  font-family:'Anton',sans-serif; font-size:.95rem;
+  letter-spacing:.08em; text-transform:uppercase;
   color:var(--white); background:var(--blue);
   padding:15px 32px; border:none; cursor:pointer;
-  transition:background .2s;
+  transition:background .25s;
   align-self:flex-start; border-radius:0; -webkit-appearance:none;
 }
 .k-submit:hover { background:var(--blue-dk); }
 
 /* ── FOOTER ── */
 footer {
-  background:var(--bg); border-top:1px solid var(--border);
+  background:var(--bg);
+  border-top:1px solid var(--border);
   padding:22px 36px;
   display:flex; justify-content:space-between; align-items:center;
   gap:16px; flex-wrap:wrap;
@@ -460,8 +473,8 @@ footer {
   .l-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; padding:0 20px 20px; }
   .l-item.tall { grid-row:auto; }
   .l-grid .l-item.tall { grid-row:span 2; height:540px; }
-  .fakten { grid-template-columns:1fr 1fr; }
-  .fakt { border-right:none; border-bottom:1px solid var(--border); padding:36px 20px; }
+  .fakten { grid-template-columns:1fr 1fr; padding:40px 20px; }
+  .fakt { border-right:none; border-bottom:1px solid var(--border); }
   .fakt:nth-child(odd) { border-right:1px solid var(--border); }
   .section-header { padding:60px 20px 36px; }
   #kontakt { padding:60px 20px; }
@@ -489,7 +502,7 @@ footer {
   <div class="nav-links">
     <a href="#leistungen">Leistungen</a>
     <a href="#kontakt">Kontakt</a>
-    <a href="tel:+436644154196" class="nav-call">0664 4154196</a>
+    <a href="tel:+436644154196" class="nav-call">☎ 0664 4154196</a>
   </div>
   <button class="burger" id="burger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -498,7 +511,7 @@ footer {
 <div class="mob-menu" id="mobMenu">
   <a href="#leistungen" onclick="closeMenu()">Leistungen</a>
   <a href="#kontakt" onclick="closeMenu()">Kontakt</a>
-  <a href="tel:+436644154196" onclick="closeMenu()">0664 4154196</a>
+  <a href="tel:+436644154196" onclick="closeMenu()">☎ 0664 4154196</a>
 </div>
 
 <!-- HERO -->
@@ -511,7 +524,8 @@ footer {
     <div class="slide"><img src="3.png" alt="Kleinfercher Holz"></div>
   </div>
 
-  <div class="hero-overlay"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-grad2"></div>
 
   <div class="hero-content">
     <div class="hero-eyebrow">9815 Reißeck · Kärnten</div>
@@ -527,11 +541,12 @@ footer {
   </div>
 
   <div class="slide-ui">
-    <span class="sp-index" id="sp-num">01</span>
-    <div class="sp-track">
-      <div class="sp-bar" id="sp-bar"></div>
+    <span class="slide-counter" id="slide-counter">01 / 03</span>
+    <div class="slide-dots">
+      <button class="sdot active" onclick="goSlide(0)"></button>
+      <button class="sdot" onclick="goSlide(1)"></button>
+      <button class="sdot" onclick="goSlide(2)"></button>
     </div>
-    <span class="sp-total">03</span>
   </div>
 
   <!-- scroll indicator — fades after first scroll -->
@@ -570,9 +585,9 @@ footer {
 
   <div class="l-grid">
 
+    <!-- TALL: Holzbringung Foto -->
     <div class="l-item tall reveal">
       <img src="4.png" alt="Holzbringung Kleinfercher">
-      <div class="l-tint"></div>
       <div class="l-overlay-grad"></div>
       <div class="l-item-content">
         <p class="l-tag">Leistung 01</p>
@@ -587,9 +602,9 @@ footer {
       </div>
     </div>
 
+    <!-- TOP RIGHT: Brennholz Foto -->
     <div class="l-item reveal" style="grid-column:2; grid-row:1;">
       <img src="5.png" alt="Brennholz Kleinfercher">
-      <div class="l-tint"></div>
       <div class="l-overlay-grad"></div>
       <div class="l-item-content">
         <p class="l-tag">Leistung 02</p>
@@ -599,6 +614,7 @@ footer {
       </div>
     </div>
 
+    <!-- TOP RIGHT 2: Brennholz Details -->
     <div class="l-item text-cell reveal" style="grid-column:3; grid-row:1;">
       <p class="l-tag">Details</p>
       <p class="l-desc-sm">Ofenfertiges Brennholz aus Kärnten — gespalten, trocken, in verschiedenen Mengen verfügbar.</p>
@@ -610,11 +626,13 @@ footer {
       </ul>
     </div>
 
-    <div class="l-item text-cell reveal" style="grid-column:2; grid-row:2; border-top:none; background:var(--bg1);">
+    <!-- BOTTOM RIGHT: weitere Infos -->
+    <div class="l-item text-cell reveal" style="grid-column:2; grid-row:2; background:var(--bg2); border-top:none; border-left:none;">
       <p class="l-tag" style="margin-bottom:8px;">Einsatzgebiet</p>
       <h4 class="l-name" style="font-size:1.6rem;">Reißeck &<br><em>Umgebung.</em></h4>
     </div>
 
+    <!-- BOTTOM RIGHT 2: CTA -->
     <div class="l-item text-cell reveal" style="grid-column:3; grid-row:2; justify-content:center; align-items:flex-start; padding:28px 26px; background:var(--bg);">
       <p class="l-tag">Kontakt</p>
       <p style="font-family:'Space Mono',monospace; font-size:.6rem; letter-spacing:.08em; color:var(--grey-lt); line-height:1.8; margin-bottom:20px;">Marvin Franz<br>Kleinfercher<br>0664 4154196</p>
@@ -767,18 +785,15 @@ function resetProgress() {
 }
 
 function goSlide(n) {
-  if (lock || n === cur) return;
-  lock = true;
-  slides[cur].classList.remove('active');
+  if (lock || n === cur) return; lock = true;
+  slides[cur].classList.remove('active'); sdots[cur].classList.remove('active');
   cur = n;
   slides[cur].classList.add('active');
   spNum.textContent = String(cur + 1).padStart(2, '0');
   resetProgress();
   setTimeout(() => { lock = false; }, 1200);
 }
-
-setInterval(() => goSlide((cur + 1) % slides.length), SLIDE_INTERVAL);
-resetProgress();
+setInterval(() => goSlide((cur + 1) % slides.length), 6000);
 
 // ── COUNT-UP ───────────────────────────────────────────────────────────────
 function countUp(el, delayMs) {
