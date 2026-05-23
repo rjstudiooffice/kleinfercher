@@ -176,22 +176,28 @@ nav.scrolled {
 }
 .btn-ghost:hover { border-color:var(--blue); color:var(--blue); }
 
-/* slide dots + counter */
+/* slide progress indicator */
 .slide-ui {
-  position:absolute; bottom:60px; right:6vw; z-index:6;
+  position:absolute; bottom:80px; right:6vw; z-index:6;
   display:flex; flex-direction:column; align-items:flex-end; gap:10px;
 }
-.slide-counter {
-  font-family:'Space Mono',monospace; font-size:.55rem;
-  letter-spacing:.15em; color:rgba(221,232,216,.4);
+.sp-index {
+  font-family:'Space Mono',monospace; font-size:.5rem;
+  letter-spacing:.2em; color:rgba(221,232,216,.5);
 }
-.slide-dots { display:flex; gap:6px; }
-.sdot {
-  width:20px; height:2px; background:rgba(221,232,216,.25);
-  border:none; cursor:pointer; padding:0;
-  transition:background .3s, width .4s;
+.sp-total {
+  font-family:'Space Mono',monospace; font-size:.5rem;
+  letter-spacing:.2em; color:rgba(221,232,216,.2);
 }
-.sdot.active { background:var(--blue); width:32px; }
+.sp-track {
+  width:1px; height:80px;
+  background:rgba(221,232,216,.1);
+  position:relative;
+}
+.sp-bar {
+  position:absolute; top:0; left:0; right:0;
+  background:var(--blue); height:0%;
+}
 
 /* scroll indicator */
 .scroll-indicator {
@@ -277,7 +283,6 @@ nav.scrolled {
   mix-blend-mode:multiply;
   z-index:1; pointer-events:none;
 }
-.l-item:hover img { transform:scale(1.05); filter:brightness(.82) saturate(.85); }
 .l-overlay-grad {
   position:absolute; inset:0;
   background:linear-gradient(to top, rgba(6,12,6,.92) 0%, rgba(6,12,6,.3) 50%, transparent 100%);
@@ -291,7 +296,7 @@ nav.scrolled {
 
 .l-item-content {
   position:absolute; bottom:0; left:0; right:0;
-  padding:24px 26px; z-index:2;
+  padding:24px 26px; z-index:3;
 }
 .l-tag {
   font-family:'Space Mono',monospace; font-size:.55rem;
@@ -429,8 +434,8 @@ nav.scrolled {
 .fg textarea { min-height:100px; resize:none; }
 .fg.wide { grid-column:1/-1; }
 .k-submit {
-  font-family:'Anton',sans-serif; font-size:.95rem;
-  letter-spacing:.08em; text-transform:uppercase;
+  font-family:'Space Mono',monospace; font-size:.65rem; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase;
   color:var(--white); background:var(--blue);
   padding:15px 32px; border:none; cursor:pointer;
   transition:background .25s;
@@ -502,7 +507,7 @@ footer {
   <div class="nav-links">
     <a href="#leistungen">Leistungen</a>
     <a href="#kontakt">Kontakt</a>
-    <a href="tel:+436644154196" class="nav-call">☎ 0664 4154196</a>
+    <a href="tel:+436644154196" class="nav-call">0664 4154196</a>
   </div>
   <button class="burger" id="burger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -511,7 +516,7 @@ footer {
 <div class="mob-menu" id="mobMenu">
   <a href="#leistungen" onclick="closeMenu()">Leistungen</a>
   <a href="#kontakt" onclick="closeMenu()">Kontakt</a>
-  <a href="tel:+436644154196" onclick="closeMenu()">☎ 0664 4154196</a>
+  <a href="tel:+436644154196" onclick="closeMenu()">0664 4154196</a>
 </div>
 
 <!-- HERO -->
@@ -541,12 +546,11 @@ footer {
   </div>
 
   <div class="slide-ui">
-    <span class="slide-counter" id="slide-counter">01 / 03</span>
-    <div class="slide-dots">
-      <button class="sdot active" onclick="goSlide(0)"></button>
-      <button class="sdot" onclick="goSlide(1)"></button>
-      <button class="sdot" onclick="goSlide(2)"></button>
+    <span class="sp-index" id="sp-num">01</span>
+    <div class="sp-track">
+      <div class="sp-bar" id="sp-bar"></div>
     </div>
+    <span class="sp-total">03</span>
   </div>
 
   <!-- scroll indicator — fades after first scroll -->
@@ -588,6 +592,7 @@ footer {
     <!-- TALL: Holzbringung Foto -->
     <div class="l-item tall reveal">
       <img src="4.png" alt="Holzbringung Kleinfercher">
+      <div class="l-tint"></div>
       <div class="l-overlay-grad"></div>
       <div class="l-item-content">
         <p class="l-tag">Leistung 01</p>
@@ -605,6 +610,7 @@ footer {
     <!-- TOP RIGHT: Brennholz Foto -->
     <div class="l-item reveal" style="grid-column:2; grid-row:1;">
       <img src="5.png" alt="Brennholz Kleinfercher">
+      <div class="l-tint"></div>
       <div class="l-overlay-grad"></div>
       <div class="l-item-content">
         <p class="l-tag">Leistung 02</p>
@@ -786,14 +792,15 @@ function resetProgress() {
 
 function goSlide(n) {
   if (lock || n === cur) return; lock = true;
-  slides[cur].classList.remove('active'); sdots[cur].classList.remove('active');
+  slides[cur].classList.remove('active');
   cur = n;
   slides[cur].classList.add('active');
   spNum.textContent = String(cur + 1).padStart(2, '0');
   resetProgress();
   setTimeout(() => { lock = false; }, 1200);
 }
-setInterval(() => goSlide((cur + 1) % slides.length), 6000);
+setInterval(() => goSlide((cur + 1) % slides.length), SLIDE_INTERVAL);
+resetProgress();
 
 // ── COUNT-UP ───────────────────────────────────────────────────────────────
 function countUp(el, delayMs) {
