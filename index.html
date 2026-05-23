@@ -209,18 +209,11 @@ nav.scrolled {
   overflow:hidden;
   position:relative;
 }
-.story::before {
-  content:'';
-  position:absolute; top:0; left:0; right:0; height:1px;
-  background:linear-gradient(to right, var(--green), transparent);
-  opacity:.3;
-}
 .story-inner {
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:80px;
   align-items:center;
-  max-width:1400px;
 }
 .story-kicker {
   font-family:'Space Mono',monospace; font-size:.6rem;
@@ -243,132 +236,91 @@ nav.scrolled {
   position:relative; overflow:hidden;
   aspect-ratio:3/4;
   will-change:transform;
+  background:var(--bg2);
 }
 .story-img-wrap img {
   width:100%; height:115%; object-fit:cover; object-position:center;
   filter:brightness(.72) saturate(.75);
-  will-change:transform;
-  background:var(--bg2); /* shows while photo loads / placeholder */
-  display:block;
+  will-change:transform; display:block;
+  background:var(--bg2);
 }
-.story-img-wrap::after {
-  content:'';
+
+/* ── LEISTUNGEN — zwei Spalten ── */
+#leistungen { padding:80px 6vw 0; }
+
+.leistungen-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3px;
+  margin-top:52px;
+}
+.leistung-card {
+  display:block;
+  text-decoration:none; color:inherit;
+  background:var(--bg1);
+  overflow:hidden;
+  transition:box-shadow .3s;
+  cursor:pointer;
+}
+.leistung-card:hover { box-shadow:inset 0 0 0 1px rgba(58,130,48,.4); }
+
+.leistung-img {
+  position:relative; overflow:hidden;
+  aspect-ratio:4/3;
+}
+.leistung-img img {
+  width:100%; height:100%; object-fit:cover; display:block;
+  filter:brightness(.72) saturate(.78);
+  transition:transform .65s var(--ease), filter .5s;
+}
+.leistung-card:hover .leistung-img img {
+  transform:scale(1.04);
+  filter:brightness(.85) saturate(.85);
+}
+.leistung-img-overlay {
   position:absolute; inset:0;
-  background:linear-gradient(135deg, rgba(58,130,48,.08) 0%, transparent 60%);
-  mix-blend-mode:overlay;
+  background:linear-gradient(to top, rgba(6,12,6,.5) 0%, transparent 60%);
   pointer-events:none;
 }
-/* line detail — decorative */
-.story-line {
-  width:1px; height:0; background:var(--green);
-  position:absolute; bottom:32px; right:32px;
-  transition:height 1.2s var(--ease);
-}
-.story-img-wrap.visible .story-line { height:60px; }
 
-/* ── SECTION HEADER ── */
-.section-header { padding:80px 6vw 48px; }
-.sec-eyebrow {
-  font-family:'Space Mono',monospace; font-size:.6rem; font-weight:400;
-  letter-spacing:.22em; text-transform:uppercase; color:var(--green);
-  display:flex; align-items:center; gap:10px; margin-bottom:14px;
+.leistung-body {
+  padding:28px 30px 36px;
+  border-top:1px solid var(--border);
 }
-.sec-eyebrow::before { content:""; width:0; height:1px; background:var(--green); display:block; transition:width .8s var(--ease); }
-.reveal.visible .sec-eyebrow::before,
-.sec-eyebrow.visible::before { width:20px; }
-.sec-title {
-  font-family:'Anton',sans-serif;
-  font-size:clamp(2.4rem,5vw,5rem);
-  line-height:.9; text-transform:uppercase; color:var(--white);
-}
-.sec-title span { color:var(--blue); }
-
-/* ── LEISTUNGEN GRID ── */
-.l-grid {
-  display:grid;
-  grid-template-columns:1.6fr 1fr 1fr;
-  grid-template-rows:300px 300px;
-  gap:3px; padding:0 6vw 6vw;
-}
-.l-item {
-  position:relative; overflow:hidden;
-  background:var(--bg1);
-  transition:box-shadow .3s;
-}
-.l-item:hover { box-shadow:inset 0 0 0 1px rgba(58,130,48,.4); }
-.l-item.tall { grid-row:1/3; }
-.l-item img {
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-  filter:brightness(.72) saturate(.75);
-  transition:filter .5s, transform .6s var(--ease);
-}
-.l-item:hover img { filter:brightness(.82) saturate(.85); transform:scale(1.04); }
-.l-tint {
-  position:absolute; inset:0;
-  background:rgba(58,130,48,.06); mix-blend-mode:multiply;
-  z-index:1; pointer-events:none;
-}
-.l-overlay-grad {
-  position:absolute; inset:0;
-  background:linear-gradient(to top, rgba(6,12,6,.94) 0%, rgba(6,12,6,.35) 50%, transparent 100%);
-  z-index:2; transition:background .3s;
-}
-.l-item:not(.text-cell):hover .l-overlay-grad {
-  background:linear-gradient(to top, rgba(6,12,6,.97) 0%, rgba(6,12,6,.55) 50%, rgba(6,12,6,.3) 100%);
-}
-.l-item-content {
-  position:absolute; bottom:0; left:0; right:0;
-  padding:24px 26px; z-index:3;
-}
-.l-tag {
+.leistung-tag {
   font-family:'Space Mono',monospace; font-size:.55rem;
   letter-spacing:.18em; text-transform:uppercase; color:var(--green);
-  display:flex; align-items:center; gap:8px; margin-bottom:8px;
+  display:flex; align-items:center; gap:8px; margin-bottom:12px;
 }
-.l-tag::before { content:''; width:14px; height:1px; background:var(--green); display:block; }
-.l-name {
+.leistung-tag::before { content:''; width:14px; height:1px; background:var(--green); display:block; }
+.leistung-title {
   font-family:'Anton',sans-serif;
-  font-size:clamp(1.4rem,2.5vw,2.4rem);
+  font-size:clamp(1.8rem,2.8vw,2.8rem);
   text-transform:uppercase; color:var(--white); line-height:.92;
-  margin-bottom:10px; transition:transform .4s ease-out;
+  margin-bottom:14px;
 }
-.l-name em { font-style:normal; color:var(--green); }
-.l-item:not(.text-cell):hover .l-name { transform:translateY(-4px); }
-.l-hover-line {
-  font-family:'Space Mono',monospace; font-size:.52rem;
-  letter-spacing:.12em; text-transform:uppercase;
-  color:rgba(221,232,216,.45);
-  opacity:0; transform:translateY(4px);
-  transition:opacity .4s ease-out, transform .4s ease-out;
-  margin-bottom:10px;
+.leistung-title em { font-style:normal; color:var(--green); }
+.leistung-desc {
+  font-size:.88rem; line-height:1.65; font-weight:300;
+  color:rgba(221,232,216,.5); margin-bottom:22px;
 }
-.l-item:hover .l-hover-line { opacity:1; transform:translateY(0); }
-.l-desc-sm {
-  font-size:.85rem; line-height:1.65; color:rgba(221,232,216,.55);
-  max-width:320px; margin-bottom:14px;
-}
-.l-feats-sm { list-style:none; display:flex; flex-direction:column; gap:7px; }
-.l-feats-sm li {
+.leistung-cta {
   font-family:'Space Mono',monospace; font-size:.58rem;
-  letter-spacing:.04em; color:rgba(221,232,216,.6);
-  display:flex; align-items:center; gap:9px;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--blue);
+  display:inline-flex; align-items:center; gap:8px;
+  transition:gap .3s var(--ease);
 }
-.l-feats-sm li::before { content:''; width:14px; height:1px; background:var(--green); flex-shrink:0; }
-.l-item.text-cell {
-  background:var(--bg1);
-  display:flex; flex-direction:column; justify-content:flex-end;
-  padding:28px 26px;
-  border-top:1px solid rgba(58,130,48,.18);
-  transition:background .3s, box-shadow .3s;
-}
-.l-item.text-cell:hover { background:rgba(255,255,255,.015); }
-.l-item.text-cell .l-tag { margin-bottom:6px; }
+.leistung-card:hover .leistung-cta { gap:14px; }
+.leistung-cta svg { transition:transform .3s var(--ease); }
+.leistung-card:hover .leistung-cta svg { transform:translateX(4px); }
 
 /* ── FAKTEN ── */
 .fakten {
   display:grid; grid-template-columns:repeat(4,1fr);
   border-top:1px solid var(--border); border-bottom:1px solid var(--border);
   background:var(--bg1);
+  margin-top:3px;
 }
 .fakt {
   padding:52px 6vw;
@@ -396,19 +348,11 @@ nav.scrolled {
   background:var(--bg);
   border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
-  position:relative; overflow:hidden;
-}
-.cta-strip::before {
-  content:'';
-  position:absolute; top:50%; left:6vw; right:6vw; height:1px;
-  background:linear-gradient(to right, transparent, rgba(58,130,48,.15), transparent);
-  transform:translateY(-50%);
 }
 .cta-strip-inner {
   display:grid; grid-template-columns:1fr auto;
   gap:48px; align-items:center;
 }
-.cta-strip-text {}
 .cta-strip-eyebrow {
   font-family:'Space Mono',monospace; font-size:.6rem;
   letter-spacing:.22em; text-transform:uppercase; color:var(--green);
@@ -433,6 +377,20 @@ nav.scrolled {
 
 /* ── KONTAKT ── */
 #kontakt { padding:80px 6vw; }
+.section-header { padding:0 0 48px; }
+.sec-eyebrow {
+  font-family:'Space Mono',monospace; font-size:.6rem; font-weight:400;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--green);
+  display:flex; align-items:center; gap:10px; margin-bottom:14px;
+}
+.sec-eyebrow::before { content:""; width:0; height:1px; background:var(--green); display:block; transition:width .8s var(--ease); }
+.reveal.visible .sec-eyebrow::before { width:20px; }
+.sec-title {
+  font-family:'Anton',sans-serif;
+  font-size:clamp(2.4rem,5vw,5rem);
+  line-height:.9; text-transform:uppercase; color:var(--white);
+}
+.sec-title span { color:var(--blue); }
 .kontakt-inner {
   display:grid; grid-template-columns:1fr 1.1fr;
   gap:60px; align-items:start;
@@ -500,41 +458,31 @@ footer {
   letter-spacing:.1em; color:var(--grey); opacity:.6;
 }
 
-/* ── REVEAL SYSTEM ── */
+/* ── REVEAL ── */
 .reveal {
   opacity:0; transform:translateY(40px);
   transition:opacity .7s var(--ease), transform .7s var(--ease);
 }
 .reveal.visible { opacity:1; transform:translateY(0); }
-
 .reveal-left {
   opacity:0; transform:translateX(-48px);
   transition:opacity .8s var(--ease), transform .8s var(--ease);
 }
 .reveal-left.visible { opacity:1; transform:translateX(0); }
-
 .reveal-right {
   opacity:0; transform:translateX(48px);
   transition:opacity .8s var(--ease), transform .8s var(--ease);
 }
 .reveal-right.visible { opacity:1; transform:translateX(0); }
 
-/* clip reveal for image tiles */
-.l-item.reveal {
-  opacity:0; transform:translateY(0);
+/* leistung cards clip reveal with stagger */
+.leistung-card {
   clip-path:inset(0 0 100% 0);
-  transition:opacity .1s, clip-path .8s var(--ease);
+  transition:clip-path .8s var(--ease), box-shadow .3s;
 }
-.l-item.reveal.visible {
-  opacity:1;
-  clip-path:inset(0 0 0% 0);
-}
-/* stagger */
-.l-grid .l-item:nth-child(1) { transition-delay:0ms; }
-.l-grid .l-item:nth-child(2) { transition-delay:100ms; }
-.l-grid .l-item:nth-child(3) { transition-delay:200ms; }
-.l-grid .l-item:nth-child(4) { transition-delay:300ms; }
-.l-grid .l-item:nth-child(5) { transition-delay:400ms; }
+.leistung-card.visible { clip-path:inset(0 0 0% 0); }
+.leistung-card:nth-child(1) { transition-delay:0ms; }
+.leistung-card:nth-child(2) { transition-delay:120ms; }
 
 /* ── MOBILE ── */
 @media(max-width:1024px) {
@@ -542,34 +490,32 @@ footer {
   .nav-links { display:none; }
   .burger { display:flex; }
   .hero-content { padding:0 20px 60px; }
+  .story { padding:80px 20px; }
   .story-inner { grid-template-columns:1fr; gap:48px; }
   .story-img-wrap { aspect-ratio:16/9; }
-  .l-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; padding:0 20px 20px; }
-  .l-item.tall { grid-row:auto; }
-  .l-grid .l-item.tall { grid-row:span 2; height:540px; }
+  #leistungen { padding:60px 20px 0; }
+  .leistungen-grid { grid-template-columns:1fr 1fr; }
   .fakten { grid-template-columns:1fr 1fr; }
   .fakt { border-right:none; border-bottom:1px solid var(--border); padding:36px 20px; }
   .fakt:nth-child(odd) { border-right:1px solid var(--border); }
-  .cta-strip-inner { grid-template-columns:1fr; gap:32px; }
-  .section-header { padding:60px 20px 36px; }
-  .story { padding:80px 20px; }
   .cta-strip { padding:72px 20px; }
+  .cta-strip-inner { grid-template-columns:1fr; gap:32px; }
   #kontakt { padding:60px 20px; }
   .kontakt-inner { grid-template-columns:1fr; }
   footer { padding:18px 20px; flex-direction:column; align-items:flex-start; }
 }
 @media(max-width:640px) {
-  .l-grid { grid-template-columns:1fr; }
-  .l-item.tall, .l-grid .l-item.tall { grid-row:auto; height:260px; }
-  .l-item { height:220px; }
+  .leistungen-grid { grid-template-columns:1fr; }
   .fakten { grid-template-columns:1fr 1fr; }
   .fakt:nth-child(odd) { border-right:1px solid var(--border); }
   .form-row { grid-template-columns:1fr; }
   .hero-ctas { flex-direction:column; }
   .slide-ui { bottom:56px; right:20px; }
   .scroll-indicator { display:none; }
-  .reveal-left, .reveal-right { transform:translateY(30px); }
-  .reveal-left.visible, .reveal-right.visible { transform:translateY(0); }
+  .reveal-left { transform:translateY(30px); }
+  .reveal-left.visible { transform:translateY(0); }
+  .reveal-right { transform:translateY(30px); }
+  .reveal-right.visible { transform:translateY(0); }
 }
 </style>
 </head>
@@ -666,63 +612,52 @@ footer {
     </div>
     <div class="story-img-wrap reveal-right" id="storyImg">
       <img src="story-photo.jpg" alt="Kleinfercher im Gelände" id="storyImgEl">
-      <div class="story-line" id="storyLine"></div>
     </div>
   </div>
 </section>
 
 <!-- LEISTUNGEN -->
 <section id="leistungen">
-  <div class="section-header reveal">
-    <p class="sec-eyebrow">Was ich anbiete</p>
-    <h2 class="sec-title">Zwei Leistungen.<br><span>Ein Ansprechpartner.</span></h2>
-  </div>
-  <div class="l-grid">
-    <div class="l-item tall reveal">
-      <img src="4.png" alt="Holzbringung Kleinfercher">
-      <div class="l-tint"></div>
-      <div class="l-overlay-grad"></div>
-      <div class="l-item-content">
-        <p class="l-tag">Leistung 01</p>
-        <h3 class="l-name">Holz-<br><em>bringung.</em></h3>
-        <p class="l-desc-sm">Professionelles Rücken und Bringen von Stammholz — auch in steilem, schwer zugänglichem Gelände. Maschinell und sauber.</p>
-        <ul class="l-feats-sm">
-          <li>Rücken im Gebirgsgelände</li>
-          <li>Kurzstreckentransporte</li>
-          <li>Saubere Arbeit im Bestand</li>
-          <li>Reißeck & Umgebung</li>
-        </ul>
+  <div class="leistungen-grid">
+
+    <!-- Holzbringung -->
+    <a href="holzbringung.html" class="leistung-card">
+      <div class="leistung-img">
+        <img src="4.png" alt="Holzbringung Kleinfercher">
+        <div class="leistung-img-overlay"></div>
       </div>
-    </div>
-    <div class="l-item reveal" style="grid-column:2; grid-row:1;">
-      <img src="5.png" alt="Brennholz Kleinfercher">
-      <div class="l-tint"></div>
-      <div class="l-overlay-grad"></div>
-      <div class="l-item-content">
-        <p class="l-tag">Leistung 02</p>
-        <h3 class="l-name">Brenn-<br><em>holz.</em></h3>
-        <p class="l-hover-line">Ofenfertig · Gespalten · Regional</p>
+      <div class="leistung-body">
+        <p class="leistung-tag">Leistung 01</p>
+        <h3 class="leistung-title">Holz-<br><em>bringung.</em></h3>
+        <p class="leistung-desc">Professionelles Rücken und Bringen von Stammholz — auch in steilem, schwer zugänglichem Gelände. Maschinell und sauber.</p>
+        <span class="leistung-cta">
+          Mehr erfahren
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+            <path d="M1 5h12M8 1l5 4-5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
       </div>
-    </div>
-    <div class="l-item text-cell reveal" style="grid-column:3; grid-row:1;">
-      <p class="l-tag">Details</p>
-      <p class="l-desc-sm">Ofenfertiges Brennholz aus Kärnten — gespalten, trocken, in verschiedenen Mengen verfügbar.</p>
-      <ul class="l-feats-sm" style="margin-top:10px;">
-        <li>Gespalten & ofenfertig</li>
-        <li>Regionales Holz</li>
-        <li>Mengen nach Bedarf</li>
-        <li>Abholung oder Lieferung</li>
-      </ul>
-    </div>
-    <div class="l-item text-cell reveal" style="grid-column:2; grid-row:2; background:var(--bg2); border-top:none;">
-      <p class="l-tag" style="margin-bottom:8px;">Einsatzgebiet</p>
-      <h4 class="l-name" style="font-size:1.6rem;">Reißeck &<br><em>Umgebung.</em></h4>
-    </div>
-    <div class="l-item text-cell reveal" style="grid-column:3; grid-row:2; justify-content:center; align-items:flex-start; padding:28px 26px; background:var(--bg);">
-      <p class="l-tag">Kontakt</p>
-      <p style="font-family:'Space Mono',monospace; font-size:.6rem; letter-spacing:.08em; color:var(--grey-lt); line-height:1.8; margin-bottom:20px;">Marvin Franz<br>Kleinfercher<br>0664 4154196</p>
-      <a href="#kontakt" class="btn-primary" style="font-size:.58rem; padding:11px 18px;">Jetzt anfragen</a>
-    </div>
+    </a>
+
+    <!-- Brennholz -->
+    <a href="brennholz.html" class="leistung-card">
+      <div class="leistung-img">
+        <img src="5.png" alt="Brennholz Kleinfercher">
+        <div class="leistung-img-overlay"></div>
+      </div>
+      <div class="leistung-body">
+        <p class="leistung-tag">Leistung 02</p>
+        <h3 class="leistung-title">Brenn-<br><em>holz.</em></h3>
+        <p class="leistung-desc">Ofenfertiges Brennholz aus Kärnten — gespalten, trocken, in verschiedenen Mengen. Abholung oder Lieferung nach Bedarf.</p>
+        <span class="leistung-cta">
+          Mehr erfahren
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+            <path d="M1 5h12M8 1l5 4-5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </div>
+    </a>
+
   </div>
 </section>
 
@@ -749,7 +684,7 @@ footer {
 <!-- CTA STRIP -->
 <div class="cta-strip">
   <div class="cta-strip-inner">
-    <div class="cta-strip-text reveal-left">
+    <div class="reveal-left">
       <p class="cta-strip-eyebrow">Anfrage</p>
       <h2 class="cta-strip-h">Bereit, wenn<br>Sie es <em>sind.</em></h2>
     </div>
@@ -837,25 +772,22 @@ footer {
 
 <script>
 // ── NAV + PARALLAX + SCROLL INDICATOR ──────────────────────────────────────
-const navEl     = document.getElementById('nav');
-const heroEl    = document.getElementById('hero');
-const slidesEl  = document.getElementById('slides');
-const scrollInd = document.getElementById('scrollIndicator');
-const storyImg  = document.getElementById('storyImg');
+const navEl      = document.getElementById('nav');
+const heroEl     = document.getElementById('hero');
+const slidesEl   = document.getElementById('slides');
+const scrollInd  = document.getElementById('scrollIndicator');
+const storyImg   = document.getElementById('storyImg');
 const storyImgEl = document.getElementById('storyImgEl');
 let scrollIndHidden = false;
 
 function onScroll() {
   const sy = window.scrollY;
-
   navEl.classList.toggle('scrolled', sy > 60);
 
-  // hero parallax
   if (sy <= heroEl.offsetHeight) {
     slidesEl.style.transform = `translateY(${sy * 0.45}px)`;
   }
 
-  // story section image parallax
   if (storyImg) {
     const rect = storyImg.getBoundingClientRect();
     const vh   = window.innerHeight;
@@ -870,7 +802,6 @@ function onScroll() {
     scrollIndHidden = true;
   }
 }
-
 window.addEventListener('scroll', onScroll, { passive: true });
 
 // ── BURGER ──────────────────────────────────────────────────────────────────
@@ -891,7 +822,6 @@ function resetProgress() {
   bar.style.transition = `height ${SLIDE_INTERVAL}ms linear`;
   bar.style.height = '100%';
 }
-
 function goSlide(n) {
   if (lock || n === cur) return; lock = true;
   slides[cur].classList.remove('active');
@@ -920,7 +850,7 @@ function countUp(el, delayMs) {
   }, delayMs || 0);
 }
 
-// ── REVEAL (IntersectionObserver) ──────────────────────────────────────────
+// ── REVEAL ─────────────────────────────────────────────────────────────────
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
@@ -935,7 +865,7 @@ const io = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.12 });
 
-document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => io.observe(el));
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .leistung-card').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
