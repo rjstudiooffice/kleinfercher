@@ -108,19 +108,7 @@ nav.solid{background:rgba(6,12,6,0.97);}
 .step-arrow{position:absolute;top:50%;right:-16px;transform:translateY(-50%);font-size:20px;color:var(--blue);opacity:0.4;z-index:2;}
 .step:last-child .step-arrow{display:none;}
 
-/* GALERIE */
-.galerie{background:var(--black);padding:80px 0;}
-.galerie-header{padding:0 52px;margin-bottom:40px;}
-.galerie-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
-.galerie-label::before{content:'';width:20px;height:2px;background:var(--green);}
-.galerie-h{font-family:'Anton',sans-serif;font-size:clamp(32px,4vw,52px);text-transform:uppercase;color:var(--text);line-height:0.9;}
-.g-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:280px 220px;gap:2px;}
-.g-item{overflow:hidden;position:relative;}
-.g-item.wide{grid-column:span 2;}
-.g-item img,.g-ph{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.6) saturate(0.8);transition:filter 0.5s,transform 0.6s;}
-.g-ph{background:var(--black3);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.2em;color:rgba(221,232,216,0.15);text-transform:uppercase;}
-.g-item:hover img,.g-item:hover .g-ph{filter:brightness(0.8) saturate(1);}
-.g-item:hover img{transform:scale(1.04);}
+
 
 /* CTA */
 .cta-final{background:var(--blue);padding:80px 52px;text-align:center;position:relative;overflow:hidden;}
@@ -145,8 +133,8 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
   nav{padding:0 20px;height:80px;}.nav-r{gap:14px;}
   .nav-logo img{height:68px;}
   .hero-content{left:20px;bottom:80px;}
-  .intro,.sorten,.vorteile,.ablauf,.galerie,.cta-final{padding:60px 20px;}
-  .sorten-grid,.v-grid,.steps{grid-template-columns:1fr;}
+  .intro,.sorten,.vorteile,.ablauf,.cta-final{padding:60px 20px;}
+  .v-grid,.steps{grid-template-columns:1fr;}
   .g-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
   .g-item.wide{grid-column:auto;}
   .g-item{min-height:180px;}
@@ -172,7 +160,7 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
 <!-- HERO -->
 <section class="hero">
   <div class="hero-topline"></div>
-  <img src="bh-hero.png" alt="Brennholz Kleinfercher" class="hero-img">
+  <picture><source media="(max-width:768px)" srcset="13.png"><img src="11.png" alt="Brennholz Kleinfercher" class="hero-img"></picture>
   <div class="hero-grad"></div>
   <div class="hero-diag"></div>
   <div class="hero-content">
@@ -195,21 +183,17 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
 <!-- SORTEN -->
 <section class="sorten">
   <div class="sorten-label reveal">Unser Sortiment</div>
-  <div class="sorten-grid">
+  <div class="sorten-grid" style="grid-template-columns:1fr;">
     <div class="sorte reveal">
-      <div class="sorte-icon">🪵</div>
-      <div>
-        <div class="sorte-name">Hartholz</div>
-        <p class="sorte-text">Buche, Eiche, Esche — hoher Heizwert, lange Brenndauer, ideal für kalte Wintertage. Gibt gleichmäßige Wärme und wenig Asche.</p>
-        <div class="sorte-tags"><span class="sorte-tag">Hoher Heizwert</span><span class="sorte-tag">Lange Brenndauer</span><span class="sorte-tag">Wenig Asche</span></div>
-      </div>
-    </div>
-    <div class="sorte reveal d1">
       <div class="sorte-icon">🌲</div>
       <div>
-        <div class="sorte-name">Weichholz</div>
-        <p class="sorte-text">Fichte, Kiefer, Lärche — schnell entzündlich, ideal zum Anheizen. Perfekte Ergänzung zum Hartholz.</p>
-        <div class="sorte-tags"><span class="sorte-tag">Schnell entzündlich</span><span class="sorte-tag">Ideal zum Anheizen</span><span class="sorte-tag">Regional</span></div>
+        <div class="sorte-name">Fichte</div>
+        <p class="sorte-text">Ofenfertiges Fichtenholz direkt vom Erzeuger — schnell entzündlich, angenehmer Duft, ideal zum Heizen und Anheizen. Trocken gelagert und sofort einsatzbereit.</p>
+        <div class="sorte-tags"><span class="sorte-tag">Schnell entzündlich</span><span class="sorte-tag">Ofenfertig</span><span class="sorte-tag">Regional</span></div>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(221,232,216,0.08);display:flex;align-items:baseline;gap:12px;">
+          <span style="font-family:'Anton',sans-serif;font-size:52px;color:var(--blue);line-height:1;">€ 80</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);">pro SRM</span>
+        </div>
       </div>
     </div>
   </div>
@@ -262,27 +246,6 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
   </div>
 </section>
 
-<!-- GALERIE -->
-<section class="galerie">
-  <div class="galerie-header reveal">
-    <div class="galerie-label">Einblicke</div>
-    <h2 class="galerie-h">Unser Brennholz<br>in der Praxis.</h2>
-  </div>
-  <div class="g-grid">
-    <div class="g-item wide reveal">
-      <div class="g-ph">bh-1.png · 1200×280</div>
-    </div>
-    <div class="g-item reveal d1">
-      <div class="g-ph">bh-2.png · 600×280</div>
-    </div>
-    <div class="g-item reveal d1">
-      <div class="g-ph">bh-3.png · 600×220</div>
-    </div>
-    <div class="g-item wide reveal d2">
-      <div class="g-ph">bh-4.png · 1200×220</div>
-    </div>
-  </div>
-</section>
 
 <!-- CTA -->
 <section class="cta-final">
