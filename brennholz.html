@@ -24,7 +24,7 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--text);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;}
-
+ 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:300;height:90px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(6,12,6,0.55);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);transition:background 0.5s;}
 nav.solid{background:rgba(6,12,6,0.97);}
@@ -40,7 +40,7 @@ nav.solid{background:rgba(6,12,6,0.97);}
 .nav-call{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;background:var(--blue);color:var(--text);padding:9px 22px;text-decoration:none;transition:background 0.25s;}
 .nav-call:hover{background:var(--blue2);}
 .nav-r{display:flex;align-items:center;gap:24px;}
-
+ 
 /* HERO */
 .hero{position:relative;height:100vh;min-height:600px;overflow:hidden;}
 .hero-topline{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent,var(--blue),var(--blue2),var(--blue),transparent);z-index:10;animation:topline 4s ease-in-out infinite;}
@@ -57,7 +57,7 @@ nav.solid{background:rgba(6,12,6,0.97);}
 .hero-statement{font-size:clamp(15px,2vw,20px);color:var(--text2);line-height:1.7;max-width:520px;margin-bottom:32px;font-style:italic;opacity:0;animation:fadeUp 0.7s 0.7s forwards;}
 .hero-cta{display:inline-block;background:var(--blue);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;padding:16px 40px;transition:background 0.25s;opacity:0;animation:fadeUp 0.7s 0.9s forwards;}
 .hero-cta:hover{background:var(--blue2);}
-
+ 
 /* INTRO */
 .intro{background:var(--black2);padding:80px 52px;}
 .intro-inner{max-width:900px;margin:0 auto;text-align:center;}
@@ -65,7 +65,7 @@ nav.solid{background:rgba(6,12,6,0.97);}
 .intro-h{font-family:'Anton',sans-serif;font-size:clamp(32px,4vw,52px);text-transform:uppercase;color:var(--text);line-height:0.95;margin-bottom:20px;}
 .intro-h em{font-style:normal;color:var(--blue);}
 .intro-text{font-size:17px;color:var(--text2);line-height:1.85;max-width:700px;margin:0 auto;}
-
+ 
 /* SORTEN */
 .sorten{background:var(--black);padding:80px 52px;}
 .sorten-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green);margin-bottom:40px;display:flex;align-items:center;gap:10px;}
@@ -80,7 +80,7 @@ nav.solid{background:rgba(6,12,6,0.97);}
 .sorte-text{font-size:13px;color:var(--text2);line-height:1.75;}
 .sorte-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;}
 .sorte-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.15em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(58,130,48,0.3);color:var(--green);}
-
+ 
 /* VORTEILE */
 .vorteile{background:var(--black3);padding:80px 52px;}
 .v-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green);margin-bottom:40px;display:flex;align-items:center;gap:10px;}
@@ -93,7 +93,7 @@ nav.solid{background:rgba(6,12,6,0.97);}
 .v-num{font-family:'Anton',sans-serif;font-size:64px;color:rgba(58,130,48,0.08);line-height:1;margin-bottom:16px;}
 .v-title{font-family:'Anton',sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:0.04em;color:var(--text);margin-bottom:12px;line-height:1.1;}
 .v-text{font-size:13px;color:var(--text2);line-height:1.75;}
-
+ 
 /* ABLAUF */
 .ablauf{background:var(--black2);padding:80px 52px;}
 .ablauf-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
@@ -107,9 +107,9 @@ nav.solid{background:rgba(6,12,6,0.97);}
 .step-text{font-size:13px;color:var(--text2);line-height:1.7;}
 .step-arrow{position:absolute;top:50%;right:-16px;transform:translateY(-50%);font-size:20px;color:var(--blue);opacity:0.4;z-index:2;}
 .step:last-child .step-arrow{display:none;}
-
-
-
+ 
+ 
+ 
 /* CTA */
 .cta-final{background:var(--blue);padding:80px 52px;text-align:center;position:relative;overflow:hidden;}
 .cta-final::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.06) 0%,transparent 60%);pointer-events:none;}
@@ -118,17 +118,17 @@ nav.solid{background:rgba(6,12,6,0.97);}
 .cta-btn{display:inline-block;background:var(--black);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.2em;text-transform:uppercase;padding:18px 48px;transition:background 0.25s;position:relative;z-index:1;}
 .cta-btn:hover{background:var(--black2);}
 .cta-tel{display:block;margin-top:16px;font-family:'Anton',sans-serif;font-size:28px;color:var(--text);letter-spacing:0.05em;position:relative;z-index:1;text-decoration:none;}
-
+ 
 footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
 .f-back{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;color:rgba(221,232,216,0.2);text-decoration:none;transition:color 0.25s;}
 .f-back:hover{color:var(--text2);}
 .f-copy{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.06em;color:rgba(221,232,216,0.12);}
-
+ 
 .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.85s,transform 0.85s;}
 .reveal.in{opacity:1;transform:translateY(0);}
 .d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
-
+ 
 @media(max-width:900px){
   nav{padding:0 20px;height:80px;}.nav-r{gap:14px;}
   .nav-logo img{height:68px;}
@@ -148,7 +148,7 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
 </style>
 </head>
 <body>
-
+ 
 <nav id="nav">
   <a href="index.html" class="nav-logo"><img src="logokleinfercher.png" alt="Kleinfercher"></a>
   <div class="nav-r">
@@ -156,7 +156,7 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
     <a href="tel:06644154196" class="nav-call">☎ 0664 4154196</a>
   </div>
 </nav>
-
+ 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-topline"></div>
@@ -165,25 +165,25 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
   <div class="hero-diag"></div>
   <div class="hero-content">
     <div class="hero-tag">Leistung · Kleinfercher · Reißeck</div>
-    <h1 class="hero-h1">Brenn<em>holz</em><br>vom Erzeuger.</h1>
+    <h1 class="hero-h1">Brenn<em>holz</em><br>aus der Region.</h1>
     <p class="hero-statement">Trocken, ofenfertig und direkt aus dem Wald — kein Zwischenhändler, faire Preise, persönliche Lieferung.</p>
     <a href="tel:06644154196" class="hero-cta">☎ Jetzt bestellen</a>
   </div>
 </section>
-
+ 
 <!-- INTRO -->
 <section class="intro">
   <div class="intro-inner reveal">
     <div class="intro-label">Was wir anbieten</div>
-    <h2 class="intro-h">Hochwertiges Brennholz<br><em>direkt vom Erzeuger.</em></h2>
-    <p class="intro-text">Kein Supermarkt, kein Zwischenhändler — Sie kaufen direkt bei uns. Das bedeutet: frischeres Holz, bessere Qualität, fairere Preise. Auf Wunsch gespalten, getrocknet und direkt zu Ihnen geliefert.</p>
+    <h2 class="intro-h">Hochwertiges Brennholz<br><em>aus der Region.</em></h2>
+    <p class="intro-text">Kein Zwischenhändler — Sie kaufen direkt bei uns aus der Region. Das bedeutet bessere Qualität und faire Preise. Erhältlich als ofenfertiges Trockenholz sowie günstiger als halbtrocken — auf Wunsch gespalten und direkt zu Ihnen geliefert.</p>
   </div>
 </section>
-
+ 
 <!-- SORTEN -->
 <section class="sorten">
   <div class="sorten-label reveal">Unser Sortiment</div>
-  <div class="sorten-grid" style="grid-template-columns:1fr;">
+  <div class="sorten-grid">
     <div class="sorte reveal">
       <div class="sorte-icon">🌲</div>
       <div>
@@ -192,13 +192,46 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
         <div class="sorte-tags"><span class="sorte-tag">Schnell entzündlich</span><span class="sorte-tag">Ofenfertig</span><span class="sorte-tag">Regional</span></div>
         <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(221,232,216,0.08);display:flex;align-items:baseline;gap:12px;">
           <span style="font-family:'Anton',sans-serif;font-size:52px;color:var(--blue);line-height:1;">€ 80</span>
-          <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);">pro SRM</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);">pro SRM · trocken</span>
+        </div>
+      </div>
+    </div>
+    <div class="sorte reveal d1">
+      <div class="sorte-icon">🪵</div>
+      <div>
+        <div class="sorte-name">Fichte halbtrocken</div>
+        <p class="sorte-text">Für alle die sparen möchten — halbtrocken und günstiger erhältlich. Muss noch etwas nachgetrocknet werden, dann aber ebenso geeignet für Ofen und Kamin.</p>
+        <div class="sorte-tags"><span class="sorte-tag">Günstiger</span><span class="sorte-tag">Halbtrocken</span><span class="sorte-tag">Regional</span></div>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(221,232,216,0.08);display:flex;align-items:baseline;gap:12px;">
+          <span style="font-family:'Anton',sans-serif;font-size:52px;color:var(--blue);line-height:1;">Auf Anfrage</span>
+        </div>
+      </div>
+    </div>
+    <div class="sorte reveal d2">
+      <div class="sorte-icon">🌳</div>
+      <div>
+        <div class="sorte-name">Hartholz</div>
+        <p class="sorte-text">Hoher Heizwert, lange Brenndauer — ideal für kalte Wintertage. Gibt gleichmäßige Wärme und wenig Asche. Preis auf Anfrage.</p>
+        <div class="sorte-tags"><span class="sorte-tag">Hoher Heizwert</span><span class="sorte-tag">Lange Brenndauer</span><span class="sorte-tag">Wenig Asche</span></div>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(221,232,216,0.08);display:flex;align-items:baseline;gap:12px;">
+          <span style="font-family:'Anton',sans-serif;font-size:32px;color:var(--blue);line-height:1;">Auf Anfrage</span>
+        </div>
+      </div>
+    </div>
+    <div class="sorte reveal d3">
+      <div class="sorte-icon">🌲</div>
+      <div>
+        <div class="sorte-name">Mischholz</div>
+        <p class="sorte-text">Gemischtes Holz aus der Region — eine gute Kombination aus Hart- und Weichholz. Vielseitig einsetzbar und zu einem attraktiven Preis erhältlich.</p>
+        <div class="sorte-tags"><span class="sorte-tag">Gemischt</span><span class="sorte-tag">Regional</span><span class="sorte-tag">Preiswert</span></div>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(221,232,216,0.08);display:flex;align-items:baseline;gap:12px;">
+          <span style="font-family:'Anton',sans-serif;font-size:32px;color:var(--blue);line-height:1;">Auf Anfrage</span>
         </div>
       </div>
     </div>
   </div>
 </section>
-
+ 
 <!-- VORTEILE -->
 <section class="vorteile">
   <div class="v-label reveal">Warum Kleinfercher</div>
@@ -220,7 +253,7 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
     </div>
   </div>
 </section>
-
+ 
 <!-- ABLAUF -->
 <section class="ablauf">
   <div class="ablauf-label reveal">So einfach geht's</div>
@@ -245,21 +278,21 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
     </div>
   </div>
 </section>
-
-
+ 
+ 
 <!-- CTA -->
 <section class="cta-final">
   <h2 class="cta-h reveal">Jetzt bestellen.<br>Warm durch den Winter.</h2>
-  <p class="cta-sub reveal d1">Direkt vom Erzeuger — trocken, regional, fair.</p>
+  <p class="cta-sub reveal d1">Regional, ehrlich, fair.</p>
   <a href="tel:06644154196" class="cta-btn reveal d2">☎ Jetzt anrufen</a>
   <a href="tel:06644154196" class="cta-tel reveal d3">0664 4154196</a>
 </section>
-
+ 
 <footer>
   <a href="index.html" class="f-back">← Zurück zur Startseite</a>
   <div class="f-copy">© 2026 Kleinfercher · 9815 Reißeck · Kärnten</div>
 </footer>
-
+ 
 <script>
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>60));
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:0.08});
