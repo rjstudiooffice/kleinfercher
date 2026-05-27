@@ -120,7 +120,7 @@ nav.solid{background:rgba(6,12,6,0.97);backdrop-filter:blur(16px);border-color:v
 .section-h{font-family:'Anton',sans-serif;font-size:clamp(44px,6vw,74px);text-transform:uppercase;letter-spacing:0.02em;color:var(--text);line-height:0.88;}
  
 /* 2-item grid — left tall, right full */
-.l-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:560px;gap:2px;}
+.l-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:280px 280px;gap:2px;}
 .l-item{position:relative;overflow:hidden;}
 .l-img{width:100%;height:100%;object-fit:cover;filter:brightness(0.45) saturate(0.75);transition:filter 0.5s,transform 0.7s;}
 .l-item:hover .l-img{filter:brightness(0.65) saturate(1);}
@@ -273,11 +273,7 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
   <div class="hero-content">
     <div class="hero-eyebrow">Reißeck · Kärnten · 9815</div>
     <h1 class="hero-h1">
-      <span class="h-big">H</span>
-      <div class="h-rest">
-        <span>OLZ AUS DEM</span>
-        <span>ERZ DES <em>WALDES.</em></span>
-      </div>
+      <h1 style="font-family:Anton,sans-serif;font-size:clamp(52px,10vw,120px);line-height:0.88;text-transform:uppercase;letter-spacing:0.02em;color:var(--text);margin-bottom:0;">HOLZ AUS<br><em style="font-style:normal;color:var(--blue);">DER REGION.</em></h1>
     </h1>
     <p class="hero-sub">Professionelle Holzbringung & erstklassiges Brennholz direkt vom Erzeuger — zuverlässig, regional, nachhaltig.</p>
     <div class="hero-ctas">
@@ -331,6 +327,16 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
         <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
       </div>
     </a>
+    <a href="problembaumfaellung.html" class="l-item" style="display:block;text-decoration:none;">
+      <picture><source media="(max-width:768px)" srcset="23.png"><img src="22.png" alt="Problembaumfällung" class="l-img"></picture>
+      <div class="l-overlay"></div>
+      <div class="l-border"></div>
+      <div class="l-content">
+        <div class="l-name">Problembaumfällung</div>
+        <div class="l-desc">Gefährliche Bäume sicher fällen — auch in schwierigsten Lagen.</div>
+        <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
+      </div>
+    </a>
     <a href="brennholz.html" class="l-item" style="display:block;text-decoration:none;">
       <picture><source media="(max-width:768px)" srcset="10.png"><img src="5.png" alt="Brennholz" class="l-img"></picture>
       <div class="l-overlay"></div>
@@ -338,6 +344,16 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
       <div class="l-content">
         <div class="l-name">Brennholz</div>
         <div class="l-desc">Ofenfertiges Brennholz direkt vom Erzeuger — trocken, gespalten und auf Wunsch zugestellt.</div>
+        <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
+      </div>
+    </a>
+    <a href="problembaumfaellung.html" class="l-item" style="display:block;text-decoration:none;">
+      <picture><source media="(max-width:768px)" srcset="23.png"><img src="22.png" alt="Problembaumfällung" class="l-img"></picture>
+      <div class="l-overlay"></div>
+      <div class="l-border"></div>
+      <div class="l-content">
+        <div class="l-name">Problembaumfällung</div>
+        <div class="l-desc">Gefährliche Bäume sicher fällen — auch in schwierigsten Lagen.</div>
         <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
       </div>
     </a>
@@ -360,7 +376,7 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
       <h2 class="kontakt-h reveal d1">Wir sind<br>für Sie <em>da.</em></h2>
       <p class="kontakt-body reveal d2">Rufen Sie uns an oder schicken Sie uns eine Anfrage — wir antworten rasch und unkompliziert.</p>
       <div class="kontakt-details reveal d2">
-        <div class="kd"><div class="kd-label">Adresse</div><div class="kd-value">9815 Reißeck, Kärnten</div></div>
+        <div class="kd"><div class="kd-label">Adresse</div><div class="kd-value">Oberkolbnitz 114, 9815 Reißeck</div></div>
         <div class="kd"><div class="kd-label">Telefon</div><div class="kd-value"><a href="tel:06644154196">0664 4154196</a></div></div>
       </div>
       <div class="kontakt-ctas reveal d3">
@@ -368,7 +384,7 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
         <a href="#kontakt-form" class="btn-mail">✉ Anfrage</a>
       </div>
       <div class="map-wrap reveal d3">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2710.5!2d13.3502!3d46.8507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477749e2b2b2b2b3%3A0x0!2sRei%C3%9Feck%2C+9815%2C+K%C3%A4rnten!5e0!3m2!1sde!2sat!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2710!2d13.3502!3d46.8507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sOberkolbnitz+114%2C+9815+Rei%C3%9Feck!5e0!3m2!1sde!2sat!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
     <div class="form-wrap reveal-r" id="kontakt-form">
