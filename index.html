@@ -120,7 +120,7 @@ nav.solid{background:rgba(6,12,6,0.97);backdrop-filter:blur(16px);border-color:v
 .section-h{font-family:'Anton',sans-serif;font-size:clamp(44px,6vw,74px);text-transform:uppercase;letter-spacing:0.02em;color:var(--text);line-height:0.88;}
  
 /* 2-item grid — left tall, right full */
-.l-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:280px 280px;gap:2px;}
+.l-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:190px 190px 190px;gap:2px;}
 .l-item{position:relative;overflow:hidden;}
 .l-img{width:100%;height:100%;object-fit:cover;filter:brightness(0.45) saturate(0.75);transition:filter 0.5s,transform 0.7s;}
 .l-item:hover .l-img{filter:brightness(0.65) saturate(1);}
@@ -319,42 +319,38 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
   <div class="l-grid">
     <a href="holzbringung.html" class="l-item" style="display:block;text-decoration:none;">
       <picture><source media="(max-width:768px)" srcset="9.png"><img src="4.png" alt="Holzbringung" class="l-img"></picture>
-      <div class="l-overlay"></div>
-      <div class="l-border"></div>
+      <div class="l-overlay"></div><div class="l-border"></div>
       <div class="l-content">
         <div class="l-name">Holzbringung</div>
-        <div class="l-desc">Professionelle Holzernte und Bringung im Gelände — mit modernem Gerät, schonend für Wald und Boden.</div>
-        <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
-      </div>
-    </a>
-    <a href="problembaumfaellung.html" class="l-item" style="display:block;text-decoration:none;">
-      <picture><source media="(max-width:768px)" srcset="23.png"><img src="22.png" alt="Problembaumfällung" class="l-img"></picture>
-      <div class="l-overlay"></div>
-      <div class="l-border"></div>
-      <div class="l-content">
-        <div class="l-name">Problembaumfällung</div>
-        <div class="l-desc">Gefährliche Bäume sicher fällen — auch in schwierigsten Lagen.</div>
+        <div class="l-desc">Professionelle Holzernte und Bringung im Gelände — schonend für Wald und Boden.</div>
         <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
       </div>
     </a>
     <a href="brennholz.html" class="l-item" style="display:block;text-decoration:none;">
       <picture><source media="(max-width:768px)" srcset="10.png"><img src="5.png" alt="Brennholz" class="l-img"></picture>
-      <div class="l-overlay"></div>
-      <div class="l-border"></div>
+      <div class="l-overlay"></div><div class="l-border"></div>
       <div class="l-content">
         <div class="l-name">Brennholz</div>
-        <div class="l-desc">Ofenfertiges Brennholz direkt vom Erzeuger — trocken, gespalten und auf Wunsch zugestellt.</div>
+        <div class="l-desc">Ofenfertiges Brennholz aus der Region — trocken, gespalten und auf Wunsch geliefert.</div>
         <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
       </div>
     </a>
     <a href="problembaumfaellung.html" class="l-item" style="display:block;text-decoration:none;">
       <picture><source media="(max-width:768px)" srcset="23.png"><img src="22.png" alt="Problembaumfällung" class="l-img"></picture>
-      <div class="l-overlay"></div>
-      <div class="l-border"></div>
+      <div class="l-overlay"></div><div class="l-border"></div>
       <div class="l-content">
         <div class="l-name">Problembaumfällung</div>
         <div class="l-desc">Gefährliche Bäume sicher fällen — auch in schwierigsten Lagen.</div>
         <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
+      </div>
+    </a>
+    <a href="schneeraeuumung.html" class="l-item" style="display:block;text-decoration:none;cursor:default;">
+      <picture><source media="(max-width:768px)" srcset="25.png"><img src="24.png" alt="Schneeräumung" class="l-img"></picture>
+      <div class="l-overlay"></div><div class="l-border"></div>
+      <div class="l-content">
+        <div class="l-name">Schneeräumung</div>
+        <div class="l-desc">Im Winter für Sie im Einsatz.</div>
+        <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(221,232,216,0.3);margin-top:10px;">BALD VERFÜGBAR</div>
       </div>
     </a>
   </div>
@@ -364,7 +360,7 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
 <div class="fakten">
   <div class="fakt reveal"><div class="fakt-num">100%</div><div class="fakt-label">Regional</div></div>
   <div class="fakt reveal d1"><div class="fakt-num">24/7</div><div class="fakt-label">Erreichbar</div></div>
-  <div class="fakt reveal d2"><div class="fakt-num">Direkt</div><div class="fakt-label">Vom Erzeuger</div></div>
+  <div class="fakt reveal d2"><div class="fakt-num">Direkt</div><div class="fakt-label">Aus der Region</div></div>
   <div class="fakt reveal d3"><div class="fakt-num">Kärnten</div><div class="fakt-label">Heimat & Einsatzgebiet</div></div>
 </div>
  
@@ -440,3 +436,4 @@ function closeMenu(){document.getElementById('burger').classList.remove('open');
 </script>
 </body>
 </html>
+ 
