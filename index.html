@@ -39,9 +39,10 @@ nav{
 }
 nav.solid{background:rgba(6,12,6,0.97);backdrop-filter:blur(16px);border-color:var(--border);}
  
-/* FIX 1: Logo mit weißem Hintergrund damit es lesbar ist */
-.nav-logo{display:flex;align-items:center;text-decoration:none;opacity:0;animation:fadeIn 0.8s 0.2s forwards;background:rgba(255,255,255,0.9);padding:5px 10px;border-radius:4px;}
-.nav-logo img{height:90px;width:auto;filter:none;}
+/* FIX 1: Logo transparent, Glow entfernt, einfaches helles Filter */
+.nav-logo{display:flex;align-items:center;text-decoration:none;opacity:0;animation:fadeIn 0.8s 0.2s forwards;}
+.nav-logo img{height:100px;width:auto;filter:brightness(2.2) contrast(1.1) drop-shadow(0 0 6px rgba(255,255,255,0.25));transition:filter 0.3s;}
+.nav-logo:hover img{filter:brightness(2.6) contrast(1.1) drop-shadow(0 0 10px rgba(255,255,255,0.4));}
  
 .nav-r{display:flex;align-items:center;gap:28px;opacity:0;animation:fadeIn 0.8s 0.4s forwards;}
 .nav-r a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color 0.25s;}
