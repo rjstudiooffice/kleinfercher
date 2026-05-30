@@ -3,28 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brennholz · Kleinfercher · Reißeck</title>
+<title>Kleinfercher · Holzbringung & Brennholz · Reißeck</title>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --black:#060c06;--black2:#0e1c0e;--black3:#162816;--black4:#1c3a1e;
-  --green:#3a8230;--blue:#1a65b8;--blue2:#2278d4;
-  --text:#dde8d8;--text2:rgba(221,232,216,0.6);--border:rgba(221,232,216,0.07);
+  --black:#060c06;
+  --black2:#0e1c0e;
+  --black3:#162816;
+  --black4:#1c3a1e;
+  --green:#3a8230;
+  --green2:#4a9e3e;
+  --green-dim:rgba(58,130,48,0.12);
+  --green-border:rgba(58,130,48,0.25);
+  --blue:#1a65b8;
+  --blue2:#2278d4;
+  --text:#dde8d8;
+  --text2:rgba(221,232,216,0.6);
+  --text3:rgba(221,232,216,0.1);
+  --gray:#4a5848;
+  --gray2:#8a9886;
+  --border:rgba(221,232,216,0.07);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--text);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;}
  
-nav{position:fixed;top:0;left:0;right:0;z-index:300;height:110px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(6,12,6,0.55);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);transition:background 0.5s;}
-nav.solid{background:rgba(6,12,6,0.97);}
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  height:110px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 52px;background:rgba(6,12,6,0.55);
+  backdrop-filter:blur(8px);
+  transition:background 0.5s,border-color 0.5s;
+  border-bottom:1px solid var(--border);
+}
+nav.solid{background:rgba(6,12,6,0.97);backdrop-filter:blur(16px);border-color:var(--border);}
+ 
+/* FIX 1: Logo transparent, Glow entfernt, einfaches helles Filter */
 .nav-logo{display:flex;align-items:center;text-decoration:none;opacity:0;animation:fadeIn 0.8s 0.2s forwards;}
 .nav-logo img{height:100px;width:auto;filter:brightness(2.2) contrast(1.1) drop-shadow(0 0 6px rgba(255,255,255,0.25));transition:filter 0.3s;}
 .nav-logo:hover img{filter:brightness(2.6) contrast(1.1) drop-shadow(0 0 10px rgba(255,255,255,0.4));}
-.nav-r{display:flex;align-items:center;gap:24px;opacity:0;animation:fadeIn 0.8s 0.4s forwards;}
-.nav-back{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color 0.25s;}
-.nav-back:hover{color:var(--text);}
-.nav-call{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;background:var(--blue);color:var(--text);padding:9px 22px;text-decoration:none;transition:background 0.25s;}
-.nav-call:hover{background:var(--blue2);}
+ 
+.nav-r{display:flex;align-items:center;gap:28px;opacity:0;animation:fadeIn 0.8s 0.4s forwards;}
+.nav-r a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color 0.25s;}
+.nav-r a:hover{color:var(--text);}
+.nav-call{background:var(--blue)!important;color:var(--text)!important;padding:9px 22px;transition:background 0.25s!important;}
+.nav-call:hover{background:var(--blue2)!important;}
 .burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;}
 .burger span{width:22px;height:2px;background:var(--text);display:block;transition:all 0.3s;}
 .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
@@ -36,279 +60,380 @@ nav.solid{background:rgba(6,12,6,0.97);}
 .mob-menu a:hover{color:var(--text);}
 .mob-menu .mob-cta{color:var(--blue);}
  
+/* ── HERO ── */
 .hero{position:relative;height:100vh;min-height:600px;overflow:hidden;}
-.hero-topline{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent,var(--blue),var(--blue2),var(--blue),transparent);z-index:10;}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);animation:heroZoom 10s ease-out forwards;}
-@keyframes heroZoom{to{transform:scale(1);}}
-.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,12,6,0.97) 0%,rgba(6,12,6,0.4) 50%,rgba(6,12,6,0.1) 100%);z-index:2;}
-.hero-diag{position:absolute;bottom:0;right:0;width:0;height:0;border-style:solid;border-width:0 0 100px 100vw;border-color:transparent transparent var(--black) transparent;z-index:3;}
-.hero-content{position:absolute;left:52px;bottom:100px;z-index:5;max-width:min(90vw,780px);}
-.hero-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green);margin-bottom:16px;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp 0.7s 0.3s forwards;}
-.hero-tag::before{content:'';width:24px;height:2px;background:var(--green);}
-.hero-h1{font-family:'Anton',sans-serif;font-size:clamp(56px,10vw,120px);line-height:0.88;text-transform:uppercase;color:var(--text);margin-bottom:18px;opacity:0;animation:fadeUp 0.7s 0.5s forwards;}
-.hero-h1 em{font-style:normal;color:var(--blue);}
-.hero-statement{font-size:clamp(15px,2vw,20px);color:var(--text2);line-height:1.7;max-width:520px;margin-bottom:32px;font-style:italic;opacity:0;animation:fadeUp 0.7s 0.7s forwards;}
-.hero-cta{display:inline-block;background:var(--blue);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;padding:16px 40px;transition:background 0.25s;opacity:0;animation:fadeUp 0.7s 0.9s forwards;}
-.hero-cta:hover{background:var(--blue2);}
  
-.intro{background:var(--black2);padding:80px 52px;}
-.intro-inner{max-width:900px;margin:0 auto;text-align:center;}
-.intro-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green);margin-bottom:16px;}
-.intro-h{font-family:'Anton',sans-serif;font-size:clamp(32px,4vw,52px);text-transform:uppercase;color:var(--text);line-height:0.95;margin-bottom:20px;}
-.intro-h em{font-style:normal;color:var(--blue);}
-.intro-text{font-size:17px;color:var(--text2);line-height:1.85;max-width:700px;margin:0 auto;}
+/* blue topline */
+.hero-topline{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent 0%,var(--blue) 20%,var(--blue2) 50%,var(--blue) 80%,transparent 100%);z-index:10;animation:topline 4s ease-in-out infinite;}
+@keyframes topline{0%,100%{opacity:0.7;}50%{opacity:1;filter:drop-shadow(0 0 8px var(--blue));}}
  
-/* ── PREISTABELLE ── */
-.sorten{background:var(--black);padding:80px 52px;}
-.sorten-header{margin-bottom:48px;}
-.sorten-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
-.sorten-label::before{content:'';width:20px;height:2px;background:var(--green);}
-.sorten-title{font-family:'Anton',sans-serif;font-size:clamp(32px,4vw,52px);text-transform:uppercase;color:var(--text);line-height:0.95;}
-.sorten-title em{font-style:normal;color:var(--blue);}
+.slides{position:absolute;inset:0;}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease-in-out;}
+.slide.active{opacity:1;}
+.slide-img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 9s ease-out;}
+.slide.active .slide-img{transform:scale(1);}
  
-.preistabelle{width:100%;border-collapse:collapse;}
-.preistabelle thead tr{border-bottom:1px solid rgba(221,232,216,0.12);}
-.preistabelle th{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(221,232,216,0.3);padding:0 0 16px;text-align:left;font-weight:400;}
-.preistabelle th:last-child{text-align:right;}
-.preistabelle tbody tr{border-bottom:1px solid var(--border);transition:background 0.25s;cursor:default;}
-.preistabelle tbody tr:hover{background:var(--black2);}
-.preistabelle td{padding:28px 0;vertical-align:middle;}
-.preistabelle td:last-child{text-align:right;}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,12,6,0.95) 0%,rgba(6,12,6,0.35) 45%,rgba(6,12,6,0.05) 100%);z-index:2;}
+.hero-grad2{position:absolute;inset:0;background:linear-gradient(100deg,rgba(6,12,6,0.65) 0%,transparent 55%);z-index:2;}
+.hero-diag{position:absolute;bottom:0;right:0;width:0;height:0;border-style:solid;border-width:0 0 120px 100vw;border-color:transparent transparent var(--black) transparent;z-index:3;}
  
-.holzart-name{font-family:'Anton',sans-serif;font-size:clamp(22px,3vw,32px);text-transform:uppercase;letter-spacing:0.04em;color:var(--text);line-height:1;margin-bottom:4px;}
-.holzart-desc{font-size:13px;color:var(--text2);line-height:1.5;max-width:480px;}
-.holzart-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.15em;text-transform:uppercase;padding:3px 9px;border:1px solid rgba(58,130,48,0.3);color:var(--green);margin-top:8px;}
+.hero-content{position:absolute;left:52px;bottom:80px;z-index:5;max-width:min(90vw,800px);}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--text);margin-bottom:18px;display:flex;align-items:center;gap:12px;opacity:0;animation:slideUp 0.7s 0.4s forwards;text-shadow:0 1px 6px rgba(0,0,0,0.7);}
+.hero-eyebrow::before{content:'';width:28px;height:2px;background:var(--green);}
+.hero-h1{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:0.02em;color:var(--text);margin-bottom:22px;display:flex;align-items:center;gap:4px;}
+.hero-h1 .h-big{font-size:clamp(110px,19vw,230px);line-height:0.85;color:var(--text);flex-shrink:0;}
+.hero-h1 .h-rest{display:flex;flex-direction:column;justify-content:center;}
+.hero-h1 .h-rest span{font-size:clamp(38px,6.5vw,80px);line-height:0.92;display:block;}
+.hero-h1 .h-big{opacity:0;animation:slideUp 0.7s 0.5s forwards;}
+.hero-h1 .h-rest{opacity:0;animation:slideUp 0.7s 0.65s forwards;}
+.hero-h1 .h-rest em{font-style:normal;color:var(--blue);}
+.hero-sub{font-size:clamp(13px,1.7vw,16px);color:var(--text2);line-height:1.75;max-width:500px;margin-bottom:36px;opacity:0;animation:slideUp 0.7s 0.85s forwards;}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;opacity:0;animation:slideUp 0.7s 1s forwards;}
  
-.preis-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
-.preis-zahl{font-family:'Anton',sans-serif;font-size:clamp(36px,4vw,56px);color:var(--blue);line-height:1;letter-spacing:0.02em;}
-.preis-einheit{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);}
-.preis-anfrage{font-family:'Anton',sans-serif;font-size:clamp(20px,2.5vw,28px);color:rgba(221,232,216,0.35);line-height:1;}
+.btn-blue{background:var(--blue);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;padding:15px 36px;transition:background 0.25s;display:inline-block;position:relative;overflow:hidden;}
+.btn-blue::before{content:'';position:absolute;inset:0;background:var(--blue2);transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.btn-blue:hover::before{transform:scaleX(1);}
+.btn-blue span{position:relative;z-index:1;}
+.btn-ghost{border:1px solid rgba(221,232,216,0.2);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;padding:15px 36px;transition:all 0.25s;display:inline-block;}
+.btn-ghost:hover{border-color:var(--text);background:rgba(221,232,216,0.06);}
  
-.vorteile{background:var(--black3);padding:80px 52px;}
-.v-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green);margin-bottom:40px;display:flex;align-items:center;gap:10px;}
-.v-label::before{content:'';width:20px;height:2px;background:var(--green);}
-.v-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
-.v-card{background:var(--black2);padding:40px 32px;position:relative;overflow:hidden;transition:background 0.3s;}
-.v-card:hover{background:var(--black);}
-.v-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform 0.4s;}
-.v-card:hover::before{transform:scaleX(1);}
-.v-num{font-family:'Anton',sans-serif;font-size:64px;color:rgba(58,130,48,0.08);line-height:1;margin-bottom:16px;}
-.v-title{font-family:'Anton',sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:0.04em;color:var(--text);margin-bottom:12px;line-height:1.1;}
-.v-text{font-size:13px;color:var(--text2);line-height:1.75;}
+/* slide dots */
+.slide-dots{position:absolute;bottom:48px;left:52px;z-index:5;display:flex;gap:6px;opacity:0;animation:fadeIn 1s 1.2s forwards;}
+.dot{width:32px;height:2px;background:rgba(221,232,216,0.2);cursor:pointer;transition:all 0.35s;}
+.dot.active{background:var(--blue);width:52px;}
+.slide-num{position:absolute;bottom:44px;right:52px;z-index:5;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.15em;color:rgba(221,232,216,0.25);opacity:0;animation:fadeIn 1s 1.2s forwards;}
+.slide-num b{font-size:22px;color:var(--text);font-family:'Anton',sans-serif;}
  
-.ablauf{background:var(--black2);padding:80px 52px;}
-.ablauf-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
-.ablauf-label::before{content:'';width:20px;height:2px;background:var(--green);}
-.ablauf-h{font-family:'Anton',sans-serif;font-size:clamp(36px,4.5vw,56px);text-transform:uppercase;color:var(--text);line-height:0.9;margin-bottom:48px;}
-.ablauf-h em{font-style:normal;color:var(--blue);}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
-.step{background:var(--black3);padding:36px 28px;position:relative;}
-.step-num{font-family:'Anton',sans-serif;font-size:80px;color:var(--blue);opacity:0.15;line-height:1;margin-bottom:12px;}
-.step-title{font-family:'Anton',sans-serif;font-size:20px;text-transform:uppercase;letter-spacing:0.04em;color:var(--text);margin-bottom:10px;}
-.step-text{font-size:13px;color:var(--text2);line-height:1.7;}
-.step-arrow{position:absolute;top:50%;right:-16px;transform:translateY(-50%);font-size:20px;color:var(--blue);opacity:0.4;z-index:2;}
-.step:last-child .step-arrow{display:none;}
+/* ── MARQUEE ── */
+.marquee-wrap{background:var(--blue);overflow:hidden;padding:11px 0;}
+.marquee-track{display:flex;animation:marquee 20s linear infinite;}
+.marquee-track:hover{animation-play-state:paused;}
+.mi{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(6,12,6,0.75);white-space:nowrap;padding:0 20px;}
+.ms{color:rgba(6,12,6,0.35);padding:0 4px;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
  
-.cta-final{background:var(--blue);padding:80px 52px;text-align:center;position:relative;overflow:hidden;}
-.cta-final::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.06) 0%,transparent 60%);pointer-events:none;}
-.cta-h{font-family:'Anton',sans-serif;font-size:clamp(40px,6vw,80px);text-transform:uppercase;color:var(--text);line-height:0.9;margin-bottom:14px;position:relative;z-index:1;}
-.cta-sub{font-size:16px;color:rgba(221,232,216,0.75);margin-bottom:32px;position:relative;z-index:1;}
-.cta-btn{display:inline-block;background:var(--black);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.2em;text-transform:uppercase;padding:18px 48px;transition:background 0.25s;position:relative;z-index:1;}
-.cta-btn:hover{background:var(--black2);}
-.cta-tel{display:block;margin-top:16px;font-family:'Anton',sans-serif;font-size:28px;color:var(--text);letter-spacing:0.05em;position:relative;z-index:1;text-decoration:none;}
+/* ── LEISTUNGEN ── */
+.leistungen{background:var(--black);padding:96px 0 0;}
+.section-header{padding:0 52px;margin-bottom:52px;}
+.section-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(221,232,216,0.4);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.section-tag::before{content:'';width:20px;height:2px;background:var(--green);}
+.section-h{font-family:'Anton',sans-serif;font-size:clamp(44px,6vw,74px);text-transform:uppercase;letter-spacing:0.02em;color:var(--text);line-height:0.88;}
  
-footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
-.f-back{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;color:rgba(221,232,216,0.2);text-decoration:none;transition:color 0.25s;}
-.f-back:hover{color:var(--text2);}
+/* FIX 2: 4 gleich große quadratische Kacheln — 2×2 Grid */
+.l-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.l-item{position:relative;overflow:hidden;aspect-ratio:1/1;}
+.l-img{width:100%;height:100%;object-fit:cover;filter:brightness(0.45) saturate(0.75);transition:filter 0.5s,transform 0.7s;}
+.l-item:hover .l-img{filter:brightness(0.65) saturate(1);}
+.l-item:hover .l-img{transform:scale(1.04);}
+.l-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,12,6,0.9) 0%,rgba(6,12,6,0.05) 55%);transition:background 0.4s;}
+.l-item:hover .l-overlay{background:linear-gradient(to top,rgba(26,101,184,0.5) 0%,rgba(6,12,6,0.15) 55%);}
+.l-border{position:absolute;inset:0;border:0px solid var(--blue);transition:border-width 0.3s;}
+.l-item:hover .l-border{border-width:2px;}
+.l-content{position:absolute;bottom:0;left:0;right:0;padding:32px 28px;transform:translateY(4px);transition:transform 0.3s;}
+.l-item:hover .l-content{transform:translateY(0);}
+.l-name{font-family:'Anton',sans-serif;font-size:clamp(24px,3vw,38px);text-transform:uppercase;letter-spacing:0.04em;color:var(--text);line-height:1;margin-bottom:8px;}
+.l-desc{font-size:13px;color:rgba(221,232,216,0.55);line-height:1.6;max-height:0;overflow:hidden;transition:max-height 0.4s,opacity 0.35s;opacity:0;}
+.l-item:hover .l-desc{max-height:80px;opacity:1;}
+.l-item::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--blue);transition:width 0.45s;z-index:3;}
+.l-item:hover::after{width:100%;}
+ 
+/* ── FAKTEN ── */
+.fakten{background:var(--black3);padding:72px 52px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+.fakt{padding:28px 24px;border-right:1px solid var(--border);position:relative;overflow:hidden;transition:background 0.35s;}
+.fakt:last-child{border-right:none;}
+.fakt::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--green);transition:height 0.4s;}
+.fakt:hover::before{height:100%;}
+.fakt:hover{background:var(--green-dim);}
+.fakt-num{font-family:'Anton',sans-serif;font-size:50px;color:var(--green);line-height:1;letter-spacing:0.02em;}
+.fakt-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);margin-top:6px;}
+ 
+/* ── KONTAKT ── */
+.kontakt{background:var(--black);padding:96px 52px;}
+.kontakt-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.kontakt-h{font-family:'Anton',sans-serif;font-size:clamp(40px,5vw,66px);text-transform:uppercase;letter-spacing:0.02em;color:var(--text);line-height:0.88;margin-bottom:20px;}
+.kontakt-h em{font-style:normal;color:var(--blue);}
+.kontakt-body{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:32px;}
+.kontakt-details{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
+.kd{display:flex;gap:14px;}
+.kd-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);width:68px;flex-shrink:0;padding-top:2px;}
+.kd-value{font-size:14px;color:var(--text2);line-height:1.5;}
+.kd-value a{color:var(--text2);text-decoration:none;transition:color 0.25s;}
+.kd-value a:hover{color:var(--text);}
+.kontakt-ctas{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+.btn-call{background:var(--blue);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;padding:15px 32px;transition:background 0.25s;display:inline-block;}
+.btn-call:hover{background:var(--blue2);}
+.btn-mail{background:var(--black3);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;padding:15px 32px;border:1px solid var(--border);transition:all 0.25s;display:inline-block;}
+.btn-mail:hover{border-color:rgba(221,232,216,0.3);}
+ 
+.map-wrap{width:100%;height:260px;overflow:hidden;border:1px solid var(--border);}
+.map-wrap iframe{width:100%;height:100%;border:none;filter:grayscale(100%) invert(85%) contrast(0.85) brightness(0.7) hue-rotate(80deg);}
+ 
+.form-wrap{background:var(--black2);padding:36px;border:1px solid var(--border);}
+.form-title{font-family:'Anton',sans-serif;font-size:24px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text);margin-bottom:22px;}
+.form-title em{font-style:normal;color:var(--blue);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.fg{margin-bottom:12px;}
+.fl{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(221,232,216,0.4);margin-bottom:5px;display:block;}
+.fi{width:100%;background:rgba(221,232,216,0.03);border:1px solid var(--border);color:var(--text);font-family:'Barlow',sans-serif;font-size:14px;padding:11px 13px;outline:none;transition:border-color 0.25s;}
+.fi:focus{border-color:var(--green);}
+.fi::placeholder{color:rgba(221,232,216,0.18);}
+textarea.fi{min-height:78px;resize:none;}
+.form-submit{width:100%;background:var(--blue);color:var(--text);border:none;padding:13px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:background 0.25s;margin-top:4px;}
+.form-submit:hover{background:var(--blue2);}
+ 
+footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.f-logo{font-family:'Anton',sans-serif;font-size:15px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(221,232,216,0.18);}
+.f-logo em{font-style:normal;color:rgba(26,101,184,0.4);}
 .f-copy{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.06em;color:rgba(221,232,216,0.12);}
+.f-links{display:flex;gap:18px;}
+.f-links a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;color:rgba(221,232,216,0.12);text-decoration:none;transition:color 0.25s;}
+.f-links a:hover{color:rgba(221,232,216,0.4);}
  
-.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.85s,transform 0.85s;}
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.9s,transform 0.9s;}
 .reveal.in{opacity:1;transform:translateY(0);}
+.reveal-l{opacity:0;transform:translateX(-30px);transition:opacity 0.9s,transform 0.9s;}
+.reveal-l.in{opacity:1;transform:translateX(0);}
+.reveal-r{opacity:0;transform:translateX(30px);transition:opacity 0.9s,transform 0.9s;}
+.reveal-r.in{opacity:1;transform:translateX(0);}
 .d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
  
-@media(max-width:900px){
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+ 
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
   nav{padding:0 20px;height:90px;}.nav-r{display:none;}.burger{display:flex;}
   .nav-logo img{height:72px;}
-  .hero-content{left:20px;bottom:80px;}
-  .intro,.sorten,.vorteile,.ablauf,.cta-final{padding:60px 20px;}
-  .v-grid,.steps{grid-template-columns:1fr;}
-  .step-arrow{display:none;}
+  .hero-content{left:20px;bottom:60px;}
+  .slide-num{display:none;}
+  .slide-dots{left:20px;}.slide-num{right:20px;}
+  .l-grid{grid-template-columns:1fr;}
+  .l-item{aspect-ratio:1/1;min-height:unset;}
+  .fakten{grid-template-columns:1fr 1fr;padding:52px 20px;}
+  .fakt{border-right:none;border-bottom:1px solid var(--border);padding:18px 16px;}
+  .fakt-num{font-size:32px!important;}
+  .fakt-label{font-size:8px;}
+  .kontakt{padding:70px 20px;}.kontakt-inner{grid-template-columns:1fr;}
+  .section-header{padding:0 20px;}
   footer{padding:16px 20px;flex-direction:column;align-items:flex-start;}
-  /* Preistabelle mobile */
-  .preistabelle thead{display:none;}
-  .preistabelle tbody tr{display:flex;flex-direction:column;padding:24px 0;border-bottom:1px solid var(--border);}
-  .preistabelle td{padding:0;border:none;}
-  .preistabelle td:last-child{text-align:left;margin-top:16px;}
-  .preis-wrap{align-items:flex-start;}
 }
 @media(max-width:600px){
-  .hero-h1{font-size:clamp(48px,13vw,72px);}
+  .hero-ctas{flex-direction:column;}
+  .form-row{grid-template-columns:1fr;}
+  .l-grid{grid-template-columns:1fr;}
+  .l-item{aspect-ratio:1/1;min-height:unset;}
+}
+ 
+/* short viewport fix */
+@media(max-height:750px){
+  .hero-h1{font-size:clamp(44px,9vw,80px)!important;}
+  .hero-sub{display:none;}
+  .hero-content{bottom:50px;}
+}
+@media(max-height:600px){
+  .hero-h1{font-size:clamp(36px,8vw,64px)!important;}
+  .hero-eyebrow{display:none;}
+  .hero-content{bottom:40px;}
 }
 </style>
 </head>
 <body>
  
+<!-- NAV -->
 <nav id="nav">
-  <a href="index.html" class="nav-logo"><img src="logokleinfercher.png" alt="Kleinfercher"></a>
+  <a href="#" class="nav-logo"><img src="logokleinfercher.png" alt="Kleinfercher Holzbringung & Brennholz"></a>
   <div class="nav-r">
-    <a href="index.html" class="nav-back">← Zurück</a>
-    <a href="tel:06644154196" class="nav-call">☎ 0664 4154196</a>
+    <a href="#leistungen">Leistungen</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="tel:06644154196" class="nav-call">☎ Jetzt anrufen</a>
   </div>
   <button class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
  
 <div class="mob-menu" id="mobMenu">
-  <img src="logokleinfercher.png" alt="Kleinfercher" style="height:140px;width:auto;filter:brightness(2) saturate(1.2);margin-bottom:8px;">
-  <a href="index.html" onclick="closeMenu()">← Startseite</a>
-  <a href="index.html#kontakt" onclick="closeMenu()">Kontakt</a>
+  <img src="logokleinfercher.png" alt="Kleinfercher" style="height:160px;width:auto;filter:brightness(1.7) saturate(1.4) drop-shadow(0 0 28px rgba(58,130,48,0.7));margin-bottom:8px;">
+  <a href="#leistungen" onclick="closeMenu()">Leistungen</a>
+  <a href="#kontakt" onclick="closeMenu()">Kontakt</a>
   <a href="tel:06644154196" class="mob-cta" onclick="closeMenu()">☎ Anrufen</a>
 </div>
  
-<section class="hero">
+<!-- HERO -->
+<section class="hero" id="hero">
   <div class="hero-topline"></div>
-  <picture><source media="(max-width:768px)" srcset="13.png"><img src="11.png" alt="Brennholz Kleinfercher" class="hero-img"></picture>
+  <div class="slides" id="slides">
+    <div class="slide active"><picture><source media="(max-width:768px)" srcset="6.png"><img src="1.png" alt="" class="slide-img" style="object-position:70% center;"></picture></div>
+    <div class="slide"><picture><source media="(max-width:768px)" srcset="7.png"><img src="2.png" alt="" class="slide-img" style="object-position:65% center;"></picture></div>
+    <div class="slide"><picture><source media="(max-width:768px)" srcset="8.png"><img src="3.png" alt="" class="slide-img" style="object-position:60% center;"></picture></div>
+  </div>
   <div class="hero-grad"></div>
+  <div class="hero-grad2"></div>
   <div class="hero-diag"></div>
+ 
   <div class="hero-content">
-    <div class="hero-tag">Leistung · Kleinfercher · Reißeck</div>
-    <h1 class="hero-h1">Brenn<em>holz</em><br>aus der Region.</h1>
-    <p class="hero-statement">Trocken, ofenfertig und direkt aus dem Wald — kein Zwischenhändler, faire Preise, persönliche Lieferung.</p>
-    <a href="tel:06644154196" class="hero-cta">☎ Jetzt bestellen</a>
+    <div class="hero-eyebrow">Reißeck · Kärnten · 9815</div>
+    <h1 class="hero-h1">
+      <h1 style="font-family:Anton,sans-serif;font-size:clamp(52px,10vw,120px);line-height:0.88;text-transform:uppercase;letter-spacing:0.02em;color:var(--text);margin-bottom:0;">HOLZ AUS<br><em style="font-style:normal;color:var(--blue);">DER REGION.</em></h1>
+    </h1>
+    <p class="hero-sub">Professionelle Holzbringung & erstklassiges Brennholz direkt vom Erzeuger — zuverlässig, regional, nachhaltig.</p>
+    <div class="hero-ctas">
+      <a href="#leistungen" class="btn-blue"><span>Unsere Leistungen</span></a>
+      <a href="#kontakt" class="btn-ghost">Anfrage senden</a>
+    </div>
+  </div>
+ 
+  <div class="slide-dots" id="dots">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
+  </div>
+  <div class="slide-num"><b id="current-num">1</b> / 3</div>
+</section>
+ 
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="mi">Holzbringung</span><span class="ms">·</span>
+    <span class="mi">Brennholz</span><span class="ms">·</span>
+    <span class="mi">Direktverkauf</span><span class="ms">·</span>
+    <span class="mi">Reißeck</span><span class="ms">·</span>
+    <span class="mi">Kärnten</span><span class="ms">·</span>
+    <span class="mi">Regional</span><span class="ms">·</span>
+    <span class="mi">Nachhaltig</span><span class="ms">·</span>
+    <span class="mi">Holzbringung</span><span class="ms">·</span>
+    <span class="mi">Brennholz</span><span class="ms">·</span>
+    <span class="mi">Direktverkauf</span><span class="ms">·</span>
+    <span class="mi">Reißeck</span><span class="ms">·</span>
+    <span class="mi">Kärnten</span><span class="ms">·</span>
+    <span class="mi">Regional</span><span class="ms">·</span>
+    <span class="mi">Nachhaltig</span><span class="ms">·</span>
+  </div>
+</div>
+ 
+<!-- LEISTUNGEN -->
+<section class="leistungen" id="leistungen">
+  <div class="section-header reveal">
+    <div class="section-tag">Was wir anbieten</div>
+    <h2 class="section-h">Leistungen</h2>
+  </div>
+  <div class="l-grid">
+    <a href="holzbringung.html" class="l-item" style="display:block;text-decoration:none;">
+      <picture><source media="(max-width:768px)" srcset="9.png"><img src="4.png" alt="Holzbringung" class="l-img"></picture>
+      <div class="l-overlay"></div><div class="l-border"></div>
+      <div class="l-content">
+        <div class="l-name">Holzbringung</div>
+        <div class="l-desc">Professionelle Holzernte und Bringung im Gelände — schonend für Wald und Boden.</div>
+        <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
+      </div>
+    </a>
+    <a href="brennholz.html" class="l-item" style="display:block;text-decoration:none;">
+      <picture><source media="(max-width:768px)" srcset="10.png"><img src="5.png" alt="Brennholz" class="l-img"></picture>
+      <div class="l-overlay"></div><div class="l-border"></div>
+      <div class="l-content">
+        <div class="l-name">Brennholz</div>
+        <div class="l-desc">Ofenfertiges Brennholz aus der Region — trocken, gespalten und auf Wunsch geliefert.</div>
+        <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
+      </div>
+    </a>
+    <a href="problembaumfaellung.html" class="l-item" style="display:block;text-decoration:none;">
+      <picture><source media="(max-width:768px)" srcset="problembaum_leistung_mobile.png"><img src="problembaum_leistung.png" alt="Problembaumfällung" class="l-img"></picture>
+      <div class="l-overlay"></div><div class="l-border"></div>
+      <div class="l-content">
+        <div class="l-name">Problembaumfällung</div>
+        <div class="l-desc">Gefährliche Bäume sicher fällen — auch in schwierigsten Lagen.</div>
+        <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(26,101,184,0.8);margin-top:10px;">MEHR ERFAHREN →</div>
+      </div>
+    </a>
+    <a href="schneeraeuumung.html" class="l-item" style="display:block;text-decoration:none;cursor:default;">
+      <picture><source media="(max-width:768px)" srcset="schnee_leistung_mobile.png"><img src="schnee_leistung.png" alt="Schneeräumung" class="l-img"></picture>
+      <div class="l-overlay"></div><div class="l-border"></div>
+      <div class="l-content">
+        <div class="l-name">Schneeräumung</div>
+        <div class="l-desc">Im Winter für Sie im Einsatz.</div>
+        <div style="font-family:Space Mono,monospace;font-size:9px;letter-spacing:0.2em;color:rgba(221,232,216,0.3);margin-top:10px;">BALD VERFÜGBAR</div>
+      </div>
+    </a>
   </div>
 </section>
  
-<section class="intro">
-  <div class="intro-inner reveal">
-    <div class="intro-label">Was wir anbieten</div>
-    <h2 class="intro-h">Hochwertiges Brennholz<br><em>aus der Region.</em></h2>
-    <p class="intro-text">Kein Zwischenhändler — Sie kaufen direkt bei uns aus der Region. Das bedeutet bessere Qualität und faire Preise. Erhältlich als ofenfertiges Trockenholz, auf Wunsch gespalten und direkt zu Ihnen geliefert.</p>
-  </div>
-</section>
+<!-- FAKTEN -->
+<div class="fakten">
+  <div class="fakt reveal"><div class="fakt-num">100%</div><div class="fakt-label">Regional</div></div>
+  <div class="fakt reveal d1"><div class="fakt-num">24/7</div><div class="fakt-label">Erreichbar</div></div>
+  <div class="fakt reveal d2"><div class="fakt-num">Direkt</div><div class="fakt-label">Aus der Region</div></div>
+  <div class="fakt reveal d3"><div class="fakt-num">Kärnten</div><div class="fakt-label">Heimat & Einsatzgebiet</div></div>
+</div>
  
-<section class="sorten">
-  <div class="sorten-header reveal">
-    <div class="sorten-label">Unser Sortiment</div>
-    <h2 class="sorten-title">Holzarten &amp; <em>Preise</em></h2>
-  </div>
- 
-  <table class="preistabelle reveal">
-    <thead>
-      <tr>
-        <th>Holzart</th>
-        <th>Preis / SRM</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <div class="holzart-name">Fichte</div>
-          <div class="holzart-desc">Schnell entzündlich, angenehmer Duft — ideal zum Heizen und Anheizen. Trocken gelagert, sofort einsatzbereit.</div>
-          <span class="holzart-tag">Ofenfertig · Trocken</span>
-        </td>
-        <td>
-          <div class="preis-wrap">
-            <div class="preis-zahl">€ 80</div>
-            <div class="preis-einheit">pro SRM</div>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="holzart-name">Hartholz</div>
-          <div class="holzart-desc">Hoher Heizwert, lange Brenndauer — ideal für kalte Wintertage. Gleichmäßige Wärme, wenig Asche.</div>
-          <div class="holzart-desc" style="margin-top:6px;font-size:12px;color:rgba(221,232,216,0.35);">z.B. Buche · Eiche · Esche</div>
-          <span class="holzart-tag">Hoher Heizwert · Lange Brenndauer</span>
-        </td>
-        <td>
-          <div class="preis-wrap">
-            <div class="preis-zahl">€ 135</div>
-            <div class="preis-einheit">pro SRM</div>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="holzart-name">Mischholz</div>
-          <div class="holzart-desc">Gemischtes Holz aus der Region — eine gute Kombination aus Hart- und Weichholz. Vielseitig einsetzbar und zu einem attraktiven Preis.</div>
-          <span class="holzart-tag">Regional · Gemischt</span>
-        </td>
-        <td>
-          <div class="preis-wrap">
-            <div class="preis-anfrage">Auf Anfrage</div>
-            <div class="preis-einheit">pro SRM</div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</section>
- 
-<section class="vorteile">
-  <div class="v-label reveal">Warum Kleinfercher</div>
-  <div class="v-grid">
-    <div class="v-card reveal">
-      <div class="v-num">01</div>
-      <div class="v-title">Direkt vom Erzeuger</div>
-      <p class="v-text">Kein Umweg über den Handel. Wir schlagen, spalten und liefern das Holz selbst. Das spart Ihnen Geld und garantiert Qualität.</p>
+<!-- KONTAKT -->
+<section class="kontakt" id="kontakt">
+  <div class="kontakt-inner">
+    <div class="kontakt-left">
+      <div class="section-tag reveal">Kontakt</div>
+      <h2 class="kontakt-h reveal d1">Wir sind<br>für Sie <em>da.</em></h2>
+      <p class="kontakt-body reveal d2">Rufen Sie uns an oder schicken Sie uns eine Anfrage — wir antworten rasch und unkompliziert.</p>
+      <div class="kontakt-details reveal d2">
+        <div class="kd"><div class="kd-label">Adresse</div><div class="kd-value">Oberkolbnitz 114, 9815 Reißeck</div></div>
+        <div class="kd"><div class="kd-label">Telefon</div><div class="kd-value"><a href="tel:06644154196">0664 4154196</a></div></div>
+        <div class="kd"><div class="kd-label">E-Mail</div><div class="kd-value"><a href="mailto:kleinferchermarvin@gmail.com">kleinferchermarvin@gmail.com</a></div></div>
+      </div>
+      <div class="kontakt-ctas reveal d3">
+        <a href="tel:06644154196" class="btn-call">☎ Jetzt anrufen</a>
+        <a href="mailto:kleinferchermarvin@gmail.com" class="btn-mail">✉ E-Mail</a>
+      </div>
+      <div class="map-wrap reveal d3">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2710!2d13.3502!3d46.8507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sOberkolbnitz+114%2C+9815+Rei%C3%9Feck!5e0!3m2!1sde!2sat!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </div>
-    <div class="v-card reveal d1">
-      <div class="v-num">02</div>
-      <div class="v-title">Trocken & ofenfertig</div>
-      <p class="v-text">Unser Brennholz ist ausreichend getrocknet und sofort einsatzbereit. Kein Warten, kein Nachtrocknen — direkt in den Ofen.</p>
-    </div>
-    <div class="v-card reveal d2">
-      <div class="v-num">03</div>
-      <div class="v-title">Lieferung auf Wunsch</div>
-      <p class="v-text">Wir liefern direkt zu Ihnen — in die Region Reißeck und Umgebung. Abholung natürlich auch möglich.</p>
+    <div class="form-wrap reveal-r" id="kontakt-form">
+      <div class="form-title">Anfrage <em>senden</em></div>
+      <div class="form-row">
+        <div class="fg"><label class="fl">Vorname</label><input type="text" class="fi" placeholder="Ihr Vorname"></div>
+        <div class="fg"><label class="fl">Nachname</label><input type="text" class="fi" placeholder="Ihr Nachname"></div>
+      </div>
+      <div class="fg"><label class="fl">Telefon</label><input type="tel" class="fi" placeholder="+43 ..."></div>
+      <div class="fg"><label class="fl">E-Mail</label><input type="email" class="fi" placeholder="ihre@email.at"></div>
+      <div class="fg">
+        <label class="fl">Leistung</label>
+        <select class="fi">
+          <option>Holzbringung</option>
+          <option>Brennholz</option>
+          <option>Beides</option>
+        </select>
+      </div>
+      <div class="fg"><label class="fl">Ihre Anfrage</label><textarea class="fi" placeholder="Beschreiben Sie Ihr Anliegen..."></textarea></div>
+      <button class="form-submit">Anfrage absenden →</button>
     </div>
   </div>
-</section>
- 
-<section class="ablauf">
-  <div class="ablauf-label reveal">So einfach geht's</div>
-  <h2 class="ablauf-h reveal d1">Brennholz bestellen<br><em>in 3 Schritten.</em></h2>
-  <div class="steps">
-    <div class="step reveal">
-      <div class="step-num">1</div>
-      <div class="step-title">Anrufen & bestellen</div>
-      <p class="step-text">Einfach anrufen und Ihre Wunschmenge sowie Holzart nennen. Wir beraten Sie gerne welche Sorte am besten passt.</p>
-      <div class="step-arrow">→</div>
-    </div>
-    <div class="step reveal d1">
-      <div class="step-num">2</div>
-      <div class="step-title">Termin vereinbaren</div>
-      <p class="step-text">Wir vereinbaren einen Liefertermin der für Sie passt — unkompliziert und flexibel.</p>
-      <div class="step-arrow">→</div>
-    </div>
-    <div class="step reveal d2">
-      <div class="step-num">3</div>
-      <div class="step-title">Lieferung & fertig</div>
-      <p class="step-text">Wir bringen das Holz direkt zu Ihnen. Trocken, gespalten, ready to burn. Ihren Winter können Sie entspannt angehen.</p>
-    </div>
-  </div>
-</section>
- 
-<section class="cta-final">
-  <h2 class="cta-h reveal">Jetzt bestellen.<br>Warm durch den Winter.</h2>
-  <p class="cta-sub reveal d1">Regional, ehrlich, fair.</p>
-  <a href="tel:06644154196" class="cta-btn reveal d2">☎ Jetzt anrufen</a>
-  <a href="tel:06644154196" class="cta-tel reveal d3">0664 4154196</a>
 </section>
  
 <footer>
-  <a href="index.html" class="f-back">← Zurück zur Startseite</a>
+  <div class="f-logo" style="display:flex;align-items:center;gap:10px;"><img src="logokleinfercher.png" alt="Kleinfercher" style="height:36px;width:auto;filter:brightness(1.5) saturate(1.2) contrast(1.1);opacity:0.5;"> <span style="font-family:Anton,sans-serif;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(221,232,216,0.18);">Holzbringung & Brennholz</span></div>
   <div class="f-copy">© 2026 Kleinfercher · 9815 Reißeck · Kärnten</div>
+  <div class="f-links"><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
 </footer>
  
 <script>
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>60));
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+ 
+let cur=0;
+const slides=document.querySelectorAll('.slide');
+const dots=document.querySelectorAll('.dot');
+function goToSlide(n){
+  slides[cur].classList.remove('active');
+  dots[cur].classList.remove('active');
+  cur=n;
+  slides[cur].classList.add('active');
+  dots[cur].classList.add('active');
+  document.getElementById('current-num').textContent=cur+1;
+}
+let timer=setInterval(()=>goToSlide((cur+1)%3),5500);
+dots.forEach((d,i)=>d.addEventListener('click',()=>{clearInterval(timer);goToSlide(i);timer=setInterval(()=>goToSlide((cur+1)%3),5500);}));
+ 
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:0.07});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(r=>obs.observe(r));
+ 
 function toggleMenu(){document.getElementById('burger').classList.toggle('open');document.getElementById('mobMenu').classList.toggle('open');document.body.style.overflow=document.getElementById('mobMenu').classList.contains('open')?'hidden':'';}
 function closeMenu(){document.getElementById('burger').classList.remove('open');document.getElementById('mobMenu').classList.remove('open');document.body.style.overflow='';}
 </script>
 </body>
 </html>
- 
