@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Problembaumfällung · Kleinfercher · Reißeck, Kärnten</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#060c06;--black2:#0e1c0e;--black3:#162816;--black4:#1c3a1e;
+  --green:#3a8230;--green2:#4a9e3e;--green-dim:rgba(58,130,48,0.12);
+  --green-border:rgba(58,130,48,0.25);--blue:#1a65b8;--blue2:#2278d4;
+  --text:#dde8d8;--text2:rgba(221,232,216,0.6);--text3:rgba(221,232,216,0.1);
+  --gray:#4a5848;--gray2:#8a9886;--border:rgba(221,232,216,0.07);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--text);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;height:110px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(6,12,6,0.55);backdrop-filter:blur(8px);transition:background 0.5s;border-bottom:1px solid var(--border);}
+nav.solid{background:rgba(6,12,6,0.97);backdrop-filter:blur(16px);}
+.nav-logo{display:flex;align-items:center;text-decoration:none;opacity:0;animation:fadeIn 0.8s 0.2s forwards;}
+.nav-logo img{height:100px;width:auto;filter:brightness(2.2) contrast(1.1) drop-shadow(0 0 6px rgba(255,255,255,0.25));transition:filter 0.3s;}
+.nav-logo:hover img{filter:brightness(2.6) contrast(1.1) drop-shadow(0 0 10px rgba(255,255,255,0.4));}
+.nav-r{display:flex;align-items:center;gap:28px;opacity:0;animation:fadeIn 0.8s 0.4s forwards;}
+.nav-r a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color 0.25s;}
+.nav-r a:hover{color:var(--text);}
+.nav-call{background:var(--blue)!important;color:var(--text)!important;padding:9px 22px;transition:background 0.25s!important;}
+.nav-call:hover{background:var(--blue2)!important;}
+.burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;}
+.burger span{width:22px;height:2px;background:var(--text);display:block;transition:all 0.3s;}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mob-menu{position:fixed;inset:0;background:var(--black);z-index:290;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:28px;transform:translateX(100%);transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);}
+.mob-menu.open{transform:translateX(0);}
+.mob-menu a{font-family:'Anton',sans-serif;font-size:42px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(221,232,216,0.4);text-decoration:none;transition:color 0.25s;}
+.mob-menu a:hover{color:var(--text);}
+.mob-menu .mob-cta{color:var(--blue);}
+.hero{position:relative;height:100vh;min-height:600px;overflow:hidden;}
+.hero-topline{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent 0%,var(--blue) 20%,var(--blue2) 50%,var(--blue) 80%,transparent 100%);z-index:10;}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 8s ease-out;}
+.hero-img.loaded{transform:scale(1);}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,12,6,0.97) 0%,rgba(6,12,6,0.35) 50%,rgba(6,12,6,0.1) 100%);z-index:2;}
+.hero-grad2{position:absolute;inset:0;background:linear-gradient(100deg,rgba(6,12,6,0.7) 0%,transparent 60%);z-index:2;}
+.hero-diag{position:absolute;bottom:0;right:0;width:0;height:0;border-style:solid;border-width:0 0 120px 100vw;border-color:transparent transparent var(--black) transparent;z-index:3;}
+.hero-content{position:absolute;left:52px;bottom:80px;z-index:5;max-width:min(90vw,760px);}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--text);margin-bottom:18px;display:flex;align-items:center;gap:12px;opacity:0;animation:slideUp 0.7s 0.3s forwards;}
+.hero-eyebrow::before{content:'';width:28px;height:2px;background:var(--green);}
+.hero-h1{font-family:'Anton',sans-serif;font-size:clamp(52px,9vw,110px);text-transform:uppercase;letter-spacing:0.02em;color:var(--text);line-height:0.88;margin-bottom:22px;opacity:0;animation:slideUp 0.7s 0.5s forwards;}
+.hero-h1 em{font-style:normal;color:var(--blue);}
+.hero-sub{font-size:clamp(13px,1.7vw,16px);color:var(--text2);line-height:1.75;max-width:520px;margin-bottom:36px;opacity:0;animation:slideUp 0.7s 0.7s forwards;}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;opacity:0;animation:slideUp 0.7s 0.9s forwards;}
+.btn-blue{background:var(--blue);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;padding:15px 36px;transition:background 0.25s;display:inline-block;position:relative;overflow:hidden;}
+.btn-blue::before{content:'';position:absolute;inset:0;background:var(--blue2);transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.btn-blue:hover::before{transform:scaleX(1);}
+.btn-blue span{position:relative;z-index:1;}
+.btn-ghost{border:1px solid rgba(221,232,216,0.2);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;padding:15px 36px;transition:all 0.25s;display:inline-block;}
+.btn-ghost:hover{border-color:var(--text);background:rgba(221,232,216,0.06);}
+.intro{background:var(--black);padding:96px 52px;}
+.intro-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.section-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(221,232,216,0.4);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.section-tag::before{content:'';width:20px;height:2px;background:var(--green);}
+.intro-h{font-family:'Anton',sans-serif;font-size:clamp(36px,4.5vw,58px);text-transform:uppercase;letter-spacing:0.02em;color:var(--text);line-height:0.9;margin-bottom:28px;}
+.intro-h em{font-style:normal;color:var(--blue);}
+.intro-body{font-size:15px;color:var(--text2);line-height:1.85;}
+.intro-body p+p{margin-top:16px;}
+.stat-num{font-family:'Anton',sans-serif;font-size:68px;color:var(--green);line-height:1;letter-spacing:0.02em;}
+.stat-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);}
+.stat-divider{width:40px;height:2px;background:var(--border);margin:20px 0;}
+.vorteile{background:var(--black2);padding:80px 52px;}
+.vorteile-header{margin-bottom:52px;}
+.vorteile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.vorteil{background:var(--black3);padding:44px 36px;position:relative;overflow:hidden;transition:background 0.35s;}
+.vorteil::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform 0.4s;}
+.vorteil:hover::before{transform:scaleX(1);}
+.vorteil:hover{background:var(--black4);}
+.v-num{font-family:'Anton',sans-serif;font-size:52px;color:rgba(26,101,184,0.15);line-height:1;position:absolute;top:24px;right:28px;letter-spacing:0.02em;}
+.v-title{font-family:'Anton',sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:0.04em;color:var(--text);line-height:1;margin-bottom:14px;}
+.v-body{font-size:14px;color:var(--text2);line-height:1.75;}
+.ablauf{background:var(--black);padding:80px 52px;}
+.ablauf-header{margin-bottom:52px;}
+.ablauf-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;}
+.ablauf-steps::before{content:'';position:absolute;top:28px;left:calc(16.6% + 14px);right:calc(16.6% + 14px);height:1px;background:var(--green-border);z-index:0;}
+.step{padding:0 24px;position:relative;z-index:1;}
+.step-dot{width:56px;height:56px;border:2px solid var(--green-border);background:var(--black);display:flex;align-items:center;justify-content:center;margin-bottom:28px;transition:border-color 0.3s,background 0.3s;}
+.step:hover .step-dot{border-color:var(--blue);background:var(--green-dim);}
+.step-num{font-family:'Anton',sans-serif;font-size:20px;color:var(--green);letter-spacing:0.04em;}
+.step-title{font-family:'Anton',sans-serif;font-size:18px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text);margin-bottom:12px;line-height:1.1;}
+.step-body{font-size:13px;color:var(--text2);line-height:1.75;}
+.cta{background:var(--black4);padding:80px 52px;text-align:center;position:relative;overflow:hidden;}
+.cta::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,101,184,0.08) 0%,transparent 50%,rgba(58,130,48,0.06) 100%);}
+.cta-inner{position:relative;z-index:1;}
+.cta-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--green);margin-bottom:16px;}
+.cta-h{font-family:'Anton',sans-serif;font-size:clamp(38px,5vw,64px);text-transform:uppercase;letter-spacing:0.02em;color:var(--text);line-height:0.9;margin-bottom:16px;}
+.cta-h em{font-style:normal;color:var(--blue);}
+.cta-body{font-size:15px;color:var(--text2);max-width:480px;margin:0 auto 40px;line-height:1.75;}
+.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.cta-contact{background:var(--black2);padding:36px 40px;border:1px solid var(--border);margin-top:52px;display:inline-flex;gap:52px;flex-wrap:wrap;justify-content:center;}
+.cc-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:var(--green);margin-bottom:4px;}
+.cc-value{font-size:16px;color:var(--text);}
+.cc-value a{color:var(--text);text-decoration:none;transition:color 0.25s;}
+.cc-value a:hover{color:var(--blue);}
+footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.f-copy{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.06em;color:rgba(221,232,216,0.12);}
+.f-links{display:flex;gap:18px;}
+.f-links a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;color:rgba(221,232,216,0.12);text-decoration:none;transition:color 0.25s;}
+.f-links a:hover{color:rgba(221,232,216,0.4);}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.9s,transform 0.9s;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-l{opacity:0;transform:translateX(-30px);transition:opacity 0.9s,transform 0.9s;}
+.reveal-l.in{opacity:1;transform:translateX(0);}
+.reveal-r{opacity:0;transform:translateX(30px);transition:opacity 0.9s,transform 0.9s;}
+.reveal-r.in{opacity:1;transform:translateX(0);}
+.d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:1024px){
+  nav{padding:0 20px;height:90px;}.nav-r{display:none;}.burger{display:flex;}
+  .nav-logo img{height:72px;}
+  .hero-content{left:20px;bottom:60px;}
+  .intro{padding:64px 20px;}.intro-inner{grid-template-columns:1fr;gap:40px;}
+  .vorteile{padding:60px 20px;}.vorteile-grid{grid-template-columns:1fr;}
+  .ablauf{padding:60px 20px;}.ablauf-steps{grid-template-columns:1fr;gap:36px;}
+  .ablauf-steps::before{display:none;}
+  .step{padding:0;}
+  .cta{padding:60px 20px;}
+  footer{padding:16px 20px;flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:600px){
+  .hero-ctas{flex-direction:column;}
+  .cta-contact{flex-direction:column;gap:24px;padding:28px 24px;}
+}
+</style>
+</head>
+<body>
+ 
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="logokleinfercher.png" alt="Kleinfercher"></a>
+  <div class="nav-r">
+    <a href="index.html">← Startseite</a>
+    <a href="index.html#leistungen">Leistungen</a>
+    <a href="index.html#kontakt">Kontakt</a>
+    <a href="tel:06644154196" class="nav-call">☎ Jetzt anrufen</a>
+  </div>
+  <button class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+ 
+<div class="mob-menu" id="mobMenu">
+  <img src="logokleinfercher.png" alt="Kleinfercher" style="height:140px;width:auto;filter:brightness(2) saturate(1.2);margin-bottom:8px;">
+  <a href="index.html" onclick="closeMenu()">← Startseite</a>
+  <a href="index.html#leistungen" onclick="closeMenu()">Leistungen</a>
+  <a href="index.html#kontakt" onclick="closeMenu()">Kontakt</a>
+  <a href="tel:06644154196" class="mob-cta" onclick="closeMenu()">☎ Anrufen</a>
+</div>
+ 
+<section class="hero">
+  <div class="hero-topline"></div>
+  <picture>
+    <source media="(max-width:768px)" srcset="problembaum_mobile.png">
+    <img src="problembaum.png" alt="Problembaumfällung Kleinfercher" class="hero-img" id="heroImg">
+  </picture>
+  <div class="hero-grad"></div>
+  <div class="hero-grad2"></div>
+  <div class="hero-diag"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Leistung · Kleinfercher · Kärnten</div>
+    <h1 class="hero-h1">Problembaum<em>fällung.</em></h1>
+    <p class="hero-sub">Wenn ein Baum zur Gefahr wird, braucht es Erfahrung, das richtige Gerät — und jemanden, der auch in schwierigen Lagen einen kühlen Kopf bewahrt.</p>
+    <div class="hero-ctas">
+      <a href="index.html#kontakt" class="btn-blue"><span>Anfrage senden</span></a>
+      <a href="tel:06644154196" class="btn-ghost">☎ 0664 4154196</a>
+    </div>
+  </div>
+</section>
+ 
+<section class="intro">
+  <div class="intro-inner">
+    <div class="reveal-l">
+      <div class="section-tag">Über diese Leistung</div>
+      <h2 class="intro-h">Sicher gefällt.<br><em>Kein Risiko.</em></h2>
+      <div class="intro-body">
+        <p>Nicht jeder Baum steht dort, wo er stehen soll. Manche wurden durch Sturm, Krankheit oder Schädlingsbefall geschwächt, andere wachsen zu nah an Gebäuden, Zäunen oder Stromleitungen. Je länger man wartet, desto größer wird das Risiko.</p>
+        <p>Als regionaler Betrieb aus Reißeck kennen wir das Gelände und die Bedingungen im Kärntner Alpenraum. Wir fällen Problembäume sicher und sauber — auch an engen Standorten, steilem Gelände oder in der Nähe von Gebäuden.</p>
+      </div>
+    </div>
+    <div class="reveal-r" style="display:flex;flex-direction:column;">
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Regional aus Kärnten</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div>
+        <div class="stat-num">Direkt</div>
+        <div class="stat-label">Persönlicher Ansprechpartner</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div>
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Erreichbar</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section class="vorteile">
+  <div class="vorteile-header reveal">
+    <div class="section-tag">Warum Kleinfercher</div>
+    <h2 style="font-family:'Anton',sans-serif;font-size:clamp(38px,5vw,62px);text-transform:uppercase;letter-spacing:0.02em;color:var(--text);line-height:0.9;">Ihre <em style="font-style:normal;color:var(--blue);">Vorteile</em></h2>
+  </div>
+  <div class="vorteile-grid">
+    <div class="vorteil reveal">
+      <div class="v-num">01</div>
+      <div class="v-title">Auch schwierige Lagen</div>
+      <div class="v-body">Enger Garten, steiles Gelände, Nähe zu Gebäuden oder Leitungen — wir finden die sichere Lösung. Kein Standort ist zu kompliziert.</div>
+    </div>
+    <div class="vorteil reveal d1">
+      <div class="v-num">02</div>
+      <div class="v-title">Schonend & sauber</div>
+      <div class="v-body">Wir arbeiten mit Bedacht — das Umfeld bleibt so weit wie möglich unversehrt. Auf Wunsch übernehmen wir auch die Entsorgung oder Weiterverarbeitung zu Brennholz.</div>
+    </div>
+    <div class="vorteil reveal d2">
+      <div class="v-num">03</div>
+      <div class="v-title">Schnell vor Ort</div>
+      <div class="v-body">Als regionaler Betrieb aus Reißeck sind wir rasch bei Ihnen. Kein langer Vorlauf, kein Aufwand — einfach anrufen und Termin vereinbaren.</div>
+    </div>
+  </div>
+</section>
+ 
+<section class="ablauf">
+  <div class="ablauf-header reveal">
+    <div class="section-tag">So läuft es ab</div>
+    <h2 style="font-family:'Anton',sans-serif;font-size:clamp(38px,5vw,62px);text-transform:uppercase;letter-spacing:0.02em;color:var(--text);line-height:0.9;">In <em style="font-style:normal;color:var(--blue);">3 Schritten</em><br>zum Ergebnis</h2>
+  </div>
+  <div class="ablauf-steps">
+    <div class="step reveal">
+      <div class="step-dot"><div class="step-num">01</div></div>
+      <div class="step-title">Besichtigung</div>
+      <div class="step-body">Wir kommen zu Ihnen, schauen uns den Baum und die Situation vor Ort an und besprechen gemeinsam, was zu tun ist — unkompliziert und direkt.</div>
+    </div>
+    <div class="step reveal d1">
+      <div class="step-dot"><div class="step-num">02</div></div>
+      <div class="step-title">Planung</div>
+      <div class="step-body">Wir legen fest, wie der Baum sicher gefällt wird, welche Maßnahmen nötig sind und wann der Einsatz stattfindet. Sie werden über jeden Schritt informiert.</div>
+    </div>
+    <div class="step reveal d2">
+      <div class="step-dot"><div class="step-num">03</div></div>
+      <div class="step-title">Ausführung</div>
+      <div class="step-body">Der Baum wird professionell und sicher gefällt. Das Holz kann auf Wunsch direkt zu Brennholz weiterverarbeitet werden — nichts geht verloren.</div>
+    </div>
+  </div>
+</section>
+ 
+<section class="cta">
+  <div class="cta-inner">
+    <div class="cta-tag reveal">Jetzt anfragen</div>
+    <h2 class="cta-h reveal d1">Problematischer Baum?<br><em>Wir helfen.</em></h2>
+    <p class="cta-body reveal d2">Kein Baum ist zu groß, zu nah oder zu gefährlich. Rufen Sie uns an oder schicken Sie uns eine kurze Anfrage — wir melden uns rasch und schauen uns die Situation persönlich an.</p>
+    <div class="cta-btns reveal d3">
+      <a href="tel:06644154196" class="btn-blue"><span>☎ 0664 4154196</span></a>
+      <a href="index.html#kontakt" class="btn-ghost">Anfrage senden</a>
+    </div>
+    <div class="cta-contact reveal d3">
+      <div>
+        <div class="cc-label">Telefon</div>
+        <div class="cc-value"><a href="tel:06644154196">0664 4154196</a></div>
+      </div>
+      <div>
+        <div class="cc-label">Adresse</div>
+        <div class="cc-value">Oberkolbnitz 114, 9815 Reißeck</div>
+      </div>
+      <div>
+        <div class="cc-label">Einsatzgebiet</div>
+        <div class="cc-value">Kärnten & Umgebung</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<footer>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <img src="logokleinfercher.png" alt="Kleinfercher" style="height:36px;width:auto;filter:brightness(2) saturate(1.1);opacity:0.35;">
+    <span style="font-family:'Anton',sans-serif;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(221,232,216,0.15);">Holzbringung & Brennholz</span>
+  </div>
+  <div class="f-copy">© 2026 Kleinfercher · 9815 Reißeck · Kärnten</div>
+  <div class="f-links"><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
+</footer>
+ 
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>60));
+const img=document.getElementById('heroImg');
+if(img.complete){img.classList.add('loaded');}else{img.addEventListener('load',()=>img.classList.add('loaded'));}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:0.07});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(r=>obs.observe(r));
+function toggleMenu(){document.getElementById('burger').classList.toggle('open');document.getElementById('mobMenu').classList.toggle('open');document.body.style.overflow=document.getElementById('mobMenu').classList.contains('open')?'hidden':'';}
+function closeMenu(){document.getElementById('burger').classList.remove('open');document.getElementById('mobMenu').classList.remove('open');document.body.style.overflow='';}
+</script>
+</body>
+</html>
