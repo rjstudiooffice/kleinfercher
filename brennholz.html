@@ -7,45 +7,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --black:#060c06;
-  --black2:#0e1c0e;
-  --black3:#162816;
-  --black4:#1c3a1e;
-  --green:#3a8230;
-  --green2:#4a9e3e;
-  --green-dim:rgba(58,130,48,0.12);
-  --blue:#1a65b8;
-  --blue2:#2278d4;
-  --text:#dde8d8;
-  --text2:rgba(221,232,216,0.6);
-  --text3:rgba(221,232,216,0.1);
-  --border:rgba(221,232,216,0.07);
+  --black:#060c06;--black2:#0e1c0e;--black3:#162816;--black4:#1c3a1e;
+  --green:#3a8230;--blue:#1a65b8;--blue2:#2278d4;
+  --text:#dde8d8;--text2:rgba(221,232,216,0.6);--border:rgba(221,232,216,0.07);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--text);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;}
  
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:300;height:90px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(6,12,6,0.55);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);transition:background 0.5s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;height:110px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(6,12,6,0.55);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);transition:background 0.5s;}
 nav.solid{background:rgba(6,12,6,0.97);}
-.nav-logo{display:flex;align-items:center;text-decoration:none;}
-.nav-logo img{height:100px;width:auto;filter:brightness(1.6) saturate(1.3);animation:logoGlow 3.5s ease-in-out infinite;}
-@keyframes logoGlow{
-  0%,100%{filter:brightness(1.6) saturate(1.3) drop-shadow(0 0 6px rgba(58,130,48,0.4));}
-  50%{filter:brightness(1.9) saturate(1.5) drop-shadow(0 0 16px rgba(58,130,48,0.75)) drop-shadow(0 0 32px rgba(26,101,184,0.3));}
-}
-.nav-back{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color 0.25s;}
+.nav-logo{display:flex;align-items:center;text-decoration:none;opacity:0;animation:fadeIn 0.8s 0.2s forwards;}
+.nav-logo img{height:100px;width:auto;filter:brightness(2.2) contrast(1.1) drop-shadow(0 0 6px rgba(255,255,255,0.25));transition:filter 0.3s;}
+.nav-logo:hover img{filter:brightness(2.6) contrast(1.1) drop-shadow(0 0 10px rgba(255,255,255,0.4));}
+.nav-r{display:flex;align-items:center;gap:24px;opacity:0;animation:fadeIn 0.8s 0.4s forwards;}
+.nav-back{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color 0.25s;}
 .nav-back:hover{color:var(--text);}
-.nav-back::before{content:'←';}
 .nav-call{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;background:var(--blue);color:var(--text);padding:9px 22px;text-decoration:none;transition:background 0.25s;}
 .nav-call:hover{background:var(--blue2);}
-.nav-r{display:flex;align-items:center;gap:24px;}
+.burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;}
+.burger span{width:22px;height:2px;background:var(--text);display:block;transition:all 0.3s;}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mob-menu{position:fixed;inset:0;background:var(--black);z-index:290;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:28px;transform:translateX(100%);transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);}
+.mob-menu.open{transform:translateX(0);}
+.mob-menu a{font-family:'Anton',sans-serif;font-size:42px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(221,232,216,0.4);text-decoration:none;transition:color 0.25s;}
+.mob-menu a:hover{color:var(--text);}
+.mob-menu .mob-cta{color:var(--blue);}
  
-/* HERO */
 .hero{position:relative;height:100vh;min-height:600px;overflow:hidden;}
-.hero-topline{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent,var(--blue),var(--blue2),var(--blue),transparent);z-index:10;animation:topline 4s ease-in-out infinite;}
-@keyframes topline{0%,100%{opacity:0.7;}50%{opacity:1;}}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.06);animation:heroZoom 10s ease-out forwards;}
+.hero-topline{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent,var(--blue),var(--blue2),var(--blue),transparent);z-index:10;}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);animation:heroZoom 10s ease-out forwards;}
 @keyframes heroZoom{to{transform:scale(1);}}
 .hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,12,6,0.97) 0%,rgba(6,12,6,0.4) 50%,rgba(6,12,6,0.1) 100%);z-index:2;}
 .hero-diag{position:absolute;bottom:0;right:0;width:0;height:0;border-style:solid;border-width:0 0 100px 100vw;border-color:transparent transparent var(--black) transparent;z-index:3;}
@@ -58,7 +51,6 @@ nav.solid{background:rgba(6,12,6,0.97);}
 .hero-cta{display:inline-block;background:var(--blue);color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;padding:16px 40px;transition:background 0.25s;opacity:0;animation:fadeUp 0.7s 0.9s forwards;}
 .hero-cta:hover{background:var(--blue2);}
  
-/* INTRO */
 .intro{background:var(--black2);padding:80px 52px;}
 .intro-inner{max-width:900px;margin:0 auto;text-align:center;}
 .intro-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green);margin-bottom:16px;}
@@ -66,22 +58,32 @@ nav.solid{background:rgba(6,12,6,0.97);}
 .intro-h em{font-style:normal;color:var(--blue);}
 .intro-text{font-size:17px;color:var(--text2);line-height:1.85;max-width:700px;margin:0 auto;}
  
-/* SORTEN */
+/* ── PREISTABELLE ── */
 .sorten{background:var(--black);padding:80px 52px;}
-.sorten-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green);margin-bottom:40px;display:flex;align-items:center;gap:10px;}
+.sorten-header{margin-bottom:48px;}
+.sorten-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
 .sorten-label::before{content:'';width:20px;height:2px;background:var(--green);}
-.sorten-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
-.sorte{background:var(--black2);padding:40px 36px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;transition:background 0.3s;position:relative;overflow:hidden;}
-.sorte:hover{background:var(--black3);}
-.sorte::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--green);transition:width 0.45s;}
-.sorte:hover::after{width:100%;}
-.sorte-icon{font-size:44px;line-height:1;filter:drop-shadow(0 0 8px rgba(58,130,48,0.4));}
-.sorte-name{font-family:'Anton',sans-serif;font-size:24px;text-transform:uppercase;letter-spacing:0.04em;color:var(--text);margin-bottom:10px;}
-.sorte-text{font-size:13px;color:var(--text2);line-height:1.75;}
-.sorte-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;}
-.sorte-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.15em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(58,130,48,0.3);color:var(--green);}
+.sorten-title{font-family:'Anton',sans-serif;font-size:clamp(32px,4vw,52px);text-transform:uppercase;color:var(--text);line-height:0.95;}
+.sorten-title em{font-style:normal;color:var(--blue);}
  
-/* VORTEILE */
+.preistabelle{width:100%;border-collapse:collapse;}
+.preistabelle thead tr{border-bottom:1px solid rgba(221,232,216,0.12);}
+.preistabelle th{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(221,232,216,0.3);padding:0 0 16px;text-align:left;font-weight:400;}
+.preistabelle th:last-child{text-align:right;}
+.preistabelle tbody tr{border-bottom:1px solid var(--border);transition:background 0.25s;cursor:default;}
+.preistabelle tbody tr:hover{background:var(--black2);}
+.preistabelle td{padding:28px 0;vertical-align:middle;}
+.preistabelle td:last-child{text-align:right;}
+ 
+.holzart-name{font-family:'Anton',sans-serif;font-size:clamp(22px,3vw,32px);text-transform:uppercase;letter-spacing:0.04em;color:var(--text);line-height:1;margin-bottom:4px;}
+.holzart-desc{font-size:13px;color:var(--text2);line-height:1.5;max-width:480px;}
+.holzart-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.15em;text-transform:uppercase;padding:3px 9px;border:1px solid rgba(58,130,48,0.3);color:var(--green);margin-top:8px;}
+ 
+.preis-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
+.preis-zahl{font-family:'Anton',sans-serif;font-size:clamp(36px,4vw,56px);color:var(--blue);line-height:1;letter-spacing:0.02em;}
+.preis-einheit{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);}
+.preis-anfrage{font-family:'Anton',sans-serif;font-size:clamp(20px,2.5vw,28px);color:rgba(221,232,216,0.35);line-height:1;}
+ 
 .vorteile{background:var(--black3);padding:80px 52px;}
 .v-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green);margin-bottom:40px;display:flex;align-items:center;gap:10px;}
 .v-label::before{content:'';width:20px;height:2px;background:var(--green);}
@@ -94,7 +96,6 @@ nav.solid{background:rgba(6,12,6,0.97);}
 .v-title{font-family:'Anton',sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:0.04em;color:var(--text);margin-bottom:12px;line-height:1.1;}
 .v-text{font-size:13px;color:var(--text2);line-height:1.75;}
  
-/* ABLAUF */
 .ablauf{background:var(--black2);padding:80px 52px;}
 .ablauf-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--green);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
 .ablauf-label::before{content:'';width:20px;height:2px;background:var(--green);}
@@ -108,9 +109,6 @@ nav.solid{background:rgba(6,12,6,0.97);}
 .step-arrow{position:absolute;top:50%;right:-16px;transform:translateY(-50%);font-size:20px;color:var(--blue);opacity:0.4;z-index:2;}
 .step:last-child .step-arrow{display:none;}
  
- 
- 
-/* CTA */
 .cta-final{background:var(--blue);padding:80px 52px;text-align:center;position:relative;overflow:hidden;}
 .cta-final::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.06) 0%,transparent 60%);pointer-events:none;}
 .cta-h{font-family:'Anton',sans-serif;font-size:clamp(40px,6vw,80px);text-transform:uppercase;color:var(--text);line-height:0.9;margin-bottom:14px;position:relative;z-index:1;}
@@ -127,22 +125,25 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
 .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.85s,transform 0.85s;}
 .reveal.in{opacity:1;transform:translateY(0);}
 .d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
  
 @media(max-width:900px){
-  nav{padding:0 20px;height:80px;}.nav-r{gap:14px;}
-  .nav-logo img{height:68px;}
+  nav{padding:0 20px;height:90px;}.nav-r{display:none;}.burger{display:flex;}
+  .nav-logo img{height:72px;}
   .hero-content{left:20px;bottom:80px;}
   .intro,.sorten,.vorteile,.ablauf,.cta-final{padding:60px 20px;}
   .v-grid,.steps{grid-template-columns:1fr;}
-  .g-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
-  .g-item.wide{grid-column:auto;}
-  .g-item{min-height:180px;}
   .step-arrow{display:none;}
   footer{padding:16px 20px;flex-direction:column;align-items:flex-start;}
+  /* Preistabelle mobile */
+  .preistabelle thead{display:none;}
+  .preistabelle tbody tr{display:flex;flex-direction:column;padding:24px 0;border-bottom:1px solid var(--border);}
+  .preistabelle td{padding:0;border:none;}
+  .preistabelle td:last-child{text-align:left;margin-top:16px;}
+  .preis-wrap{align-items:flex-start;}
 }
 @media(max-width:600px){
-  .g-grid{grid-template-columns:1fr;}
   .hero-h1{font-size:clamp(48px,13vw,72px);}
 }
 </style>
@@ -152,12 +153,19 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
 <nav id="nav">
   <a href="index.html" class="nav-logo"><img src="logokleinfercher.png" alt="Kleinfercher"></a>
   <div class="nav-r">
-    <a href="index.html" class="nav-back"><span>Zurück</span></a>
+    <a href="index.html" class="nav-back">← Zurück</a>
     <a href="tel:06644154196" class="nav-call">☎ 0664 4154196</a>
   </div>
+  <button class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
  
-<!-- HERO -->
+<div class="mob-menu" id="mobMenu">
+  <img src="logokleinfercher.png" alt="Kleinfercher" style="height:140px;width:auto;filter:brightness(2) saturate(1.2);margin-bottom:8px;">
+  <a href="index.html" onclick="closeMenu()">← Startseite</a>
+  <a href="index.html#kontakt" onclick="closeMenu()">Kontakt</a>
+  <a href="tel:06644154196" class="mob-cta" onclick="closeMenu()">☎ Anrufen</a>
+</div>
+ 
 <section class="hero">
   <div class="hero-topline"></div>
   <picture><source media="(max-width:768px)" srcset="13.png"><img src="11.png" alt="Brennholz Kleinfercher" class="hero-img"></picture>
@@ -171,68 +179,71 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
   </div>
 </section>
  
-<!-- INTRO -->
 <section class="intro">
   <div class="intro-inner reveal">
     <div class="intro-label">Was wir anbieten</div>
     <h2 class="intro-h">Hochwertiges Brennholz<br><em>aus der Region.</em></h2>
-    <p class="intro-text">Kein Zwischenhändler — Sie kaufen direkt bei uns aus der Region. Das bedeutet bessere Qualität und faire Preise. Erhältlich als ofenfertiges Trockenholz sowie günstiger als halbtrocken — auf Wunsch gespalten und direkt zu Ihnen geliefert.</p>
+    <p class="intro-text">Kein Zwischenhändler — Sie kaufen direkt bei uns aus der Region. Das bedeutet bessere Qualität und faire Preise. Erhältlich als ofenfertiges Trockenholz, auf Wunsch gespalten und direkt zu Ihnen geliefert.</p>
   </div>
 </section>
  
-<!-- SORTEN -->
 <section class="sorten">
-  <div class="sorten-label reveal">Unser Sortiment</div>
-  <div class="sorten-grid">
-    <div class="sorte reveal">
-      <div class="sorte-icon">🌲</div>
-      <div>
-        <div class="sorte-name">Fichte</div>
-        <p class="sorte-text">Ofenfertiges Fichtenholz direkt vom Erzeuger — schnell entzündlich, angenehmer Duft, ideal zum Heizen und Anheizen. Trocken gelagert und sofort einsatzbereit.</p>
-        <div class="sorte-tags"><span class="sorte-tag">Schnell entzündlich</span><span class="sorte-tag">Ofenfertig</span><span class="sorte-tag">Regional</span></div>
-        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(221,232,216,0.08);display:flex;align-items:baseline;gap:12px;">
-          <span style="font-family:'Anton',sans-serif;font-size:52px;color:var(--blue);line-height:1;">€ 80</span>
-          <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);">pro SRM · trocken</span>
-        </div>
-      </div>
-    </div>
-    <div class="sorte reveal d1">
-      <div class="sorte-icon">🪵</div>
-      <div>
-        <div class="sorte-name">Fichte halbtrocken</div>
-        <p class="sorte-text">Für alle die sparen möchten — halbtrocken und günstiger erhältlich. Muss noch etwas nachgetrocknet werden, dann aber ebenso geeignet für Ofen und Kamin.</p>
-        <div class="sorte-tags"><span class="sorte-tag">Günstiger</span><span class="sorte-tag">Halbtrocken</span><span class="sorte-tag">Regional</span></div>
-        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(221,232,216,0.08);display:flex;align-items:baseline;gap:12px;">
-          <span style="font-family:'Anton',sans-serif;font-size:52px;color:var(--blue);line-height:1;">Auf Anfrage</span>
-        </div>
-      </div>
-    </div>
-    <div class="sorte reveal d2">
-      <div class="sorte-icon">🌳</div>
-      <div>
-        <div class="sorte-name">Hartholz</div>
-        <p class="sorte-text">Hoher Heizwert, lange Brenndauer — ideal für kalte Wintertage. Gibt gleichmäßige Wärme und wenig Asche. Preis auf Anfrage.</p>
-        <div class="sorte-tags"><span class="sorte-tag">Hoher Heizwert</span><span class="sorte-tag">Lange Brenndauer</span><span class="sorte-tag">Wenig Asche</span></div>
-        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(221,232,216,0.08);display:flex;align-items:baseline;gap:12px;">
-          <span style="font-family:'Anton',sans-serif;font-size:32px;color:var(--blue);line-height:1;">Auf Anfrage</span>
-        </div>
-      </div>
-    </div>
-    <div class="sorte reveal d3">
-      <div class="sorte-icon">🌲</div>
-      <div>
-        <div class="sorte-name">Mischholz</div>
-        <p class="sorte-text">Gemischtes Holz aus der Region — eine gute Kombination aus Hart- und Weichholz. Vielseitig einsetzbar und zu einem attraktiven Preis erhältlich.</p>
-        <div class="sorte-tags"><span class="sorte-tag">Gemischt</span><span class="sorte-tag">Regional</span><span class="sorte-tag">Preiswert</span></div>
-        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(221,232,216,0.08);display:flex;align-items:baseline;gap:12px;">
-          <span style="font-family:'Anton',sans-serif;font-size:32px;color:var(--blue);line-height:1;">Auf Anfrage</span>
-        </div>
-      </div>
-    </div>
+  <div class="sorten-header reveal">
+    <div class="sorten-label">Unser Sortiment</div>
+    <h2 class="sorten-title">Holzarten &amp; <em>Preise</em></h2>
   </div>
+ 
+  <table class="preistabelle reveal">
+    <thead>
+      <tr>
+        <th>Holzart</th>
+        <th>Preis / SRM</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="holzart-name">Fichte</div>
+          <div class="holzart-desc">Schnell entzündlich, angenehmer Duft — ideal zum Heizen und Anheizen. Trocken gelagert, sofort einsatzbereit.</div>
+          <span class="holzart-tag">Ofenfertig · Trocken</span>
+        </td>
+        <td>
+          <div class="preis-wrap">
+            <div class="preis-zahl">€ 80</div>
+            <div class="preis-einheit">pro SRM</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="holzart-name">Hartholz</div>
+          <div class="holzart-desc">Hoher Heizwert, lange Brenndauer — ideal für kalte Wintertage. Gleichmäßige Wärme, wenig Asche.</div>
+          <span class="holzart-tag">Hoher Heizwert · Lange Brenndauer</span>
+        </td>
+        <td>
+          <div class="preis-wrap">
+            <div class="preis-zahl">€ 135</div>
+            <div class="preis-einheit">pro SRM</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="holzart-name">Weichholz gemischt</div>
+          <div class="holzart-desc">Gemischtes Weichholz aus der Region — vielseitig einsetzbar zu einem attraktiven Preis.</div>
+          <span class="holzart-tag">Regional · Gemischt</span>
+        </td>
+        <td>
+          <div class="preis-wrap">
+            <div class="preis-anfrage">Auf Anfrage</div>
+            <div class="preis-einheit">pro SRM</div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </section>
  
-<!-- VORTEILE -->
 <section class="vorteile">
   <div class="v-label reveal">Warum Kleinfercher</div>
   <div class="v-grid">
@@ -254,7 +265,6 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
   </div>
 </section>
  
-<!-- ABLAUF -->
 <section class="ablauf">
   <div class="ablauf-label reveal">So einfach geht's</div>
   <h2 class="ablauf-h reveal d1">Brennholz bestellen<br><em>in 3 Schritten.</em></h2>
@@ -279,8 +289,6 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
   </div>
 </section>
  
- 
-<!-- CTA -->
 <section class="cta-final">
   <h2 class="cta-h reveal">Jetzt bestellen.<br>Warm durch den Winter.</h2>
   <p class="cta-sub reveal d1">Regional, ehrlich, fair.</p>
@@ -297,6 +305,8 @@ footer{background:var(--black);padding:20px 52px;border-top:1px solid var(--bord
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>60));
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+function toggleMenu(){document.getElementById('burger').classList.toggle('open');document.getElementById('mobMenu').classList.toggle('open');document.body.style.overflow=document.getElementById('mobMenu').classList.contains('open')?'hidden':'';}
+function closeMenu(){document.getElementById('burger').classList.remove('open');document.getElementById('mobMenu').classList.remove('open');document.body.style.overflow='';}
 </script>
 </body>
 </html>
