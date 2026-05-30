@@ -208,8 +208,8 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
   .hero-content{left:20px;bottom:60px;}
   .slide-num{display:none;}
   .slide-dots{left:20px;}.slide-num{right:20px;}
-  .l-grid{grid-template-columns:1fr 1fr;}
-  .l-item{aspect-ratio:1/1;min-height:140px;}
+  .l-grid{grid-template-columns:1fr;}
+  .l-item{aspect-ratio:16/9;min-height:200px;}
   .fakten{grid-template-columns:1fr 1fr;padding:52px 20px;}
   .fakt{border-right:none;border-bottom:1px solid var(--border);padding:18px 16px;}
   .fakt-num{font-size:32px!important;}
@@ -221,8 +221,8 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
 @media(max-width:600px){
   .hero-ctas{flex-direction:column;}
   .form-row{grid-template-columns:1fr;}
-  .l-grid{grid-template-columns:1fr 1fr;}
-  .l-item{aspect-ratio:1/1;min-height:160px;}
+  .l-grid{grid-template-columns:1fr;}
+  .l-item{aspect-ratio:16/9;min-height:180px;}
 }
  
 /* short viewport fix */
@@ -336,7 +336,7 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
       </div>
     </a>
     <a href="problembaumfaellung.html" class="l-item" style="display:block;text-decoration:none;">
-      <picture><source media="(max-width:768px)" srcset="problembaum.leistung.png"><img src="problembaum_leistung.png" alt="Problembaumfällung" class="l-img"></picture>
+      <picture><source media="(max-width:768px)" srcset="problembaum_leistung_mobile.png"><img src="problembaum_leistung.png" alt="Problembaumfällung" class="l-img"></picture>
       <div class="l-overlay"></div><div class="l-border"></div>
       <div class="l-content">
         <div class="l-name">Problembaumfällung</div>
@@ -436,3 +436,4 @@ function closeMenu(){document.getElementById('burger').classList.remove('open');
 </script>
 </body>
 </html>
+ 
