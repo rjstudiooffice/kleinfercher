@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schneeräumung · Kleinfercher · Reißeck, Kärnten</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:#060c06;color:#dde8d8;font-family:'Barlow',sans-serif;overflow:hidden;height:100vh;}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;height:110px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(6,12,6,0.55);backdrop-filter:blur(8px);border-bottom:1px solid rgba(221,232,216,0.07);}
+.nav-logo{display:flex;align-items:center;text-decoration:none;opacity:0;animation:fadeIn 0.8s 0.2s forwards;}
+.nav-logo img{height:100px;width:auto;filter:brightness(2.2) contrast(1.1) drop-shadow(0 0 6px rgba(255,255,255,0.25));transition:filter 0.3s;}
+.nav-logo:hover img{filter:brightness(2.6) contrast(1.1) drop-shadow(0 0 10px rgba(255,255,255,0.4));}
+.nav-r{display:flex;align-items:center;gap:28px;opacity:0;animation:fadeIn 0.8s 0.4s forwards;}
+.nav-r a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(221,232,216,0.6);text-decoration:none;transition:color 0.25s;}
+.nav-r a:hover{color:#dde8d8;}
+.nav-call{background:#1a65b8!important;color:#dde8d8!important;padding:9px 22px;transition:background 0.25s!important;}
+.nav-call:hover{background:#2278d4!important;}
+.burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;}
+.burger span{width:22px;height:2px;background:#dde8d8;display:block;transition:all 0.3s;}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mob-menu{position:fixed;inset:0;background:#060c06;z-index:290;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:28px;transform:translateX(100%);transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);}
+.mob-menu.open{transform:translateX(0);}
+.mob-menu a{font-family:'Anton',sans-serif;font-size:42px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(221,232,216,0.4);text-decoration:none;transition:color 0.25s;}
+.mob-menu a:hover{color:#dde8d8;}
+.mob-menu .mob-cta{color:#1a65b8;}
+.hero{position:relative;height:100vh;overflow:hidden;}
+.hero-topline{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent 0%,#1a65b8 20%,#2278d4 50%,#1a65b8 80%,transparent 100%);z-index:10;}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.45) saturate(0.6);}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,12,6,0.92) 0%,rgba(6,12,6,0.3) 50%,rgba(6,12,6,0.1) 100%);z-index:2;}
+.hero-content{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20px;}
+.eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(221,232,216,0.5);margin-bottom:20px;opacity:0;animation:slideUp 0.7s 0.3s forwards;}
+.headline{font-family:'Anton',sans-serif;font-size:clamp(52px,12vw,140px);text-transform:uppercase;letter-spacing:0.02em;color:#dde8d8;line-height:0.88;margin-bottom:16px;opacity:0;animation:slideUp 0.7s 0.5s forwards;}
+.headline em{font-style:normal;color:#1a65b8;}
+.sub{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(221,232,216,0.35);margin-bottom:48px;opacity:0;animation:slideUp 0.7s 0.7s forwards;}
+.back-btn{border:1px solid rgba(221,232,216,0.2);color:#dde8d8;text-decoration:none;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:13px 32px;transition:all 0.25s;display:inline-block;opacity:0;animation:slideUp 0.7s 0.9s forwards;}
+.back-btn:hover{border-color:#dde8d8;background:rgba(221,232,216,0.06);}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:1024px){
+  nav{padding:0 20px;height:90px;}.nav-r{display:none;}.burger{display:flex;}
+  .nav-logo img{height:72px;}
+}
+</style>
+</head>
+<body>
+ 
+<nav>
+  <a href="index.html" class="nav-logo"><img src="logokleinfercher.png" alt="Kleinfercher"></a>
+  <div class="nav-r">
+    <a href="index.html">← Startseite</a>
+    <a href="index.html#leistungen">Leistungen</a>
+    <a href="index.html#kontakt">Kontakt</a>
+    <a href="tel:06644154196" class="nav-call">☎ Jetzt anrufen</a>
+  </div>
+  <button class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+ 
+<div class="mob-menu" id="mobMenu">
+  <img src="logokleinfercher.png" alt="Kleinfercher" style="height:140px;width:auto;filter:brightness(2) saturate(1.2);margin-bottom:8px;">
+  <a href="index.html" onclick="closeMenu()">← Startseite</a>
+  <a href="index.html#leistungen" onclick="closeMenu()">Leistungen</a>
+  <a href="index.html#kontakt" onclick="closeMenu()">Kontakt</a>
+  <a href="tel:06644154196" class="mob-cta" onclick="closeMenu()">☎ Anrufen</a>
+</div>
+ 
+<section class="hero">
+  <div class="hero-topline"></div>
+  <picture>
+    <source media="(max-width:768px)" srcset="schnee_mobile.png">
+    <img src="schnee.png" alt="Schneeräumung Kleinfercher" class="hero-img">
+  </picture>
+  <div class="hero-grad"></div>
+  <div class="hero-content">
+    <div class="eyebrow">Kleinfercher · Reißeck · Kärnten</div>
+    <h1 class="headline">Bald<br><em>verfügbar.</em></h1>
+    <p class="sub">Im Winter wieder für Sie im Einsatz</p>
+    <a href="index.html" class="back-btn">← Zurück zur Startseite</a>
+  </div>
+</section>
+ 
+<script>
+function toggleMenu(){document.getElementById('burger').classList.toggle('open');document.getElementById('mobMenu').classList.toggle('open');document.body.style.overflow=document.getElementById('mobMenu').classList.contains('open')?'hidden':'';}
+function closeMenu(){document.getElementById('burger').classList.remove('open');document.getElementById('mobMenu').classList.remove('open');document.body.style.overflow='';}
+</script>
+</body>
+</html>
