@@ -112,11 +112,13 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
 .reveal-r{opacity:0;transform:translateX(30px);transition:opacity 0.9s,transform 0.9s;}
 .reveal-r.in{opacity:1;transform:translateX(0);}
 .d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}
+.mob-br{display:none;}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes slideUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 @media(max-width:1024px){
   nav{padding:0 20px;height:90px;}.nav-r{display:none;}.burger{display:flex;}
   .nav-logo img{height:72px;}
+  .mob-br{display:block;}
   .hero-content{left:20px;bottom:60px;}
   .intro{padding:64px 20px;}.intro-inner{grid-template-columns:1fr;gap:40px;}
   .vorteile{padding:60px 20px;}.vorteile-grid{grid-template-columns:1fr;}
@@ -164,7 +166,7 @@ footer{background:var(--black2);padding:22px 52px;border-top:1px solid var(--bor
   <div class="hero-diag"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">Leistung · Kleinfercher · Kärnten</div>
-    <h1 class="hero-h1">Problembaum<em>fällung.</em></h1>
+    <h1 class="hero-h1">Problembaum<br class="mob-br"><em>fällung.</em></h1>
     <p class="hero-sub">Wenn ein Baum zur Gefahr wird, braucht es Erfahrung, das richtige Gerät — und jemanden, der auch in schwierigen Lagen einen kühlen Kopf bewahrt.</p>
     <div class="hero-ctas">
       <a href="index.html#kontakt" class="btn-blue"><span>Anfrage senden</span></a>
